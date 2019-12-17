@@ -2,7 +2,7 @@ package dao;
 
 import java.sql.Connection;
 
-import connexion.Connexion;
+import bdConnector.bdConnector;
 import dao.implement.UserDAO;
 import dao.implement.UserDAOMySQL;
 
@@ -13,7 +13,7 @@ import dao.implement.UserDAOMySQL;
  */
 
 public class DAOFactoryMySQL extends AbstractDAOFactory {
-  protected static final Connection conn = Connexion.getInstance();   
+  protected static final Connection conn = bdConnector.getInstance();   
    
   /**
   * Retourne un objet Classe interagissant avec la BDD
