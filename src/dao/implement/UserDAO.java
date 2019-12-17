@@ -2,7 +2,7 @@ package dao.implement;
 
 import java.sql.Connection;
 
-import application.model.User;
+import model.User;
 
 /**
  * 

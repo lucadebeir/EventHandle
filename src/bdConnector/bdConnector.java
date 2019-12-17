@@ -1,4 +1,4 @@
-package connexion;
+package bdConnector;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,7 +11,7 @@ import java.util.Properties;
  *
  */
 
-public class Connexion{
+public class bdConnector{
 
 	//Objet Connection
 	private static Connection connect;
