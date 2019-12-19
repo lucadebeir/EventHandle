@@ -1,4 +1,4 @@
-package facade.exceptions;
+package facade.exception;
 
 /**
  * 
