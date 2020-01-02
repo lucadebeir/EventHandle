@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Dec 28, 2019 at 04:42 PM
+-- Generation Time: Dec 29, 2019 at 07:15 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -23,9 +23,18 @@ SET time_zone = "+00:00";
 CREATE TABLE `activity` (
   `idActivity` int(11) NOT NULL,
   `nameActivity` varchar(32) NOT NULL,
-  `statusActivity` tinyint(1) NOT NULL,
-  `descriptionActivity` text NOT NULL
+  `statusActivity` tinyint(1) NOT NULL DEFAULT '0',
+  `descriptionActivity` text NOT NULL,
+  `idEvent` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `activity`
+--
+
+INSERT INTO `activity` (`idActivity`, `nameActivity`, `statusActivity`, `descriptionActivity`, `idEvent`) VALUES
+(1, 'Cuisine', 0, 'Toutes les activités liées à la cuisine.', 0),
+(2, 'Salle', 0, 'Toutes les activités liées à l\'installation de la salle.', 0);
 
 -- --------------------------------------------------------
 
@@ -78,6 +87,14 @@ CREATE TABLE `conservation` (
   `dateConservation` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `conservation`
+--
+
+INSERT INTO `conservation` (`idConservation`, `nameConservation`, `descriptionConservation`, `storageTemperature`, `dateConservation`) VALUES
+(3, 'Sauce tomate', 'Bolo pour pâte', 27, '2020-02-28'),
+(4, 'Jus d\'orange', 'Sans pulpe', 25, '2020-01-24');
+
 -- --------------------------------------------------------
 
 --
@@ -108,6 +125,15 @@ CREATE TABLE `event` (
   `idCreator` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `event`
+--
+
+INSERT INTO `event` (`idEvent`, `nameEvent`, `dateStartEvent`, `locationEvent`, `dateEndEvent`, `descriptionEvent`, `idCreator`) VALUES
+(1, 'Soirée P1', '2019-10-17', 'Marsillargues', '2019-10-18', 'Première soirée Polytech Montpellier de l\'année 2019/2020', 1),
+(2, 'Marché de Noël de Montpellier', '2019-11-28', 'Montpellier', '2020-01-04', 'Marché de Noël sur l\'esplanade de Montpellier.', 1),
+(3, 'Gala', '2020-03-07', 'La Grande Motte', '2019-12-08', 'Gala annuel de Polytech Montpellier', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -118,6 +144,14 @@ CREATE TABLE `isIntervener` (
   `idUser` int(11) NOT NULL,
   `idEvent` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `isIntervener`
+--
+
+INSERT INTO `isIntervener` (`idUser`, `idEvent`) VALUES
+(2, 2),
+(3, 1);
 
 -- --------------------------------------------------------
 
@@ -130,6 +164,14 @@ CREATE TABLE `isManager` (
   `idEvent` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `isManager`
+--
+
+INSERT INTO `isManager` (`idUser`, `idEvent`) VALUES
+(1, 2),
+(1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -140,6 +182,14 @@ CREATE TABLE `isVolunteer` (
   `idUser` int(11) NOT NULL,
   `idEvent` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `isVolunteer`
+--
+
+INSERT INTO `isVolunteer` (`idUser`, `idEvent`) VALUES
+(3, 2),
+(2, 1);
 
 -- --------------------------------------------------------
 
@@ -235,7 +285,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`idUser`, `lastNameUser`, `firstNameUser`, `email`, `password`) VALUES
-(1, 'Debeir', 'Luca', 'l.debeir@me.com', 'luca');
+(1, 'Debeir', 'Luca', 'l.debeir@me.com', 'luca'),
+(2, 'Gayet', 'Simon', 's@s.s', 's'),
+(3, 'Debeir', 'Margaux', 'm@m.m', 'm');
 
 --
 -- Indexes for dumped tables
@@ -245,7 +297,8 @@ INSERT INTO `user` (`idUser`, `lastNameUser`, `firstNameUser`, `email`, `passwor
 -- Indexes for table `activity`
 --
 ALTER TABLE `activity`
-  ADD PRIMARY KEY (`idActivity`);
+  ADD PRIMARY KEY (`idActivity`),
+  ADD KEY `idEvent` (`idEvent`);
 
 --
 -- Indexes for table `chat`
@@ -360,7 +413,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `activity`
 --
 ALTER TABLE `activity`
-  MODIFY `idActivity` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idActivity` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `chat`
@@ -372,7 +425,7 @@ ALTER TABLE `chat`
 -- AUTO_INCREMENT for table `conservation`
 --
 ALTER TABLE `conservation`
-  MODIFY `idConservation` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idConservation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `contract`
@@ -384,7 +437,7 @@ ALTER TABLE `contract`
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `idEvent` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idEvent` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `message`
@@ -420,11 +473,18 @@ ALTER TABLE `task`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `idUser` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idUser` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `chat`
+--
+ALTER TABLE `activity`
+  ADD CONSTRAINT `activityEvent` FOREIGN KEY (`idEvent`) REFERENCES `event` (`idEvent`) ON DELETE CASCADE ON UPDATE CASCADE;
+
 
 --
 -- Constraints for table `chat`

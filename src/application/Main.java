@@ -42,9 +42,11 @@ public class Main extends Application {
 	
 	public void init() {
 		Router r = Router.getInstance();
-		r.add("HomePage", "/ui/homePage/HomePage.fxml");
+		r.add("HomePage", "/ui/event/MyEvents.fxml");
 		r.add("Login", "/ui/loginSignUp/Login.fxml");
 		r.add("SignUp", "/ui/loginSignUp/UserForm.fxml");
+		r.add("AddEvent", "/ui/event/AddEvent.fxml");
+		r.add("Event", "/ui/event/Event.fxml");
 		
 	}
 }

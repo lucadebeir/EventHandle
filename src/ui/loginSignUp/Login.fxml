@@ -20,11 +20,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="800.0" prefWidth="1000.0" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+<VBox prefHeight="800.0" prefWidth="1000.0" spacing="10.0" style="-fx-background-color: #fefee2;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <top>
-            <GridPane prefHeight="128.0" prefWidth="599.0" BorderPane.alignment="CENTER">
+            <GridPane prefHeight="173.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="606.0" minWidth="10.0" prefWidth="495.1263122558594" />
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="498.8736877441406" minWidth="0.0" prefWidth="498.8736877441406" />
@@ -38,7 +38,7 @@
                         <Font name="System Bold" size="34.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="128.0" fitWidth="148.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
+                  <ImageView fitHeight="172.0" fitWidth="205.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
                      <image>
                      	<Image url="@../../../assets/img/eventhandle.jpg" />
                      </image>
@@ -93,14 +93,14 @@
                   <Font name="System Bold" size="21.0" />
                </font>
             </Label>
-            <TextField fx:id="txtEmailUser" alignment="CENTER_RIGHT" prefHeight="27.0" prefWidth="167.0" promptText="Your email adress" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="txtEmailUser" alignment="CENTER_RIGHT" prefHeight="27.0" prefWidth="167.0" promptText="Your email adress" style="-fx-background-color: f0f0f0;" GridPane.columnIndex="1" GridPane.rowIndex="1">
       </TextField>
             <Label text="Password :" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
-            <PasswordField fx:id="txtPassWord" alignment="CENTER_RIGHT" promptText="Your password" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <PasswordField fx:id="txtPassWord" alignment="CENTER_RIGHT" promptText="Your password" style="-fx-background-color: f0f0f0;" GridPane.columnIndex="1" GridPane.rowIndex="3">
       </PasswordField>
          </children>
       </GridPane>

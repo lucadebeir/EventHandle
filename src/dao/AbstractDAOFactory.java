@@ -1,5 +1,6 @@
 package dao;
 
+import dao.implement.EventDAO;
 import dao.implement.UserDAO;
 
 /**
@@ -14,6 +15,8 @@ public abstract class AbstractDAOFactory {
 
   //Retourne un objet Classe interagissant avec la BDD
   public abstract UserDAO createUserDAO();
+  
+  public abstract EventDAO createEventDAO();
    
   //Méthode permettant de récupérer les Factory
   public static AbstractDAOFactory getFactory(int type){

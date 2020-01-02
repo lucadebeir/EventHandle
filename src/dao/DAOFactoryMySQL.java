@@ -2,9 +2,11 @@ package dao;
 
 import java.sql.Connection;
 
-import bdConnector.bdConnector;
+import dao.implement.EventDAO;
+import dao.implement.EventDAOMySQL;
 import dao.implement.UserDAO;
 import dao.implement.UserDAOMySQL;
+import database.bdConnector;
 
 /**
  * 
@@ -22,6 +24,12 @@ public class DAOFactoryMySQL extends AbstractDAOFactory {
   public UserDAO createUserDAO(){
     return new UserDAOMySQL(conn);
   }
+
+@Override
+public EventDAO createEventDAO() {
+	// TODO Auto-generated method stub
+	return new EventDAOMySQL(conn);
+}
   
 }
 
