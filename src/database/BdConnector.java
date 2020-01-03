@@ -11,7 +11,7 @@ import java.util.Properties;
  *
  */
 
-public class bdConnector{
+public class BdConnector{
 
 	//Objet Connection
 	private static Connection connect;
@@ -22,7 +22,7 @@ public class bdConnector{
 	      try {
 	    	Properties props = new Properties();
 			props.setProperty("ssl","false");
-	        connect = DriverManager.getConnection("jdbc:mysql://localhost:8889/eventhandle?autoReconnect=true","root","root");
+	        connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/eventhandle?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC","root","");
 	      } catch (SQLException e) {
 	        e.printStackTrace();
 	      }
