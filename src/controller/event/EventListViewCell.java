@@ -1,4 +1,4 @@
-package controller.event;
+package src.controller.event;
 
 import java.io.IOException;
 
@@ -7,8 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.HBox;
-import model.EventCell;
-import ui.Router;
+import src.model.EventCell;
+import src.ui.Router;
 
 public class EventListViewCell extends ListCell<EventCell> {
 	

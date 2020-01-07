@@ -1,10 +1,10 @@
-package dao.implement;
+package src.dao.implement;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import model.User;
+import src.model.User;
 
 /**
  * 

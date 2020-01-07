@@ -1,8 +1,8 @@
-package dao.implement;
+package src.dao.implement;
 
 import java.sql.Connection;
 
-import model.User;
+import src.model.User;
 
 /**
  * 
@@ -21,7 +21,7 @@ public abstract class UserDAO {
 		this.connect = conn;
 	}
 	 
-	public abstract User find(int id);
+	public abstract src.model.User find(int id);
 	
 	/**
      * Log in the user on the app, if it's true.

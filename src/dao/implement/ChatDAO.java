@@ -1,8 +1,8 @@
-package dao.implement;
+package src.dao.implement;
 
 import java.util.*;
 
-import model.Chat;
+import src.model.Chat;
 
 /**
  * 

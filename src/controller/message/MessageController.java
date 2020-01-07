@@ -1,4 +1,4 @@
-package controller.message;
+package src.controller.message;
 
 import java.util.*;
 

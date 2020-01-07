@@ -1,6 +1,9 @@
-package dao.implement;
+package src.dao.implement;
 
 import java.util.*;
+
+import src.database.BdConnector;
+import src.model.Sponsor;
 
 /**
  * 
@@ -17,7 +20,7 @@ public abstract class SponsorDAO {
     /**
      * @param connect
      */
-    public void SponsorDAO(Connection connect) {
+    public void SponsorDAO(BdConnector connect) {
         // TODO implement here
     }
 
@@ -27,7 +30,6 @@ public abstract class SponsorDAO {
      */
     public void createSponsor(Sponsor obj) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -45,7 +47,6 @@ public abstract class SponsorDAO {
      */
     public void updateSponsor(Sponsor obj) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -54,7 +55,6 @@ public abstract class SponsorDAO {
      */
     public void deleteSponsor(Sponsor obj) {
         // TODO implement here
-        return null;
     }
 
 }

@@ -1,12 +1,12 @@
-package dao;
+package src.dao;
 
 import java.sql.Connection;
 
-import dao.implement.EventDAO;
-import dao.implement.EventDAOMySQL;
-import dao.implement.UserDAO;
-import dao.implement.UserDAOMySQL;
-import database.bdConnector;
+import src.dao.implement.EventDAO;
+import src.dao.implement.EventDAOMySQL;
+import src.dao.implement.UserDAO;
+import src.dao.implement.UserDAOMySQL;
+import src.database.BdConnector;
 
 /**
  * 
@@ -15,7 +15,7 @@ import database.bdConnector;
  */
 
 public class DAOFactoryMySQL extends AbstractDAOFactory {
-  protected static final Connection conn = bdConnector.getInstance();   
+  protected static final Connection conn = BdConnector.getInstance();   
    
   /**
   * Retourne un objet Classe interagissant avec la BDD

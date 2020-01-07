@@ -1,8 +1,9 @@
-package controller.ressource;
+package src.controller.ressource;
 
 import java.util.*;
 
-import facade.RessourceFacade;
+import src.facade.RessourceFacade;
+import src.model.Ressource;
 
 /**
  * 

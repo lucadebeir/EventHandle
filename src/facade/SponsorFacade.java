@@ -1,8 +1,8 @@
-package facade;
+package src.facade;
 
 import java.util.*;
 
-import dao.AbstractDAOFactory;
+import src.dao.AbstractDAOFactory;
 
 /**
  * 

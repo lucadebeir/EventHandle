@@ -1,6 +1,7 @@
-package model;
+package src.model;
 
 import java.util.*;
+import src.model.*;
 
 /**
  * 
@@ -16,7 +17,7 @@ public class Activity {
     /**
      * 
      */
-    private void nameActivity;
+    private String nameActivity;
 
 
     /**
@@ -33,13 +34,12 @@ public class Activity {
      */
     public void setNameActivity(String nameActivity) {
         // TODO implement here
-        return null;
     }
 
     /**
      * @return
      */
-    public Task[*] getTasks() {
+    public Task[] getTasks() {
         // TODO implement here
         return null;
     }

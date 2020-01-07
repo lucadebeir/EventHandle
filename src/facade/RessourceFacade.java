@@ -1,6 +1,10 @@
-package facade;
+package src.facade;
 
 import java.util.*;
+
+import src.dao.AbstractDAOFactory;
+import src.dao.implement.RessourceDAO;
+import src.model.Ressource;
 
 /**
  * 
@@ -62,7 +66,6 @@ public class RessourceFacade {
      */
     public void updateRessource(Ressource r, int idEvent) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -72,7 +75,6 @@ public class RessourceFacade {
      */
     public void deleteRessource(Ressource r, int idEvent) {
         // TODO implement here
-        return null;
     }
 
     /**

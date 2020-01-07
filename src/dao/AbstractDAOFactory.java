@@ -1,7 +1,7 @@
-package dao;
+package src.dao;
 
-import dao.implement.EventDAO;
-import dao.implement.UserDAO;
+import src.dao.implement.EventDAO;
+import src.dao.implement.UserDAO;
 
 /**
  * 

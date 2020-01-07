@@ -1,10 +1,10 @@
-package controller.event;
+package src.controller.event;
 
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
-import facade.EventFacade;
-import facade.exception.DisconnectedUserException;
+import src.facade.EventFacade;
+import src.facade.exception.DisconnectedUserException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,9 +13,9 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.Event;
-import model.MyDate;
-import ui.Router;
+import src.model.Event;
+import src.model.MyDate;
+import src.ui.Router;
 
 public class UpdateEvent implements Initializable {
 	

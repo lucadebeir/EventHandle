@@ -1,4 +1,4 @@
-package application;
+package src.application;
 
 import java.io.IOException;
 
@@ -7,7 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import ui.Router;
+import src.ui.Router;
 
 /**
  * 
@@ -24,7 +24,7 @@ public class Main extends Application {
 		Main.primaryStage = primaryStage;
 		
 		try {
-			FXMLLoader root = new FXMLLoader(getClass().getResource("/ui/loginSignUp/Login.fxml"));
+			FXMLLoader root = new FXMLLoader(getClass().getResource("/src/ui/loginSignUp/Login.fxml"));
 		    Parent skillLayout = root.load();
 	        Scene scene = new Scene(skillLayout, 1000, 800);
 	        
@@ -42,11 +42,11 @@ public class Main extends Application {
 	
 	public void init() {
 		Router r = Router.getInstance();
-		r.add("HomePage", "/ui/event/MyEvents.fxml");
-		r.add("Login", "/ui/loginSignUp/Login.fxml");
-		r.add("SignUp", "/ui/loginSignUp/UserForm.fxml");
-		r.add("AddEvent", "/ui/event/AddEvent.fxml");
-		r.add("Event", "/ui/event/Event.fxml");
+		r.add("HomePage", "/src/ui/event/MyEvents.fxml");
+		r.add("Login", "/src/ui/loginSignUp/Login.fxml");
+		r.add("SignUp", "/src/ui/loginSignUp/UserForm.fxml");
+		r.add("AddEvent", "/src/ui/event/AddEvent.fxml");
+		r.add("Event", "/src/ui/event/Event.fxml");
 		
 	}
 }

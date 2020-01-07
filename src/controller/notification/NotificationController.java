@@ -1,4 +1,4 @@
-package controller.notification;
+package src.controller.notification;
 
 import java.util.*;
 

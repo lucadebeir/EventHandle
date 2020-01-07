@@ -1,4 +1,4 @@
-package controller.ressource;
+package src.controller.ressource;
 
 import java.util.*;
 

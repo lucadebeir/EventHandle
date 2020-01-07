@@ -1,9 +1,9 @@
-package facade;
+package src.facade;
 
-import dao.AbstractDAOFactory;
-import dao.implement.UserDAO;
-import facade.exception.DisconnectedUserException;
-import model.User;
+import src.dao.AbstractDAOFactory;
+import src.dao.implement.UserDAO;
+import src.facade.exception.DisconnectedUserException;
+import src.model.User;
 
 /**
  * 

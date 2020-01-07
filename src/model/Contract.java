@@ -1,4 +1,4 @@
-package model;
+package src.model;
 
 import java.util.*;
 
@@ -16,7 +16,7 @@ public class Contract {
     /**
      * 
      */
-    public Int numContract;
+    public int numContract;
 
     /**
      * 
@@ -40,9 +40,9 @@ public class Contract {
     /**
      * @return
      */
-    public Int getNumContract() {
+    public int getNumContract() {
         // TODO implement here
-        return null;
+        return 0;
     }
 
     /**
@@ -67,7 +67,6 @@ public class Contract {
      */
     public void setLibelleContract(String libelleContract) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -76,7 +75,6 @@ public class Contract {
      */
     public void setClauseContract(String clauseContract) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -84,7 +82,6 @@ public class Contract {
      */
     public void deleteContract() {
         // TODO implement here
-        return null;
     }
 
 }

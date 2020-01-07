@@ -1,11 +1,11 @@
-package controller.event;
+package src.controller.event;
 
 import java.io.IOException;
 
-import model.MyDate;
-import ui.Router;
-import facade.EventFacade;
-import facade.exception.DisconnectedUserException;
+import src.model.MyDate;
+import src.ui.Router;
+import src.facade.EventFacade;
+import src.facade.exception.DisconnectedUserException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;

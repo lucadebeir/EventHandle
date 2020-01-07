@@ -1,4 +1,4 @@
-package model;
+package src.model;
 
 import java.util.*;
 
@@ -97,7 +97,6 @@ public class Sponsor {
      */
     public void setNameSponsor(String nameSponsor) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -106,7 +105,6 @@ public class Sponsor {
      */
     public void setNumSiretSponsor(int numSiretSponsor) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -115,7 +113,6 @@ public class Sponsor {
      */
     public void setNumTelContactSponsor(String numTelContactSponsor) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -124,7 +121,6 @@ public class Sponsor {
      */
     public void setLastNameContactSponsor(String lastNameContactSponsor) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -133,7 +129,6 @@ public class Sponsor {
      */
     public void setFirstNameContactSponsor(String firstNameContactSponsor) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -142,7 +137,6 @@ public class Sponsor {
      */
     public void setEmailContactSponsor(String emailContactSponsor) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -150,7 +144,6 @@ public class Sponsor {
      */
     public void deleteSponsor() {
         // TODO implement here
-        return null;
     }
 
 }

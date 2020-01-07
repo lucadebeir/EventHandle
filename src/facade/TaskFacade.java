@@ -1,6 +1,10 @@
-package facade;
+package src.facade;
 
 import java.util.*;
+
+import src.dao.AbstractDAOFactory;
+import src.dao.implement.TaskDAO;
+import src.model.Task;
 
 /**
  * 

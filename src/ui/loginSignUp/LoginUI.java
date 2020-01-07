@@ -1,4 +1,4 @@
-package ui.loginSignUp;
+package src.ui.loginSignUp;
 
 import java.io.IOException;
 import javafx.application.Application;

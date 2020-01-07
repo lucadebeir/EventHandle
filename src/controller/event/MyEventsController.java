@@ -1,13 +1,16 @@
-package controller.event;
+package src.controller.event;
 
-import model.Event;
-import model.EventCell;
+import src.model.Event;
+import src.model.EventCell;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import facade.EventFacade;
-import facade.exception.DisconnectedUserException;
+
+import src.controller.event.EventListViewCell;
+import src.controller.event.UpdateEvent;
+import src.facade.EventFacade;
+import src.facade.exception.DisconnectedUserException;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.value.ChangeListener;
@@ -23,7 +26,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import ui.Router;
+import src.ui.Router;
 
 public class MyEventsController {
 	
@@ -190,7 +193,7 @@ public class MyEventsController {
 		nextStage.setTitle("Add en event");
 		Pane myPane = null;
 		try {
-			myPane = FXMLLoader.load(getClass().getResource("/ui/event/AddEvent.fxml"));
+			myPane = FXMLLoader.load(getClass().getResource("/src/ui/event/AddEvent.fxml"));
 		} catch (IOException e) {
 			
 			e.printStackTrace();
@@ -219,7 +222,7 @@ public class MyEventsController {
 		Parent sceneMain = null;
 		try {
 			FXMLLoader loader =new FXMLLoader(
-					getClass().getResource("/ui/event/UpdateEvent.fxml"));
+					getClass().getResource("/src/ui/event/UpdateEvent.fxml"));
 			UpdateEvent controllerU = new UpdateEvent();
 			loader.setController(controllerU);
 			

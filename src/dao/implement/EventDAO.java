@@ -1,9 +1,9 @@
-package dao.implement;
+package src.dao.implement;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import model.Event;
+import src.model.Event;
 
 public abstract class EventDAO {
 	

@@ -1,7 +1,7 @@
-package controller.sponsor;
+package src.controller.sponsor;
 
 import java.util.*;
-import facade.SponsorFacade;
+import src.facade.SponsorFacade;
 
 /**
  * 

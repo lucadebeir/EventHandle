@@ -1,4 +1,4 @@
-package model;
+package src.model;
 
 import java.util.*;
 
@@ -31,7 +31,7 @@ public class Ressource {
     /**
      * 
      */
-    private State stateRessource;
+    private String stateRessource;
 
     /**
      * 
@@ -103,7 +103,7 @@ public class Ressource {
     /**
      * @return
      */
-    public State getStateRessource() {
+    public String getStateRessource() {
         // TODO implement here
         return null;
     }
@@ -111,7 +111,7 @@ public class Ressource {
     /**
      * @param value
      */
-    public void setStateRessource(State value) {
+    public void setStateRessource(String value) {
         // TODO implement here
     }
 

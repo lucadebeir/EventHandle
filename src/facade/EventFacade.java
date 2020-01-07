@@ -1,13 +1,13 @@
-package facade;
+package src.facade;
 
-import model.User;
-import model.Event;
-import model.MyDate;
-import facade.LoginFacade;
-import facade.exception.DisconnectedUserException;
+import src.model.User;
+import src.model.Event;
+import src.model.MyDate;
+import src.facade.LoginFacade;
+import src.facade.exception.DisconnectedUserException;
 import java.util.ArrayList;
-import dao.AbstractDAOFactory;
-import dao.implement.EventDAO;
+import src.dao.AbstractDAOFactory;
+import src.dao.implement.EventDAO;
 
 /**
  * 

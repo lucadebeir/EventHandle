@@ -1,4 +1,4 @@
-package database;
+package src.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -22,7 +22,7 @@ public class BdConnector{
 	      try {
 	    	Properties props = new Properties();
 			props.setProperty("ssl","false");
-	        connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/eventhandle?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC","root","");
+	        connect = DriverManager.getConnection("jdbc:mysql://localhost:8889/eventhandle?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC","root","root");
 	      } catch (SQLException e) {
 	        e.printStackTrace();
 	      }

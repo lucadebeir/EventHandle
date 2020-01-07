@@ -1,9 +1,9 @@
-package dao.implement;
+package src.dao.implement;
 
 import java.util.*;
 
-import database.BdConnector;
-import model.Chat;
+import src.database.BdConnector;
+import src.model.Chat;
 
 /**
  * 
