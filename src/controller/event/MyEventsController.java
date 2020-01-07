@@ -254,7 +254,7 @@ public class MyEventsController {
     	}
     	for (EventCell e : listFuturEvent) {
     		if (e.getNameEvent().equals(deletedEventName)) {
-    			index = listFuturEvent.indexOf(deletedEventName);
+    			index = listFuturEvent.indexOf(e);
     			event = e;
     			past=+1;
     		}

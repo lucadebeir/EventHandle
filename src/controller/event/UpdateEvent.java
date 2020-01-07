@@ -50,8 +50,6 @@ public class UpdateEvent implements Initializable {
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		System.out.println(eventFacade.findEventById(this.idEvent));
-		System.out.println("coucou");
 		//Remplissage du TextField avec le nom du topic � modifier
 		nameEvent.setText(eventFacade.findEventById(this.idEvent).getNameEvent());
 		locationEvent.setText(eventFacade.findEventById(this.idEvent).getLocationEvent());
