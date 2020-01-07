@@ -13,7 +13,7 @@ public class MaterialDAOMySQL extends RessourceDAO {
     /**
      * Default constructor
      */
-    public MaterialDAOMySQL() {
+	public MaterialDAOMySQL(BdConnector connect) {
     }
 
     /**
@@ -21,14 +21,6 @@ public class MaterialDAOMySQL extends RessourceDAO {
      */
     public BdConnector connect;
 
-    /**
-     * @param connect 
-     * @return
-     */
-    public MaterialDAOMySQL MaterialDAOMySQL(BdConnector connect) {
-        // TODO implement here
-        return null;
-    }
 
     /**
      * @return

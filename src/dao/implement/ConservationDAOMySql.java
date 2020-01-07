@@ -13,17 +13,13 @@ public abstract class ConservationDAOMySql extends ConservationDAO {
     /**
      * Default constructor
      */
-    public ConservationDAOMySql() {
+	public ConservationDAOMySql(BdConnector cnt) {
     }
 
     /**
-     * @param cnt 
-     * @return
+     * 
      */
-    public ConservationDAOMySql ConservationDAOMySql(BdConnector cnt) {
-        // TODO implement here
-        return null;
-    }
+    public BdConnector connect;
 
     /**
      * @return

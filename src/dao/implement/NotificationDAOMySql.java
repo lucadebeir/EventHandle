@@ -13,22 +13,14 @@ public class NotificationDAOMySql extends NotificationDAO {
     /**
      * Default constructor
      */
-    public NotificationDAOMySql() {
-    }
+	public NotificationDAOMySql(BdConnector cnt) {
 
+    }
     /**
      * 
      */
     public BdConnector connect;
 
-    /**
-     * @param cnt 
-     * @return
-     */
-    public NotificationDAOMySql NotificationDAOMySql(BdConnector cnt) {
-        // TODO implement here
-        return null;
-    }
 
     /**
      * @return

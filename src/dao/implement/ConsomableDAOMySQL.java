@@ -14,27 +14,14 @@ public class ConsomableDAOMySQL extends RessourceDAO {
     /**
      * Default constructor
      */
-    public ConsomableDAOMySQL() {
+	public ConsomableDAOMySQL(BdConnector connect) {
+      
     }
 
-    /**
-     * 
-     */
     public BdConnector connect;
-
-    /**
-     * 
-     */
     public Conservation conservationType;
 
-    /**
-     * @param connect 
-     * @return
-     */
-    public ConsomableDAOMySQL ConsomableDAOMySQL(BdConnector connect) {
-        // TODO implement here
-        return null;
-    }
+    
 
     /**
      * @return

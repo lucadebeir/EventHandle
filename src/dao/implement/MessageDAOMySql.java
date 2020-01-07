@@ -13,22 +13,14 @@ public class MessageDAOMySql extends MessageDAO {
     /**
      * Default constructor
      */
-    public MessageDAOMySql() {
+    public MessageDAOMySql(BdConnector cnt) {
     }
+
 
     /**
      * 
      */
     public BdConnector connect;
-
-    /**
-     * @param cnt 
-     * @return
-     */
-    public MessageDAOMySql MessageDAOMySql(BdConnector cnt) {
-        // TODO implement here
-        return null;
-    }
 
     /**
      * @return

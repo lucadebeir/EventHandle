@@ -13,7 +13,7 @@ public class ChatDAOMySql extends ChatDAO {
     /**
      * Default constructor
      */
-    public ChatDAOMySql() {
+	public ChatDAOMySql(BdConnector cnt) {
     }
 
     /**
@@ -21,14 +21,6 @@ public class ChatDAOMySql extends ChatDAO {
      */
     public BdConnector connector;
 
-    /**
-     * @param cnt 
-     * @return
-     */
-    public ChatDAOMySql ChatDAOMySql(BdConnector cnt) {
-        // TODO implement here
-        return null;
-    }
 
     /**
      * @return
