@@ -30,3 +30,4 @@ bin
 src/database/BdConnector.java
 
 !lib/javafx/*.jar
+!lib/*.jar
