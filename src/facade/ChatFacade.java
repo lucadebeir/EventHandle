@@ -1,10 +1,10 @@
-package src.facade;
+package facade;
 
 import java.util.*;
 
-import src.dao.AbstractDAOFactory;
-import src.dao.implement.ChatDAO;
-import src.model.Chat;
+import dao.AbstractDAOFactory;
+import dao.implement.ChatDAO;
+import model.Chat;
 
 /**
  * 

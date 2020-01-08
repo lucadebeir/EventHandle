@@ -1,10 +1,10 @@
-package src.facade;
+package facade;
 
 import java.util.*;
 
-import src.dao.AbstractDAOFactory;
-import src.dao.implement.RessourceDAO;
-import src.model.Ressource;
+import dao.AbstractDAOFactory;
+import dao.implement.RessourceDAO;
+import model.Ressource;
 
 /**
  * 

@@ -1,6 +1,4 @@
-package src.controller.chat;
-
-import java.util.*;
+package controller.chat;
 
 /**
  * 

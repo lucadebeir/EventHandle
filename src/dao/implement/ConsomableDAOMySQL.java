@@ -1,10 +1,10 @@
-package src.dao.implement;
+package dao.implement;
 
 import java.util.*;
 
-import src.model.Conservation;
-import src.model.Ressource;
-import src.database.BdConnector;
+import model.Conservation;
+import model.Ressource;
+import database.BdConnector;
 
 /**
  * 

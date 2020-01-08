@@ -1,4 +1,4 @@
-package src.application;
+package application;
 
 import java.io.IOException;
 
@@ -7,7 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import src.ui.Router;
+import ui.Router;
 
 /**
  * 
@@ -47,6 +47,10 @@ public class Main extends Application {
 		r.add("SignUp", "/src/ui/loginSignUp/UserForm.fxml");
 		r.add("AddEvent", "/src/ui/event/AddEvent.fxml");
 		r.add("Event", "/src/ui/event/Event.fxml");
+		r.add("ListOfCollaborators", "/src/ui/event/collaborators/ListOfCollaborators.fxml");
+		r.add("ListOfActivities", "/src/ui/event/activities/ListOfActivities.fxml");
+		r.add("ListOfSponsors", "/src/ui/event/sponsors/ListOfSponsors.fxml");
+		r.add("ListOfResources", "/src/ui/event/resources/ListOfResources.fxml");
 		
 	}
 }

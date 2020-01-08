@@ -1,15 +1,19 @@
-package src.facade;
+package facade;
 
 import java.util.*;
 
-import src.dao.AbstractDAOFactory;
-import src.dao.implement.NotificationDAO;
-import src.model.Notification;
+import dao.AbstractDAOFactory;
+import dao.implement.NotificationDAO;
+import model.Notification;
 
 /**
- * 
+ * @author lucadebeir
  */
 public class NotificationFacade {
+	
+	private AbstractDAOFactory factory = AbstractDAOFactory.getFactory(AbstractDAOFactory.DAO_FACTORY);
+	private NotificationDAO notifDAO = factory.createNotificationDAO();
+	private Notification notif;
 
     /**
      * Default constructor
@@ -22,25 +26,15 @@ public class NotificationFacade {
      */
     private Set<Notification> notifications;
 
-    /**
-     * 
-     */
-    private NotificationDAO notificationDAO;
-
-    /**
-     * 
-     */
-    private AbstractDAOFactory factory;
-
 
 
 
     /**
      * @return
      */
-    public Notification getNotifications() {
+    public ArrayList<Notification> getNotificationsOfEvent(int idEvent) {
         // TODO implement here
-        return null;
+        return notifDAO.getAllNotificationByIdEvent(idEvent);
     }
 
     /**

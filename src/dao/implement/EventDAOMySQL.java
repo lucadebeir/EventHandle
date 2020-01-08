@@ -1,12 +1,16 @@
-package src.dao.implement;
+package dao.implement;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import src.model.Event;
-import src.model.MyDate;
+import model.Event;
+import model.MyDate;
+
+/*
+ * @author lucadebeir
+ */
 
 public class EventDAOMySQL extends EventDAO {
 	

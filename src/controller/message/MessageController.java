@@ -1,6 +1,4 @@
-package src.controller.message;
-
-import java.util.*;
+package controller.message;
 
 /**
  * 

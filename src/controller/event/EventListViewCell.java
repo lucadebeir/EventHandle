@@ -1,4 +1,4 @@
-package src.controller.event;
+package controller.event;
 
 import java.io.IOException;
 
@@ -6,9 +6,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
-import javafx.scene.layout.HBox;
-import src.model.EventCell;
-import src.ui.Router;
+import javafx.scene.layout.BorderPane;
+import model.EventCell;
 
 public class EventListViewCell extends ListCell<EventCell> {
 	
@@ -28,7 +27,7 @@ public class EventListViewCell extends ListCell<EventCell> {
 	private Label cellLabelStartDate;
 	
 	@FXML 
-	private HBox cellLayout;
+	private BorderPane cellLayout;
 	
 	FXMLLoader mLLoader;
 
@@ -64,6 +63,7 @@ public class EventListViewCell extends ListCell<EventCell> {
             this.cellLabelStartDate.setText(String.valueOf(ec.getDateStartEvent().getShowingDate()));
             this.cellLabelEndDate.setText(String.valueOf(ec.getEndStartEvent().getShowingDate()));
            
+            this.cellLabelLocation.maxWidth(USE_COMPUTED_SIZE);
             
             setText(null);
             setGraphic(cellLayout);

@@ -1,13 +1,13 @@
-package src.controller;
+package controller;
 
 import java.io.IOException;
-import src.facade.LoginFacade;
+import facade.LoginFacade;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import src.ui.Router;
+import ui.Router;
 import javafx.event.ActionEvent;
 
 /**

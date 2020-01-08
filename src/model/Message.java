@@ -1,19 +1,11 @@
-package src.model;
-
-import java.util.*;
+package model;
 
 /**
- * 
+ * @author lucadebeir
  */
 public class Message {
-
-    /**
-     * Default constructor
-     */
-    public Message() {
-    }
-
-    /**
+	
+	/**
      * 
      */
     private int idMessage;
@@ -31,12 +23,25 @@ public class Message {
     /**
      * 
      */
-    private User sender;
+    private int idSender;
 
     /**
      * 
      */
-    private User receiver;
+    private int idReceiver;
+
+    /**
+     * Default constructor
+     */
+    public Message(int id, String title, String content, int idS, int idR) {
+    	this.idMessage = id;
+    	this.titleMessage = title;
+    	this.contentMessage = content;
+    	this.idSender = idS;
+    	this.idReceiver = idR;
+    }
+
+    
 
 
 
@@ -46,7 +51,7 @@ public class Message {
      */
     public int getIdMessage() {
         // TODO implement here
-        return 0;
+        return this.idMessage;
     }
 
     /**
@@ -54,6 +59,7 @@ public class Message {
      */
     public void setIdMessage(int value) {
         // TODO implement here
+    	this.idMessage = value;
     }
 
     /**
@@ -61,7 +67,7 @@ public class Message {
      */
     public String getTitleMessage() {
         // TODO implement here
-        return "";
+        return this.titleMessage;
     }
 
     /**
@@ -69,6 +75,7 @@ public class Message {
      */
     public void setTitleMessage(String value) {
         // TODO implement here
+    	this.titleMessage = value;
     }
 
     /**
@@ -76,7 +83,7 @@ public class Message {
      */
     public String getContentMessage() {
         // TODO implement here
-        return "";
+        return this.contentMessage;
     }
 
     /**
@@ -84,36 +91,39 @@ public class Message {
      */
     public void setContentMessage(String value) {
         // TODO implement here
+    	this.contentMessage = value;
     }
 
     /**
      * @return
      */
-    public User getSender() {
+    public int getIdSender() {
         // TODO implement here
-        return null;
+        return this.idSender;
     }
 
     /**
      * @param value
      */
-    public void setSender(User value) {
+    public void setIdSender(int value) {
         // TODO implement here
+    	this.idSender = value;
     }
 
     /**
      * @return
      */
-    public User getReceiver() {
+    public int getIdReceiver() {
         // TODO implement here
-        return null;
+        return this.idReceiver;
     }
 
     /**
      * @param value
      */
-    public void setReceiver(User value) {
+    public void setIdReceiver(int value) {
         // TODO implement here
+    	this.idReceiver = value;
     }
 
 }

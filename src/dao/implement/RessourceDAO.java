@@ -1,8 +1,8 @@
-package src.dao.implement;
+package dao.implement;
 
 import java.util.*;
 
-import src.model.Ressource;
+import model.Ressource;
 
 /**
  * 

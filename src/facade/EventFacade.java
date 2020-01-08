@@ -1,13 +1,13 @@
-package src.facade;
+package facade;
 
-import src.model.User;
-import src.model.Event;
-import src.model.MyDate;
-import src.facade.LoginFacade;
-import src.facade.exception.DisconnectedUserException;
+import model.User;
+import model.Event;
+import model.MyDate;
+import facade.LoginFacade;
+import facade.exception.DisconnectedUserException;
 import java.util.ArrayList;
-import src.dao.AbstractDAOFactory;
-import src.dao.implement.EventDAO;
+import dao.AbstractDAOFactory;
+import dao.implement.EventDAO;
 
 /**
  * 
@@ -40,7 +40,6 @@ public class EventFacade {
 	 * @throws DisconnectedUserException 
 	 */
 	public ArrayList<Event> getAllPastEventConnectedUser() throws DisconnectedUserException {
-		EventDAO eventDAO = this.factory.createEventDAO();
 		User co = LoginFacade.getInstance().getConnectedUser();
 		return eventDAO.getAllPastEventByIdStudent(co.getId());
 	}
@@ -52,7 +51,6 @@ public class EventFacade {
 	 * @throws DisconnectedUserException 
 	 */
 	public ArrayList<Event> getAllFuturEventConnectedUser() throws DisconnectedUserException {
-		EventDAO eventDAO = this.factory.createEventDAO();
 		User co = LoginFacade.getInstance().getConnectedUser();
 		return eventDAO.getAllFuturEventByIdStudent(co.getId());
 	}
@@ -64,7 +62,6 @@ public class EventFacade {
 	 * @throws DisconnectedUserException 
 	 */
 	public ArrayList<Event> getAllEventConnectedUser() throws DisconnectedUserException {
-		EventDAO eventDAO = this.factory.createEventDAO();
 		User co = LoginFacade.getInstance().getConnectedUser();
 		return eventDAO.getAllEventByIdStudent(co.getId());
 	}
@@ -75,7 +72,6 @@ public class EventFacade {
 	 * @return 
 	 */
 	public Event findEventById(int idE) {
-		EventDAO eventDAO = factory.createEventDAO();
 		Event e = eventDAO.findEventById(idE);
 		return e;
 	}
@@ -86,7 +82,6 @@ public class EventFacade {
 	 * @return 
 	 */
 	public void updateEvent(int idE, Event event) {
-		EventDAO eventDAO = factory.createEventDAO();
 		eventDAO.updateEvent(idE, event);
 	}
 	
@@ -95,7 +90,6 @@ public class EventFacade {
 	 * @param id the id of the researched Topic
 	 */
 	public void deleteEvent(int id) {
-		EventDAO eventDAO = factory.createEventDAO();
 		eventDAO.deleteEvent(id);
 	}
 	

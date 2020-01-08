@@ -1,16 +1,16 @@
-package src.controller.event;
+package controller.event;
 
-import src.model.Event;
-import src.model.EventCell;
+import model.Event;
+import model.EventCell;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import src.controller.event.EventListViewCell;
-import src.controller.event.UpdateEvent;
-import src.facade.EventFacade;
-import src.facade.exception.DisconnectedUserException;
+import controller.event.EventListViewCell;
+import controller.event.UpdateEvent;
+import facade.EventFacade;
+import facade.exception.DisconnectedUserException;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.value.ChangeListener;
@@ -26,7 +26,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import src.ui.Router;
+import ui.Router;
 
 public class MyEventsController {
 	

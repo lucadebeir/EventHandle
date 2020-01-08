@@ -1,9 +1,9 @@
-package src.facade;
+package facade;
 
-import src.dao.AbstractDAOFactory;
-import src.dao.implement.UserDAO;
-import src.facade.exception.DisconnectedUserException;
-import src.model.User;
+import dao.AbstractDAOFactory;
+import dao.implement.UserDAO;
+import facade.exception.DisconnectedUserException;
+import model.User;
 
 /**
  * 
@@ -61,6 +61,10 @@ public class LoginFacade {
 
     public boolean isConnected () {
     	return this.user != null;
+    }
+    
+    public User find(int id) {
+    	return userDAO.find(id);
     }
 
 }
