@@ -42,6 +42,16 @@ public class ChatDAOMySql extends ChatDAO {
 		}
 		return chats;
 	}
+	
+	public void addMessageToChat(Chat newChat) {
+		try {
+			this.connect.createStatement(
+			ResultSet.TYPE_SCROLL_INSENSITIVE,
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("INSERT INTO chat VALUES (NULL,'" + newChat.getIdSender() + "','" + newChat.getIdEvent() + "','" + newChat.getContentMessage() + "')");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 
     /**

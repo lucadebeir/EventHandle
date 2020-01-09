@@ -1,10 +1,10 @@
 package controller.chat;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import facade.ChatFacade;
 import facade.LoginFacade;
+import facade.exception.DisconnectedUserException;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
@@ -20,16 +20,17 @@ import ui.Router;
  */
 public class ChatController {
 	
-	@FXML ListView<ChatCell> chatListView;
-	@FXML TextArea chatContent;
+	@FXML ListView<Chat> chatListView;
+	@FXML TextArea messageArea;
 	
 	ChatFacade chF = null;
 	LoginFacade lF = null;
 	
 	List<Chat> chatList;
-	List<ChatCell> listChatsCell;
-	ObservableList<ChatCell> chatObservableList;
-	protected ListProperty<ChatCell> listPropertyChats = new SimpleListProperty<>();
+	ObservableList<Chat> chatObservableList;
+	protected ListProperty<Chat> listPropertyChats = new SimpleListProperty<>();
+	
+	int idEvent = (int) Router.getInstance().getParams()[0];
 	
 
     /**
@@ -39,7 +40,7 @@ public class ChatController {
     }    	
         
     @FXML
-    private void close() {
+    private void goBack() {
     	int idEvent = (int) Router.getInstance().getParams()[0];
 		Object[] params = new Object[1];
 		params[0] = idEvent;
@@ -49,40 +50,39 @@ public class ChatController {
     @FXML
     public void initialize() {        	
 	    chF = new ChatFacade();
-	    lF = new LoginFacade();
-        	
+	    
 	    chatObservableList = FXCollections.observableArrayList();
 	    
-	    int idEvent = (int) Router.getInstance().getParams()[0];
-	    chatList = chF.getAllChatOfAnEvent(idEvent);
-	    
-	    listChatsCell = new ArrayList<>();
-	    
-	    for (Chat chat : chatList) {
-			ChatCell chCell = new ChatCell(lF.find(chat.getIdSender()).getFirstNameUser(), chat.getContentMessage());
-			listChatsCell.add(chCell);
-		}
-        
-        this.chatListView.setCellFactory(chatListView -> new ChatListViewCell(this));
-        
-        chatObservableList = FXCollections.observableArrayList();
-        chatObservableList.addAll(listChatsCell);
-		
-		this.chatListView.setItems(chatObservableList);
-    	this.chatListView.setCellFactory(chatListView -> new ChatListViewCell(this));
+	    fetchListChatView();
+    	updateListView();
     	
-    	chatListView.itemsProperty().bind(listPropertyChats);
-    	listPropertyChats.set(FXCollections.observableArrayList(listChatsCell));
+    	this.chatListView.setCellFactory(chatListView -> new ChatListViewCell());
+	    
     }
     	
     @FXML
-    public void addAnswer() {
-    	String content = this.chatContent.getText();
-    	this.chatContent.clear();
-    	//chF.addAnswer(this.question.getId(), content);
+    public void addMessageToChat() throws DisconnectedUserException {
+    	String content = this.messageArea.getText().toString();
+    	this.messageArea.clear();
+    	
+    	int idUser = LoginFacade.getInstance().getConnectedUser().getId();
+    	Chat newChat = new Chat(content, idUser, idEvent);
+    	chF.addMessageToChat(newChat);
     		
-    	//fetchListAnswerView();
-    	//updateListView();
+    	fetchListChatView();
+    	updateListView();
    	}
+    
+    private void updateListView () {
+    	chatObservableList.clear();
+    	chatObservableList.addAll(chatList);
+		this.chatListView.setItems(chatObservableList);
+		
+	}
+	
+	private void fetchListChatView() {
+		chatList = this.chF.getAllChatOfAnEvent(idEvent);
+    	
+	}
 
 }

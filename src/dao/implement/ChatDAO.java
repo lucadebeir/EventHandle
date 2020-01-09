@@ -21,6 +21,8 @@ public abstract class ChatDAO {
     
     public abstract ArrayList<Chat> getAllChatOfAnEvent(int idEvent);
     
+    public abstract void addMessageToChat(Chat newChat);
+    
     /**
      * @return
      */

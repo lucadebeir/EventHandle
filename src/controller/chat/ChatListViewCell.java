@@ -1,26 +1,33 @@
 package controller.chat;
 
 import java.io.IOException;
+
+import facade.LoginFacade;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import model.Chat;
 
 public class ChatListViewCell extends ListCell<Chat> {
-	
-	@FXML private TextArea chatContent;
-	@FXML private BorderPane cellLayout;
+
+	@FXML
+	private TextArea chatContent;
+	@FXML
+	private Label cellNameSender;
+	@FXML
+	private BorderPane cellLayout;
 
 	FXMLLoader mLLoader;
-	
+
 	ChatController controller;
 	
+	LoginFacade lF = new LoginFacade();
 
-	public ChatListViewCell(ChatController controller) {
+	public ChatListViewCell() {
 		super();
-		this.controller = controller;
 	}
 
 	@Override
@@ -44,7 +51,10 @@ public class ChatListViewCell extends ListCell<Chat> {
 
 			}
 			
+			
+			this.cellNameSender.setText(String.valueOf((lF.find(chat.getIdSender()).getFirstNameUser())));
 			this.chatContent.setText(String.valueOf(chat.getContentMessage()));
+			this.chatContent.setEditable(false);
 			
 			setText(null);
 			setGraphic(cellLayout);

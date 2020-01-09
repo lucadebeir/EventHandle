@@ -30,8 +30,8 @@ import ui.Router;
 
 public class MyEventsController {
 	
-	@FXML private ListView<EventCell> pastEvent;
-	@FXML private ListView<EventCell> futurEvent;
+	@FXML private ListView<Event> pastEvent;
+	@FXML private ListView<Event> futurEvent;
 	
 	private int eventSelectedId = -1;
 	
@@ -39,10 +39,10 @@ public class MyEventsController {
 	protected List<Integer> listPastEventId = new ArrayList<>();
 	List<Event> myFuturEvent;
 	protected List<Integer> listFuturEventId = new ArrayList<>();
-	List<EventCell> listPastEvent;
-	List<EventCell> listFuturEvent;
-	ObservableList<EventCell> myPastEventObservableList;
-	ObservableList<EventCell> myFuturEventObservableList;
+	List<Event> listPastEvent;
+	List<Event> listFuturEvent;
+	ObservableList<Event> myPastEventObservableList;
+	ObservableList<Event> myFuturEventObservableList;
 	
 	protected ListProperty<EventCell> listPropertyPastEvents = new SimpleListProperty<>();
 	protected ListProperty<EventCell> listPropertyFuturEvents = new SimpleListProperty<>();
@@ -76,11 +76,16 @@ public class MyEventsController {
 	public MyEventsController() {
 	}
 	
-
-	@FXML
-    public void initialize() throws SQLException {
-		
-		eF = new EventFacade();
+	private void updateListView () {
+		myPastEventObservableList.clear();
+		myFuturEventObservableList.clear();
+		myPastEventObservableList.addAll(myPastEvent);
+		myFuturEventObservableList.addAll(myFuturEvent);
+		this.pastEvent.setItems(myPastEventObservableList);
+		this.futurEvent.setItems(myFuturEventObservableList);
+	}
+	
+	private void fetchListEventView() {
 		try {
 			myPastEvent = eF.getAllPastEventConnectedUser();
 			myFuturEvent = eF.getAllFuturEventConnectedUser();
@@ -88,39 +93,45 @@ public class MyEventsController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    	
+	}
+
+	@FXML
+    public void initialize() throws SQLException {
+		
+		eF = new EventFacade();
+		
+		fetchListEventView();
+		
 		listPastEvent = new ArrayList<>();
 		listFuturEvent = new ArrayList<>();
 		
 		for (Event event : myPastEvent) {
-			EventCell eventCell = new EventCell(event.getNameEvent(), event.getDateStartEvent(), event.getDateEndEvent(), event.getLocationEvent());
-			listPastEvent.add(eventCell);
+			//EventCell eventCell = new EventCell(event.getNameEvent(), event.getDateStartEvent(), event.getDateEndEvent(), event.getLocationEvent());
+			listPastEvent.add(event);
 			listPastEventId.add(event.getIdEvent());
 		}
 		
 		for (Event event : myFuturEvent) {
-			EventCell eventCell = new EventCell(event.getNameEvent(), event.getDateStartEvent(), event.getDateEndEvent(), event.getLocationEvent());
-			listFuturEvent.add(eventCell);
+			//EventCell eventCell = new EventCell(event.getNameEvent(), event.getDateStartEvent(), event.getDateEndEvent(), event.getLocationEvent());
+			listFuturEvent.add(event);
 			listFuturEventId.add(event.getIdEvent());
 		}
 		
 		myPastEventObservableList = FXCollections.observableArrayList();
-		myPastEventObservableList.addAll(listPastEvent);
+		myFuturEventObservableList = FXCollections.observableArrayList();
 		
-		this.pastEvent.setItems(myPastEventObservableList);
+		fetchListEventView();
+		updateListView();
+		
     	this.pastEvent.setCellFactory(eventListView -> new EventListViewCell());
-    	
-    	
-    	myFuturEventObservableList = FXCollections.observableArrayList();
-    	myFuturEventObservableList.addAll(listFuturEvent);
-		
-		this.futurEvent.setItems(myFuturEventObservableList);
     	this.futurEvent.setCellFactory(eventListView -> new EventListViewCell());
     	
-    	pastEvent.itemsProperty().bind(listPropertyPastEvents);
+    	/**pastEvent.itemsProperty().bind(listPropertyPastEvents);
 		listPropertyPastEvents.set(FXCollections.observableArrayList(listPastEvent));
 		
 		futurEvent.itemsProperty().bind(listPropertyFuturEvents);
-		listPropertyFuturEvents.set(FXCollections.observableArrayList(listFuturEvent));
+		listPropertyFuturEvents.set(FXCollections.observableArrayList(listFuturEvent));**/
     	
     	//Disabled buttons delete and update
     	displayEventButton.setDisable(true);
@@ -193,7 +204,7 @@ public class MyEventsController {
 		nextStage.setTitle("Add en event");
 		Pane myPane = null;
 		try {
-			myPane = FXMLLoader.load(getClass().getResource("/src/ui/event/AddEvent.fxml"));
+			myPane = FXMLLoader.load(getClass().getResource("/ui/event/AddEvent.fxml"));
 		} catch (IOException e) {
 			
 			e.printStackTrace();
@@ -222,7 +233,7 @@ public class MyEventsController {
 		Parent sceneMain = null;
 		try {
 			FXMLLoader loader =new FXMLLoader(
-					getClass().getResource("/src/ui/event/UpdateEvent.fxml"));
+					getClass().getResource("/ui/event/UpdateEvent.fxml"));
 			UpdateEvent controllerU = new UpdateEvent();
 			loader.setController(controllerU);
 			
@@ -245,14 +256,14 @@ public class MyEventsController {
     	String deletedEventName = eF.findEventById(eventSelectedId).getNameEvent();
     	int index = 0;
     	int past = 0;
-    	EventCell event = null;
-    	for (EventCell e : listPastEvent) {
+    	Event event = null;
+    	for (Event e : listPastEvent) {
     		if (e.getNameEvent().equals(deletedEventName)) {
     			index = listPastEvent.indexOf(e);
     			event = e;
     		}
     	}
-    	for (EventCell e : listFuturEvent) {
+    	for (Event e : listFuturEvent) {
     		if (e.getNameEvent().equals(deletedEventName)) {
     			index = listFuturEvent.indexOf(e);
     			event = e;
@@ -273,12 +284,8 @@ public class MyEventsController {
 		//Delete the Topic from the database
 		eF.deleteEvent(eventSelectedId);
 		
-		//Update the Subjects ListView
-		pastEvent.itemsProperty().bind(listPropertyPastEvents);
-		listPropertyPastEvents.set(FXCollections.observableArrayList(listPastEvent));
-		
-		futurEvent.itemsProperty().bind(listPropertyFuturEvents);
-		listPropertyFuturEvents.set(FXCollections.observableArrayList(listFuturEvent));
+		fetchListEventView();
+		updateListView();
 	
 	}
 	

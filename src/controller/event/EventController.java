@@ -158,5 +158,16 @@ public class EventController {
 		Router.getInstance().activate("ListOfSponsors", params);
 	
 	}
+	
+	@FXML
+	public void goToChat() throws DisconnectedUserException, IOException {
+		
+		int idEvent = (int) Router.getInstance().getParams()[0];
+		Object[] params = new Object[1];
+		params[0] = idEvent;
+		
+		Router.getInstance().activate("Chat", params);
+		
+	}
 
 }

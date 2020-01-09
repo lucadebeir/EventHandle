@@ -15,7 +15,7 @@ public class ChatCell {
 	}
 
 	public String getNameSender() {
-		return nameSender;
+		return this.nameSender;
 	}
 
 	public void setNameSender(String nameSender) {
@@ -23,7 +23,7 @@ public class ChatCell {
 	}
 
 	public String getContentMessage() {
-		return content;
+		return this.content;
 	}
 
 	public void setContentMessage(String object) {

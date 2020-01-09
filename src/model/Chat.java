@@ -1,7 +1,7 @@
 package model;
 
 /**
- * 
+ * @author lucadebeir
  */
 public class Chat {
 
@@ -13,11 +13,22 @@ public class Chat {
     	this.contentMessage = content;
     	this.idSender = idSender;
     }
+    
+    public Chat(String content, int idSender, int idEvent) {
+    	this.idEvent = idEvent;
+    	this.contentMessage = content;
+    	this.idSender = idSender;
+    }
 
     /**
      * 
      */
     private int idMessage;
+    
+    /**
+     * 
+     */
+    private int idEvent;
 
     /**
      * 
@@ -78,5 +89,15 @@ public class Chat {
         // TODO implement here
     	this.idSender = value;
     }
+
+	public int getIdEvent() {
+		return idEvent;
+	}
+
+	public void setIdEvent(int idEvent) {
+		this.idEvent = idEvent;
+	}
+    
+    
 
 }

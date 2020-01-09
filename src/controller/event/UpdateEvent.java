@@ -37,7 +37,8 @@ public class UpdateEvent implements Initializable {
     public void updateEvent(ActionEvent event) throws DisconnectedUserException {
     	
 		Event currentEvent = eventFacade.findEventById(this.idEvent);
-		Event newEvent = new Event(this.idEvent, nameEvent.getText(), new MyDate(dateStartEvent.getValue().toString()), locationEvent.getText(), new MyDate(dateEndEvent.getValue().toString()), descriptionEvent.getText(), 0);
+		Event newEvent = new Event(this.idEvent, nameEvent.getText(), new MyDate(dateStartEvent.getValue().toString()), locationEvent.getText(), 
+				new MyDate(dateEndEvent.getValue().toString()), descriptionEvent.getText(), 0, currentEvent.getRoleUser());
 		eventFacade.updateEvent(this.idEvent, newEvent);
 		
 		Node source = (Node) event.getSource();

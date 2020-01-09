@@ -36,6 +36,10 @@ public class ChatFacade {
     public ArrayList<Chat> getAllChatOfAnEvent(int idEvent) {
     	return chatDAO.getAllChatOfAnEvent(idEvent);
     }
+    
+    public void addMessageToChat(Chat newChat) {
+    	chatDAO.addMessageToChat(newChat);
+    }
 
 
 

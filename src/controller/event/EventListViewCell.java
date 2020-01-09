@@ -7,9 +7,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.BorderPane;
-import model.EventCell;
+import model.Event;
 
-public class EventListViewCell extends ListCell<EventCell> {
+public class EventListViewCell extends ListCell<Event> {
 	
 	
 	private MyEventsController controller;
@@ -26,6 +26,9 @@ public class EventListViewCell extends ListCell<EventCell> {
 	@FXML 
 	private Label cellLabelStartDate;
 	
+	@FXML
+	private Label cellLabelRole;
+	
 	@FXML 
 	private BorderPane cellLayout;
 	
@@ -37,7 +40,7 @@ public class EventListViewCell extends ListCell<EventCell> {
 	
 
 	@Override
-	protected void updateItem(EventCell ec, boolean empty) {
+	protected void updateItem(Event ec, boolean empty) {
         super.updateItem(ec, empty);
         
         if(empty || ec == null) {
@@ -61,7 +64,8 @@ public class EventListViewCell extends ListCell<EventCell> {
             this.cellLabelName.setText(String.valueOf(ec.getNameEvent()));
             this.cellLabelLocation.setText(String.valueOf(ec.getLocationEvent()));
             this.cellLabelStartDate.setText(String.valueOf(ec.getDateStartEvent().getShowingDate()));
-            this.cellLabelEndDate.setText(String.valueOf(ec.getEndStartEvent().getShowingDate()));
+            this.cellLabelEndDate.setText(String.valueOf(ec.getDateEndEvent().getShowingDate()));
+            this.cellLabelRole.setText(String.valueOf(ec.getRoleUser()));
            
             this.cellLabelLocation.maxWidth(USE_COMPUTED_SIZE);
             

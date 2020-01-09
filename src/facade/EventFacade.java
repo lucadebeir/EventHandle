@@ -29,7 +29,7 @@ public class EventFacade {
 	 */
 	public void addEvent(String nameEvent, String locationEvent, String descriptionEvent, MyDate dateStart, MyDate dateEnd) throws DisconnectedUserException {
 		int idCreator = LoginFacade.getInstance().getConnectedUser().getId();
-		event = new Event(0, nameEvent, dateStart, locationEvent, dateEnd, descriptionEvent, idCreator);
+		event = new Event(0, nameEvent, dateStart, locationEvent, dateEnd, descriptionEvent, idCreator, "");
 		eventDAO.createEvent(event);
 	}
 	
