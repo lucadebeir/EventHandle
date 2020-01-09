@@ -48,7 +48,7 @@ public class MessageInboxListView extends ListCell<Message> {
 
         } else {
             if (mLLoader == null) {
-                mLLoader = new FXMLLoader(getClass().getResource("../../ui/event/MessageListViewCell.fxml"));
+                mLLoader = new FXMLLoader(getClass().getResource("../../ui/event/message/MessageListViewInbox.fxml"));
                 mLLoader.setController(this);
                 try {
 					mLLoader.load();
