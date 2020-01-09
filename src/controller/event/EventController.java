@@ -28,10 +28,12 @@ import ui.Router;
 public class EventController {
 	
 	@FXML private ListView<Chat> chatEvent;
-	@FXML private ListView<MessageCell> messageEvent;
+	@FXML private ListView<Message> messageEvent;
 	@FXML private ListView<NotificationCell> listNotifEvent;
 	
 	@FXML private Label nameEvent;
+	
+	int idEvent = (int) Router.getInstance().getParams()[0];
 	
 	EventFacade eF = null;
 	NotificationFacade nF = null;
@@ -44,9 +46,8 @@ public class EventController {
 	protected ListProperty<NotificationCell> listPropertyNotifs = new SimpleListProperty<>();
 	
 	List<Message> listMessages;
-	List<MessageCell> listMessagesCell;
-	ObservableList<MessageCell> myMessageObservableList;
-	protected ListProperty<MessageCell> listPropertyMessages = new SimpleListProperty<>();
+	ObservableList<Message> myMessageObservableList;
+	protected ListProperty<Message> listPropertyMessages = new SimpleListProperty<>();
 	
 	/**
      * Default constructor
@@ -62,7 +63,6 @@ public class EventController {
 		lF = new LoginFacade();
 		
 		//initialisation du nom de l'event
-		int idEvent = (int) Router.getInstance().getParams()[0];
 		Event event = eF.findEventById(idEvent);
 		this.nameEvent.setText(event.getNameEvent());
 		this.nameEvent.setWrapText(true);
@@ -91,22 +91,26 @@ public class EventController {
     	//initialisation des notifications dans la tableView listMessageEvent
     	listMessages = mF.getMessageOfReceiver(idEvent);
     			
-    	listMessagesCell = new ArrayList<>();
-    			
-    	for (Message message : listMessages) {
-    		MessageCell mCell = new MessageCell(lF.find(message.getIdSender()).getFirstNameUser(), message.getTitleMessage());
-    		listMessagesCell.add(mCell);
-    	}
-    			
     	myMessageObservableList = FXCollections.observableArrayList();
-    	myMessageObservableList.addAll(listMessagesCell);
-    			
-    	this.messageEvent.setItems(myMessageObservableList);
+    	
+    	fetchListMessageView();
+		updateListView();
+    	
     	this.messageEvent.setCellFactory(messageListView -> new MessageListViewCell());
     	    	
-    	messageEvent.itemsProperty().bind(listPropertyMessages);
-    	listPropertyMessages.set(FXCollections.observableArrayList(listMessagesCell));
+    	/*messageEvent.itemsProperty().bind(listPropertyMessages);
+    	listPropertyMessages.set(FXCollections.observableArrayList(listMessagesCell));*/
     	
+	}
+	
+	private void updateListView() {
+    	myMessageObservableList.clear();
+    	myMessageObservableList.addAll(listMessages);
+		this.messageEvent.setItems(myMessageObservableList);
+	}
+	
+	private void fetchListMessageView() throws DisconnectedUserException {
+		listMessages = mF.getMessageOfReceiver(idEvent);
 	}
 	
 	@FXML
@@ -167,6 +171,17 @@ public class EventController {
 		params[0] = idEvent;
 		
 		Router.getInstance().activate("Chat", params);
+		
+	}
+	
+	@FXML
+	public void goToInbox() throws DisconnectedUserException, IOException {
+		
+		int idEvent = (int) Router.getInstance().getParams()[0];
+		Object[] params = new Object[1];
+		params[0] = idEvent;
+		
+		Router.getInstance().activate("Inbox", params);
 		
 	}
 

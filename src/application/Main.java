@@ -52,6 +52,7 @@ public class Main extends Application {
 		r.add("ListOfSponsors", "/ui/event/sponsors/ListOfSponsors.fxml");
 		r.add("ListOfResources", "/ui/event/resources/ListOfResources.fxml");
 		r.add("Chat", "/ui/event/chat/Chat.fxml");
+		r.add("Inbox", "/ui/event/message/MyMessages.fxml");
 		
 	}
 }

@@ -1,25 +1,29 @@
-package controller.event;
+package controller.message;
 
 import java.io.IOException;
 
+import controller.event.EventController;
 import facade.LoginFacade;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import model.Message;
 
-public class MessageListViewCell extends ListCell<Message> {
+public class MessageInboxListView extends ListCell<Message> {
 	
-	
-	private EventController controller;
+	private MessageController controller;
 	
 	@FXML 
 	private Label cellNameSender;
 	
 	@FXML 
 	private Label cellObject;
+	
+	@FXML
+	private TextArea cellContentMessage;
 	
 	@FXML 
 	private BorderPane cellLayout;
@@ -28,7 +32,7 @@ public class MessageListViewCell extends ListCell<Message> {
 	
 	LoginFacade lF = new LoginFacade();
 
-	public MessageListViewCell() {
+	public MessageInboxListView() {
 		super();
 	}
 	

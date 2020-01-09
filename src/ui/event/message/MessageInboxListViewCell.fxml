@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane fx:id="cellLayout" prefHeight="40.0" prefWidth="700.0" style="-fx-background-color: #f8a122;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <Label fx:id="cellObject" prefHeight="40.0" prefWidth="581.0" style="-fx-background-color: #ffffff;" text="Label" BorderPane.alignment="CENTER_LEFT">
+         <font>
+            <Font name="Arial" size="13.0" />
+         </font>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+         <BorderPane.margin>
+            <Insets left="10.0" />
+         </BorderPane.margin>
+      </Label>
+   </center>
+   <left>
+      <Label fx:id="cellNameSender" alignment="CENTER" prefHeight="16.0" prefWidth="128.0" text="Label" BorderPane.alignment="CENTER_LEFT">
+         <font>
+            <Font name="Arial" size="13.0" />
+         </font>
+         <BorderPane.margin>
+            <Insets left="5.0" />
+         </BorderPane.margin>
+      </Label>
+   </left>
+</BorderPane>
