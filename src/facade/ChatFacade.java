@@ -25,13 +25,17 @@ public class ChatFacade {
     /**
      * 
      */
-    private AbstractDAOFactory factory;
+    private AbstractDAOFactory factory = AbstractDAOFactory.getFactory(AbstractDAOFactory.DAO_FACTORY);
 
     /**
      * 
      */
-    private ChatDAO chatDAO;
+    private ChatDAO chatDAO = factory.createChatDAO();
 
+    
+    public ArrayList<Chat> getAllChatOfAnEvent(int idEvent) {
+    	return chatDAO.getAllChatOfAnEvent(idEvent);
+    }
 
 
 

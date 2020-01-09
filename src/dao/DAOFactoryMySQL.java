@@ -72,7 +72,7 @@ public class DAOFactoryMySQL extends AbstractDAOFactory {
 	 */
 	public ChatDAO createChatDAO() {
 	    // TODO implement here
-	    return null;
+	    return new ChatDAOMySql(conn);
 	}
 	
 	/**

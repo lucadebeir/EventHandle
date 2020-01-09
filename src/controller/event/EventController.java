@@ -95,7 +95,6 @@ public class EventController {
     			
     	for (Message message : listMessages) {
     		MessageCell mCell = new MessageCell(lF.find(message.getIdSender()).getFirstNameUser(), message.getTitleMessage());
-    		System.out.println(mCell.getObjectMessage());
     		listMessagesCell.add(mCell);
     	}
     			

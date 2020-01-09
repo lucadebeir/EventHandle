@@ -8,7 +8,10 @@ public class Chat {
     /**
      * Default constructor
      */
-    public Chat() {
+    public Chat(int id, String content, int idSender) {
+    	this.idMessage = id;
+    	this.contentMessage = content;
+    	this.idSender = idSender;
     }
 
     /**
@@ -24,7 +27,7 @@ public class Chat {
     /**
      * 
      */
-    private User sender;
+    private int idSender;
 
 
 
@@ -33,7 +36,7 @@ public class Chat {
      */
     public int getIdMessage() {
         // TODO implement here
-        return 0;
+        return this.idMessage;
     }
 
     /**
@@ -41,6 +44,7 @@ public class Chat {
      */
     public void setIdMessage(int value) {
         // TODO implement here
+    	this.idMessage = value;
     }
 
     /**
@@ -48,7 +52,7 @@ public class Chat {
      */
     public String getContentMessage() {
         // TODO implement here
-        return "";
+        return this.contentMessage;
     }
 
     /**
@@ -56,21 +60,23 @@ public class Chat {
      */
     public void setContentMessage(String value) {
         // TODO implement here
+    	this.contentMessage = value;
     }
 
     /**
      * @return
      */
-    public User getSender() {
+    public int getIdSender() {
         // TODO implement here
-        return null;
+        return this.idSender;
     }
 
     /**
      * @param value
      */
-    public void setSender(User value) {
+    public void setIdSender(int value) {
         // TODO implement here
+    	this.idSender = value;
     }
 
 }

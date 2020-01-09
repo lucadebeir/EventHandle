@@ -21,7 +21,6 @@ public class EventDAOMySQL extends EventDAO {
 		super(conn);
 	}
 	
-	@Override
 	public void createEvent(Event obj) {
 		try {
 			this.connect.createStatement(

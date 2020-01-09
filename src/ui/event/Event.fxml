@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #fefee2;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.controller.event.EventController">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #fefee2;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.event.EventController">
    <children>
       <ImageView fitHeight="525.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="186.0">
          <image>
