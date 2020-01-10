@@ -1,8 +1,6 @@
-package src.controller.activity;
+package controller.activity;
 
-import java.util.*;
-
-import src.facade.ActivityFacade;
+import facade.ActivityFacade;
 
 /**
  * 

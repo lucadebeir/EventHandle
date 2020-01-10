@@ -1,6 +1,6 @@
-package src.dao;
+package dao;
 
-import src.dao.implement.*;
+import dao.implement.*;
 
 /**
  * 

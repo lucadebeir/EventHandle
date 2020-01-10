@@ -1,26 +1,45 @@
-package src.dao.implement;
+package dao.implement;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 
-import src.database.BdConnector;
-import src.model.Message;
+import model.Message;
 
 /**
- * 
+ * @author lucadebeir
  */
 public class MessageDAOMySql extends MessageDAO {
 
     /**
      * Default constructor
      */
-    public MessageDAOMySql(BdConnector cnt) {
+	public MessageDAOMySql(Connection conn) {
+		super(conn);
+	}
+    
+    public ArrayList<Message> getMessageOfReceiver(int id, int idEvent) {
+    	ArrayList<Message> messages = new ArrayList<Message>();
+
+		try {
+			ResultSet result = this.connect
+					.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
+					.executeQuery("SELECT * FROM message WHERE idUserReceiver = " + id + " AND idEvent = " + idEvent);
+
+			while (result.next()) {
+				Message message = new Message(result.getInt("idMessage"), result.getString("objectMessage"),
+						result.getString("contentMessage"), result.getInt("idUserSender"), result.getInt("idUserReceiver"));
+				messages.add(message);
+			}
+			
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return messages;
     }
 
-
-    /**
-     * 
-     */
-    public BdConnector connect;
 
     /**
      * @return

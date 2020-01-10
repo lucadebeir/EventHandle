@@ -1,14 +1,24 @@
-package src.dao.implement;
+package dao.implement;
 
+import java.sql.Connection;
 import java.util.*;
 
-import src.model.Notification;
+import model.Notification;
 
 /**
- * 
+ * @author lucadebeir
  */
 public abstract class NotificationDAO {
 
+	protected Connection connect = null;
+	
+    /**
+     * Default constructor
+     */
+    public NotificationDAO(Connection conn) {
+    	this.connect = conn;
+    }
+	
     /**
      * Default constructor
      */
@@ -46,5 +56,7 @@ public abstract class NotificationDAO {
         // TODO implement here
         return null;
     }
+    
+    public abstract ArrayList<Notification> getAllNotificationByIdEvent(int idEvent);
 
 }

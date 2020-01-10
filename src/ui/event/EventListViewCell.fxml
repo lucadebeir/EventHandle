@@ -1,49 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<HBox fx:id="cellLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="95.0" prefWidth="317.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Pane prefHeight="95.0" prefWidth="317.0">
+<BorderPane fx:id="cellLayout" prefHeight="150.0" prefWidth="330.0" style="-fx-background-color: #f8a122;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <bottom>
+      <GridPane prefHeight="30.0" prefWidth="303.0" BorderPane.alignment="CENTER">
          <children>
-            <BorderPane prefHeight="95.0" prefWidth="317.0">
-               <center>
-                  <Label fx:id="cellLabelName" alignment="CENTER" contentDisplay="CENTER" prefHeight="48.0" prefWidth="195.0" style="-fx-background-color: f0f0f0;" text="Label" BorderPane.alignment="CENTER" />
-               </center>
-               <bottom>
-                  <GridPane prefHeight="30.0" prefWidth="303.0" BorderPane.alignment="CENTER">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="171.0" minWidth="10.0" prefWidth="155.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="192.0" minWidth="10.0" prefWidth="162.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <Label fx:id="cellLabelStartDate" text="Label" GridPane.halignment="CENTER" />
-                        <Label fx:id="cellLabelEndDate" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-                     </children>
-                  </GridPane>
-               </bottom>
-               <top>
-                  <GridPane BorderPane.alignment="CENTER">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="171.0" minWidth="10.0" prefWidth="155.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="183.0" minWidth="10.0" prefWidth="162.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <Label fx:id="cellLabelLocation" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-                     </children>
-                  </GridPane>
-               </top>
-            </BorderPane>
+            <Label fx:id="cellLabelStartDate" text="Label" GridPane.halignment="CENTER">
+               <font>
+                  <Font name="Arial Black" size="14.0" />
+               </font></Label>
+            <Label fx:id="cellLabelEndDate" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+               <font>
+                  <Font name="Arial Black" size="14.0" />
+               </font></Label>
+            <Label fx:id="cellLabelRole" text="Label" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+               <font>
+                  <Font name="Arial Black" size="14.0" />
+               </font>
+            </Label>
          </children>
-      </Pane>
-   </children>
-</HBox>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="171.0" minWidth="10.0" prefWidth="155.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="192.0" minWidth="10.0" prefWidth="162.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="192.0" minWidth="10.0" prefWidth="162.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+      </GridPane>
+   </bottom>
+   <top>
+      <Label fx:id="cellLabelName" alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="329.0" style="-fx-background-color:#f8a122;" text="Label" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="Arial Black" size="24.0" />
+         </font></Label>
+   </top>
+   <center>
+      <GridPane style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="cellLabelLocation" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+               <font>
+                  <Font name="Arial Black" size="18.0" />
+               </font></Label>
+            <ImageView fitHeight="76.0" fitWidth="161.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
+               <image>
+                  <Image url="@../../../img/location.png" />
+               </image>
+            </ImageView>
+         </children>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="171.0" minWidth="10.0" prefWidth="68.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="262.0" minWidth="10.0" prefWidth="262.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+      </GridPane>
+   </center>
+</BorderPane>

@@ -1,6 +1,4 @@
-package src.model;
-
-import java.util.*;
+package model;
 
 /**
  * 

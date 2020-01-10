@@ -1,10 +1,10 @@
-package src.facade;
+package facade;
 
 import java.util.*;
 
-import src.dao.AbstractDAOFactory;
-import src.dao.implement.ChatDAO;
-import src.model.Chat;
+import dao.AbstractDAOFactory;
+import dao.implement.ChatDAO;
+import model.Chat;
 
 /**
  * 
@@ -25,13 +25,21 @@ public class ChatFacade {
     /**
      * 
      */
-    private AbstractDAOFactory factory;
+    private AbstractDAOFactory factory = AbstractDAOFactory.getFactory(AbstractDAOFactory.DAO_FACTORY);
 
     /**
      * 
      */
-    private ChatDAO chatDAO;
+    private ChatDAO chatDAO = factory.createChatDAO();
 
+    
+    public ArrayList<Chat> getAllChatOfAnEvent(int idEvent) {
+    	return chatDAO.getAllChatOfAnEvent(idEvent);
+    }
+    
+    public void addMessageToChat(Chat newChat) {
+    	chatDAO.addMessageToChat(newChat);
+    }
 
 
 

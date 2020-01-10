@@ -1,20 +1,9 @@
-package src.dao;
+package dao;
 
 import java.sql.Connection;
 
-import src.dao.implement.ActivityDAO;
-import src.dao.implement.ChatDAO;
-import src.dao.implement.ConservationDAO;
-import src.dao.implement.EventDAO;
-import src.dao.implement.EventDAOMySQL;
-import src.dao.implement.MessageDAO;
-import src.dao.implement.NotificationDAO;
-import src.dao.implement.RessourceDAO;
-import src.dao.implement.SponsorDAO;
-import src.dao.implement.TaskDAO;
-import src.dao.implement.UserDAO;
-import src.dao.implement.UserDAOMySQL;
-import src.database.BdConnector;
+import dao.implement.*;
+import database.BdConnector;
 
 /**
  * 
@@ -67,7 +56,7 @@ public class DAOFactoryMySQL extends AbstractDAOFactory {
 	 */
 	public MessageDAO createMessageDAO() {
 	    // TODO implement here
-	    return null;
+	    return new MessageDAOMySql(conn);
 	}
 	
 	/**
@@ -83,7 +72,7 @@ public class DAOFactoryMySQL extends AbstractDAOFactory {
 	 */
 	public ChatDAO createChatDAO() {
 	    // TODO implement here
-	    return null;
+	    return new ChatDAOMySql(conn);
 	}
 	
 	/**
@@ -91,7 +80,7 @@ public class DAOFactoryMySQL extends AbstractDAOFactory {
 	 */
 	public NotificationDAO createNotificationDAO() {
 	    // TODO implement here
-	    return null;
+		return new NotificationDAOMySql(conn);
 	}
 	
 	/**

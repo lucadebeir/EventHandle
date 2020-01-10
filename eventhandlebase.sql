@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Dec 29, 2019 at 07:15 PM
+-- Generation Time: Jan 10, 2020 at 11:36 AM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.8
 
@@ -46,9 +46,28 @@ CREATE TABLE `chat` (
   `idChat` int(11) NOT NULL,
   `idUser` int(11) NOT NULL,
   `idEvent` int(11) NOT NULL,
-  `titleChat` varchar(32) NOT NULL,
   `contentMessage` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `chat`
+--
+
+INSERT INTO `chat` (`idChat`, `idUser`, `idEvent`, `contentMessage`) VALUES
+(1, 1, 7, 'Salut !'),
+(2, 2, 7, 'Yo bg'),
+(3, 1, 7, 'Bien?'),
+(4, 1, 7, 'Et toi?'),
+(5, 1, 7, 'Tranquille'),
+(6, 1, 7, 'ok'),
+(7, 1, 7, 'ok'),
+(8, 2, 7, 'coucou'),
+(9, 1, 7, 'yo'),
+(10, 2, 7, 'ça va?'),
+(11, 1, 7, 'oklm'),
+(12, 1, 11, 'hey !'),
+(13, 1, 7, 'lll'),
+(14, 2, 7, 'a');
 
 -- --------------------------------------------------------
 
@@ -130,9 +149,24 @@ CREATE TABLE `event` (
 --
 
 INSERT INTO `event` (`idEvent`, `nameEvent`, `dateStartEvent`, `locationEvent`, `dateEndEvent`, `descriptionEvent`, `idCreator`) VALUES
-(1, 'Soirée P1', '2019-10-17', 'Marsillargues', '2019-10-18', 'Première soirée Polytech Montpellier de l\'année 2019/2020', 1),
-(2, 'Marché de Noël de Montpellier', '2019-11-28', 'Montpellier', '2020-01-04', 'Marché de Noël sur l\'esplanade de Montpellier.', 1),
-(3, 'Gala', '2020-03-07', 'La Grande Motte', '2019-12-08', 'Gala annuel de Polytech Montpellier', 1);
+(3, 'Gala', '2020-03-07', 'La Grande Motte', '2019-12-08', 'Gala annuel de Polytech Montpellier', 1),
+(7, 'Soirée P1', '2019-10-17', 'Marsillargues', '2019-10-18', 'Première soirée privée de Polytech', 1),
+(9, 'Semaine blanche', '2020-01-25', 'Domaine Les Sybelles', '2020-02-01', 'Trop bien', 1),
+(10, 'Soirée P3', '2020-03-27', 'Montpellier', '2020-03-28', 'dernière soirée P', 1),
+(11, 'Soirée RDD', '2019-12-07', 'Montpellier', '2019-12-08', 'Soirée pour les diplômés', 1);
+
+--
+-- Triggers `event`
+--
+DELIMITER $$
+CREATE TRIGGER `addManager` AFTER INSERT ON `event` FOR EACH ROW BEGIN
+    IF NEW.idEvent IS NOT NULL THEN
+        INSERT INTO isManager
+        VALUES(NEW.idCreator,NEW.idEvent);
+    END IF;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -144,14 +178,6 @@ CREATE TABLE `isIntervener` (
   `idUser` int(11) NOT NULL,
   `idEvent` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `isIntervener`
---
-
-INSERT INTO `isIntervener` (`idUser`, `idEvent`) VALUES
-(2, 2),
-(3, 1);
 
 -- --------------------------------------------------------
 
@@ -169,8 +195,12 @@ CREATE TABLE `isManager` (
 --
 
 INSERT INTO `isManager` (`idUser`, `idEvent`) VALUES
-(1, 2),
-(1, 1);
+(1, 7),
+(1, 3),
+(1, 9),
+(1, 10),
+(1, 11),
+(2, 7);
 
 -- --------------------------------------------------------
 
@@ -188,8 +218,7 @@ CREATE TABLE `isVolunteer` (
 --
 
 INSERT INTO `isVolunteer` (`idUser`, `idEvent`) VALUES
-(3, 2),
-(2, 1);
+(2, 7);
 
 -- --------------------------------------------------------
 
@@ -206,6 +235,13 @@ CREATE TABLE `message` (
   `objectMessage` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `message`
+--
+
+INSERT INTO `message` (`idMessage`, `idUserSender`, `idUserReceiver`, `idEvent`, `contentMessage`, `objectMessage`) VALUES
+(1, 2, 1, 7, 'Salut', 'Demande information');
+
 -- --------------------------------------------------------
 
 --
@@ -218,6 +254,14 @@ CREATE TABLE `notification` (
   `contentNotification` text NOT NULL,
   `idEvent` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `notification`
+--
+
+INSERT INTO `notification` (`idNotification`, `titleNotification`, `contentNotification`, `idEvent`) VALUES
+(1, 'Fin de la soirée P1', 'La soirée s\'est bien terminée. Faire la l\'inventaire des alcools qu\'il reste.', 7),
+(2, 'Commande Promocash', 'Commande promocash récupérée.', 7);
 
 -- --------------------------------------------------------
 
@@ -341,7 +385,7 @@ ALTER TABLE `contract`
 --
 ALTER TABLE `event`
   ADD PRIMARY KEY (`idEvent`),
-  ADD KEY `eventCreator` (`idCreator`);
+  ADD KEY `managerUser` (`idCreator`);
 
 --
 -- Indexes for table `isIntervener`
@@ -354,8 +398,8 @@ ALTER TABLE `isIntervener`
 -- Indexes for table `isManager`
 --
 ALTER TABLE `isManager`
-  ADD KEY `managerEvent` (`idEvent`),
-  ADD KEY `managerUser` (`idUser`);
+  ADD KEY `managerUser` (`idUser`),
+  ADD KEY `managerEvent` (`idEvent`);
 
 --
 -- Indexes for table `isVolunteer`
@@ -419,7 +463,7 @@ ALTER TABLE `activity`
 -- AUTO_INCREMENT for table `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `idChat` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idChat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `conservation`
@@ -437,19 +481,19 @@ ALTER TABLE `contract`
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `idEvent` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idEvent` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `idMessage` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idMessage` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `notification`
 --
 ALTER TABLE `notification`
-  MODIFY `idNotification` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idNotification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `resource`
@@ -478,13 +522,6 @@ ALTER TABLE `user`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `chat`
---
-ALTER TABLE `activity`
-  ADD CONSTRAINT `activityEvent` FOREIGN KEY (`idEvent`) REFERENCES `event` (`idEvent`) ON DELETE CASCADE ON UPDATE CASCADE;
-
 
 --
 -- Constraints for table `chat`
@@ -531,8 +568,7 @@ ALTER TABLE `isIntervener`
 -- Constraints for table `isManager`
 --
 ALTER TABLE `isManager`
-  ADD CONSTRAINT `managerEvent` FOREIGN KEY (`idEvent`) REFERENCES `event` (`idEvent`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `managerUser` FOREIGN KEY (`idUser`) REFERENCES `user` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `managerEvent` FOREIGN KEY (`idEvent`) REFERENCES `event` (`idEvent`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `isVolunteer`

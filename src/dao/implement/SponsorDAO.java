@@ -1,9 +1,7 @@
-package src.dao.implement;
+package dao.implement;
 
-import java.util.*;
-
-import src.database.BdConnector;
-import src.model.Sponsor;
+import database.BdConnector;
+import model.Sponsor;
 
 /**
  * 

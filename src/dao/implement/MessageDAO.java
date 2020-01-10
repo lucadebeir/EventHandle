@@ -1,25 +1,31 @@
-package src.dao.implement;
+package dao.implement;
 
+import java.sql.Connection;
 import java.util.*;
 
-import src.model.Message;
+import model.Message;
 
 /**
- * 
+ * @author lucadebeir
  */
-public abstract class MessageDAO extends Message {
+public abstract class MessageDAO {
 
+	protected Connection connect = null;
+	
     /**
      * Default constructor
      */
-    public MessageDAO() {
+    public MessageDAO(Connection conn) {
+    	this.connect = conn;
     }
+    
+    public abstract ArrayList<Message> getMessageOfReceiver(int id, int idEvent);
 
 
     /**
      * @return
      */
-    public Message createMassage() {
+    public Message createMessage() {
         // TODO implement here
         return null;
     }

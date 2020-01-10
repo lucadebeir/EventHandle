@@ -1,9 +1,9 @@
-package src.ui;
+package ui;
 
 import java.io.IOException;
 import java.util.HashMap;
 
-import src.application.Main;
+import application.Main;
 import javafx.fxml.FXMLLoader;
 
 /**

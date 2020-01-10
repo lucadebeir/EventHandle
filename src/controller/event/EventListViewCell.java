@@ -1,4 +1,4 @@
-package src.controller.event;
+package controller.event;
 
 import java.io.IOException;
 
@@ -6,11 +6,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
-import javafx.scene.layout.HBox;
-import src.model.EventCell;
-import src.ui.Router;
+import javafx.scene.layout.BorderPane;
+import model.Event;
 
-public class EventListViewCell extends ListCell<EventCell> {
+public class EventListViewCell extends ListCell<Event> {
 	
 	
 	private MyEventsController controller;
@@ -27,8 +26,11 @@ public class EventListViewCell extends ListCell<EventCell> {
 	@FXML 
 	private Label cellLabelStartDate;
 	
+	@FXML
+	private Label cellLabelRole;
+	
 	@FXML 
-	private HBox cellLayout;
+	private BorderPane cellLayout;
 	
 	FXMLLoader mLLoader;
 
@@ -38,7 +40,7 @@ public class EventListViewCell extends ListCell<EventCell> {
 	
 
 	@Override
-	protected void updateItem(EventCell ec, boolean empty) {
+	protected void updateItem(Event ec, boolean empty) {
         super.updateItem(ec, empty);
         
         if(empty || ec == null) {
@@ -62,8 +64,10 @@ public class EventListViewCell extends ListCell<EventCell> {
             this.cellLabelName.setText(String.valueOf(ec.getNameEvent()));
             this.cellLabelLocation.setText(String.valueOf(ec.getLocationEvent()));
             this.cellLabelStartDate.setText(String.valueOf(ec.getDateStartEvent().getShowingDate()));
-            this.cellLabelEndDate.setText(String.valueOf(ec.getEndStartEvent().getShowingDate()));
+            this.cellLabelEndDate.setText(String.valueOf(ec.getDateEndEvent().getShowingDate()));
+            this.cellLabelRole.setText(String.valueOf(ec.getRoleUser()));
            
+            this.cellLabelLocation.maxWidth(USE_COMPUTED_SIZE);
             
             setText(null);
             setGraphic(cellLayout);

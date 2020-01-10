@@ -26,3 +26,8 @@ hs_err_pid*
 bin
 *.project
 *.classpath
+.classpath
+src/database/BdConnector.java
+
+!lib/javafx/*.jar
+!lib/*.jar

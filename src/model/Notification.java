@@ -1,16 +1,17 @@
-package src.model;
-
-import java.util.*;
+package model;
 
 /**
- * 
+ * @author lucadebeir
  */
 public class Notification {
 
     /**
      * Default constructor
      */
-    public Notification() {
+    public Notification(int idNotification, String title, String content) {
+    	this.idNotification = idNotification;
+    	this.titleMessage = title;
+    	this.contentMessage = content;
     }
 
     /**
@@ -40,7 +41,7 @@ public class Notification {
      */
     public int getIdNotification() {
         // TODO implement here
-        return 0;
+        return this.idNotification;
     }
 
     /**
@@ -48,6 +49,7 @@ public class Notification {
      */
     public void setIdNotification(int value) {
         // TODO implement here
+    	this.idNotification = value;
     }
 
     /**
@@ -55,7 +57,7 @@ public class Notification {
      */
     public String getTitleMessage() {
         // TODO implement here
-        return "";
+        return this.titleMessage;
     }
 
     /**
@@ -63,6 +65,7 @@ public class Notification {
      */
     public void setTitleMessage(String value) {
         // TODO implement here
+    	this.titleMessage = value;
     }
 
     /**
@@ -70,7 +73,7 @@ public class Notification {
      */
     public String getContentMessage() {
         // TODO implement here
-        return "";
+        return this.contentMessage;
     }
 
     /**
@@ -78,6 +81,7 @@ public class Notification {
      */
     public void setContentMessage(String value) {
         // TODO implement here
+    	this.contentMessage = value;
     }
 
     /**

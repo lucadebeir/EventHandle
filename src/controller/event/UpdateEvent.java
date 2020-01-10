@@ -1,10 +1,9 @@
-package src.controller.event;
+package controller.event;
 
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
-import src.facade.EventFacade;
-import src.facade.exception.DisconnectedUserException;
+import facade.EventFacade;
+import facade.exception.DisconnectedUserException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,9 +12,9 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import src.model.Event;
-import src.model.MyDate;
-import src.ui.Router;
+import model.Event;
+import model.MyDate;
+import ui.Router;
 
 public class UpdateEvent implements Initializable {
 	
@@ -38,7 +37,8 @@ public class UpdateEvent implements Initializable {
     public void updateEvent(ActionEvent event) throws DisconnectedUserException {
     	
 		Event currentEvent = eventFacade.findEventById(this.idEvent);
-		Event newEvent = new Event(this.idEvent, nameEvent.getText(), new MyDate(dateStartEvent.getValue().toString()), locationEvent.getText(), new MyDate(dateEndEvent.getValue().toString()), descriptionEvent.getText(), 0);
+		Event newEvent = new Event(this.idEvent, nameEvent.getText(), new MyDate(dateStartEvent.getValue().toString()), locationEvent.getText(), 
+				new MyDate(dateEndEvent.getValue().toString()), descriptionEvent.getText(), 0, currentEvent.getRoleUser());
 		eventFacade.updateEvent(this.idEvent, newEvent);
 		
 		Node source = (Node) event.getSource();

@@ -1,8 +1,9 @@
-package src.dao.implement;
+package dao.implement;
 
+import java.sql.Connection;
 import java.util.*;
 
-import src.model.Chat;
+import model.Chat;
 
 /**
  * 
@@ -12,9 +13,16 @@ public abstract class ChatDAO {
     /**
      * Default constructor
      */
-    public ChatDAO() {
+    public ChatDAO(Connection conn) {
+    	this.connect = conn;
     }
 
+    protected Connection connect = null;
+    
+    public abstract ArrayList<Chat> getAllChatOfAnEvent(int idEvent);
+    
+    public abstract void addMessageToChat(Chat newChat);
+    
     /**
      * @return
      */

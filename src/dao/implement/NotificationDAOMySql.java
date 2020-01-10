@@ -1,26 +1,27 @@
-package src.dao.implement;
+package dao.implement;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 
-import src.database.BdConnector;
-import src.model.Notification;
+import dao.implement.NotificationDAO;
+import model.Notification;
 
 /**
  * 
+ * @author lucadebeir
+ * 
  */
+
 public class NotificationDAOMySql extends NotificationDAO {
 
     /**
      * Default constructor
      */
-	public NotificationDAOMySql(BdConnector cnt) {
-
-    }
-    /**
-     * 
-     */
-    public BdConnector connect;
-
+	public NotificationDAOMySql(Connection conn) {
+		super(conn);
+	}
 
     /**
      * @return
@@ -53,5 +54,27 @@ public class NotificationDAOMySql extends NotificationDAO {
         // TODO implement here
         return null;
     }
+
+	public ArrayList<Notification> getAllNotificationByIdEvent(int idEvent) {
+		// TODO Auto-generated method stub
+		ArrayList<Notification> notifs = new ArrayList<Notification>();
+
+		try {
+			ResultSet result = this.connect
+					.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
+					.executeQuery("SELECT * FROM notification WHERE idEvent = " + idEvent);
+
+			while (result.next()) {
+				Notification notif = new Notification(result.getInt("idNotification"), result.getString("titleNotification"),
+						result.getString("contentNotification"));
+				notifs.add(notif);
+			}
+			
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return notifs;
+	}
 
 }

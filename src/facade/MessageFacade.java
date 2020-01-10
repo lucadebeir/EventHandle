@@ -1,16 +1,17 @@
-package src.facade;
+package facade;
 
 import java.util.*;
 
-import src.dao.AbstractDAOFactory;
-import src.dao.implement.MessageDAO;
-import src.model.Message;
+import dao.AbstractDAOFactory;
+import dao.implement.MessageDAO;
+import facade.exception.DisconnectedUserException;
+import model.Message;
 
 /**
- * 
+ * @author lucadebeir
  */
 public class MessageFacade {
-
+	
     /**
      * Default constructor
      */
@@ -20,7 +21,7 @@ public class MessageFacade {
     /**
      * 
      */
-    private AbstractDAOFactory factory;
+    private AbstractDAOFactory factory = AbstractDAOFactory.getFactory(AbstractDAOFactory.DAO_FACTORY);
 
     /**
      * 
@@ -30,9 +31,13 @@ public class MessageFacade {
     /**
      * 
      */
-    private MessageDAO messageDao;
+    private MessageDAO messageDAO = factory.createMessageDAO();
 
 
+    public ArrayList<Message> getMessageOfReceiver(int id) throws DisconnectedUserException {
+    	int idReceiver = LoginFacade.getInstance().getConnectedUser().getId();
+    	return messageDAO.getMessageOfReceiver(idReceiver,id);
+    }
 
 
     /**

@@ -1,4 +1,8 @@
-package src.model;
+package model;
+
+/*
+ * @author lucadebeir
+ */
 
 public class Event {
 	
@@ -9,9 +13,10 @@ public class Event {
 	private MyDate dateEndEvent;
 	private String descriptionEvent = "";
 	private int idCreator;
+	private String roleUser;
 	
 	public Event(int idEvent, String nameEvent, MyDate dateStartEvent, String locationEvent, MyDate dateEndEvent,
-			String descriptionEvent, int idCreator) {
+			String descriptionEvent, int idCreator, String roleUser) {
 		this.idEvent = idEvent;
 		this.nameEvent = nameEvent;
 		this.dateStartEvent = dateStartEvent;
@@ -19,6 +24,7 @@ public class Event {
 		this.dateEndEvent = dateEndEvent;
 		this.descriptionEvent = descriptionEvent;
 		this.idCreator = idCreator;
+		this.roleUser = roleUser;
 	}
 
 	public int getIdEvent() {
@@ -75,6 +81,14 @@ public class Event {
 
 	public void setIdCreator(int idCreator) {
 		this.idCreator = idCreator;
+	}
+
+	public String getRoleUser() {
+		return roleUser;
+	}
+
+	public void setRoleUser(String roleUser) {
+		this.roleUser = roleUser;
 	}
 
 }

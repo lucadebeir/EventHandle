@@ -1,4 +1,8 @@
-package src.model;
+package model;
+
+/*
+ * @author lucadebeir
+ */
 
 public class EventCell {
 	
