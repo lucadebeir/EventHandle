@@ -27,6 +27,9 @@ public class AddResourceController {
 	
 	ResourceFacade resourceFacade; 
 	
+	private int eventId;
+	
+
 	@FXML private TextField nameResource;
 	@FXML private TextField locationResource;
 	@FXML private TextArea descriptionResource;
@@ -38,12 +41,17 @@ public class AddResourceController {
 	@FXML private ChoiceBox<String> typeResource;
 	@FXML private ChoiceBox<String> stateResource;
 	
+	
+	public AddResourceController() {
+		this.eventId = (int) Router.getInstance().getParams()[0];
+	}
+	
 	@FXML
     public void initialize() throws SQLException, DisconnectedUserException {
 		
 		this.resourceFacade = (ResourceFacade) Router.getInstance().getParams()[1];
-		typeResource.setItems(FXCollections.observableArrayList(Resource.typeResourceList));
-		stateResource.setItems(FXCollections.observableArrayList(Resource.stateResourceList));	
+		typeResource.setItems(FXCollections.observableArrayList(Resource.getTyperesourcelist()));
+		stateResource.setItems(FXCollections.observableArrayList(Resource.getStateresourcelist()));	
 		
 		UnaryOperator<Change> intfilter = intChange -> {
 		    String text = intChange.getText();
@@ -78,24 +86,23 @@ public class AddResourceController {
 	private void backToMyResource(ActionEvent event) {
 		Router.getInstance().activate("Resources", Router.getInstance().getParams());
 		
-		Node source = (Node) event.getSource();
-		Stage stage = (Stage) source.getScene().getWindow();
-		stage.close();
-		
 	}
 	
 	@FXML
     private void addResource(ActionEvent event) throws IOException, DisconnectedUserException {
 		
-		if (formValidator()) {
+		if (formValidator()) {	
+
+			try {
+				this.resourceFacade.addResource(this.createResourceDTO());
+			}
+			catch(Error e) {
+				errorLabel.setText("Database Error : Please retry after");
+			}
 			
-		
-			this.resourceFacade.addResource(this.createResourceDTO());
-			/*Node source = (Node) event.getSource();
-			Stage stage = (Stage) source.getScene().getWindow();
-			stage.close();
+			Router.getInstance().activate("Resources", Router.getInstance().getParams());
 			
-			Router.getInstance().activate("HomePage", Router.getInstance().getParams());*/
+			
 		} else {
 			errorLabel.setText("Error : Missing Field");
     	}
@@ -132,6 +139,7 @@ public class AddResourceController {
 	    			volume,
 	    			quantity,
 	    			price,
+	    			this.eventId,
 	    			null,
 	    			null);
 	    	
@@ -142,7 +150,8 @@ public class AddResourceController {
 	    			this.stateResource.getSelectionModel().getSelectedItem(),
 	    			volume,
 	    			quantity,
-	    			price);
+	    			price,
+	    			this.eventId);
 	    	
 	    case "Vehicle" :
 	    	return resourceDTO = new Vehicle(nameResource.getText(),
@@ -151,7 +160,8 @@ public class AddResourceController {
 	    			this.stateResource.getSelectionModel().getSelectedItem(),
 	    			volume,
 	    			quantity,
-	    			price);
+	    			price,
+	    			this.eventId);
 	    default: 
 	    	throw new Error("Unexpected resource type");
 		}

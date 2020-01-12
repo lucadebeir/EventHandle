@@ -33,37 +33,33 @@ public class VehicleDAOMySQL extends ResourceDAO {
         return null;
     }
 
-    /**
-     * @return
-     */
-    public void createResource() {
-        // TODO implement here
-    }
-
-    /**
-     * @return
-     */
-    public Resource updateResource() {
-        // TODO implement here
-        return null;
-    }
-
-    /**
-     * @param id 
-     * @return
-     */
-    public boolean deleteResource(int id) {
-        // TODO implement here
-        return false;
-    }
-
-    /**
-     * @param id 
-     * @return
-     */
+   
     public Resource getResource(int id) {
         // TODO implement here
         return null;
     }
+
+	@Override
+	public void createResource(Resource resource) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Resource updateResource(Resource resource) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteResource(int idResource) {
+		
+	}
+
+	@Override
+	public List<Resource> getAllResource(int eventId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

@@ -34,7 +34,7 @@ public class AddEvent {
 	
 	@FXML
 	private void backHomePage() {
-		Router.getInstance().activate("HomePage");
+		Router.getInstance().activate("HomePage",Router.getInstance().getParams());
 	}
 	
 	@FXML

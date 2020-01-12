@@ -12,11 +12,11 @@ public class Consomable extends Resource {
 
     
     public Consomable(int idResource, String nameResource, String locationResource, String descriptionResource,
-			String stateResource, float volumeResource, int quantityResource, float priceResource, Date limiteDate,
+			String stateResource, float volumeResource, int quantityResource, float priceResource, int eventId, Date limiteDate,
 			Conservation conservation) {
     	
 		super(idResource, nameResource, locationResource, descriptionResource, stateResource, volumeResource,
-				quantityResource, priceResource);
+				quantityResource, priceResource, eventId);
 		this.limiteDate = limiteDate;
 		this.conservation = conservation;
 	}
@@ -24,13 +24,14 @@ public class Consomable extends Resource {
 
     /**
      * constructor Consomable as ConsomableDTO
+     * @param eventId 
      */
     public Consomable(String nameResource, String locationResource, String descriptionResource,
-			String stateResource, float volumeResource, int quantityResource, float priceResource, Date limiteDate,
+			String stateResource, float volumeResource, int quantityResource, float priceResource,int eventId, Date limiteDate,
 			Conservation conservation) {
     	
 		super(nameResource, locationResource, descriptionResource, stateResource, volumeResource,
-				quantityResource, priceResource);
+				quantityResource, priceResource, eventId);
 		this.limiteDate = limiteDate;
 		this.conservation = conservation;
 	}

@@ -10,8 +10,8 @@ import java.util.List;
 public class Resource {
 	
 	//should refactor to enumeration
-	public static final List<String> typeResourceList = Arrays.asList("Consomable", "Material", "Vehicle");
-	public static final ArrayList<String> stateResourceList = new ArrayList<String>(Arrays.asList("Order", "Stock", "Use", "Finish"));
+	private static final List<String> typeResourceList = Arrays.asList("Consomable", "Material", "Vehicle");
+	private static final ArrayList<String> stateResourceList = new ArrayList<String>(Arrays.asList("Order", "Stock", "Use", "Finish"));
     
 
 	private int idResource;
@@ -22,10 +22,11 @@ public class Resource {
     private float volumeResource;
     private int quantityResource;
     private float priceResource;
+    private int eventId;
 
 
     public Resource(int idResource, String nameResource, String locationResource, String descriptionResource,
-			String stateResource, float volumeResource, int quantityResource, float priceResource) {
+			String stateResource, float volumeResource, int quantityResource, float priceResource, int eventId) {
 		super();
 		this.idResource = idResource;
 		this.nameResource = nameResource;
@@ -35,13 +36,14 @@ public class Resource {
 		this.volumeResource = volumeResource;
 		this.quantityResource = quantityResource;
 		this.priceResource = priceResource;
+		this.eventId = eventId;
 	}
     
     /**
      * constructor Resource as resourceDTO
      */
     public Resource(String nameResource, String locationResource, String descriptionResource,
-			String stateResource, float volumeResource, int quantityResource, float priceResource) {
+			String stateResource, float volumeResource, int quantityResource, float priceResource, int eventId) {
 		super();
 		this.nameResource = nameResource;
 		this.locationResource = locationResource;
@@ -50,127 +52,86 @@ public class Resource {
 		this.volumeResource = volumeResource;
 		this.quantityResource = quantityResource;
 		this.priceResource = priceResource;
+		this.eventId = eventId;
+	}
+
+	public int getEventId() {
+		return eventId;
+	}
+
+	public void setEventId(int eventId) {
+		this.eventId = eventId;
+	}
+
+	public int getIdResource() {
+		return idResource;
+	}
+
+
+	public String getNameResource() {
+		return nameResource;
+	}
+
+	public void setNameResource(String nameResource) {
+		this.nameResource = nameResource;
+	}
+
+	public String getLocationResource() {
+		return locationResource;
+	}
+
+	public void setLocationResource(String locationResource) {
+		this.locationResource = locationResource;
+	}
+
+	public String getDescriptionResource() {
+		return descriptionResource;
+	}
+
+	public void setDescriptionResource(String descriptionResource) {
+		this.descriptionResource = descriptionResource;
+	}
+
+	public String getStateResource() {
+		return stateResource;
+	}
+
+	public void setStateResource(String stateResource) {
+		this.stateResource = stateResource;
+	}
+
+	public float getVolumeResource() {
+		return volumeResource;
+	}
+
+	public void setVolumeResource(float volumeResource) {
+		this.volumeResource = volumeResource;
+	}
+
+	public int getQuantityResource() {
+		return quantityResource;
+	}
+
+	public void setQuantityResource(int quantityResource) {
+		this.quantityResource = quantityResource;
+	}
+
+	public float getPriceResource() {
+		return priceResource;
+	}
+
+	public void setPriceResource(float priceResource) {
+		this.priceResource = priceResource;
+	}
+
+	public static List<String> getTyperesourcelist() {
+		return typeResourceList;
+	}
+
+	public static ArrayList<String> getStateresourcelist() {
+		return stateResourceList;
 	}
     
 
-    /**
-     * @return
-     */
-    public int getIdResource() {
-        // TODO implement here
-        return 0;
-    }
-
-    /**
-     * @param value
-     */
-    public void setIdResource(int value) {
-        // TODO implement here
-    }
-
-    /**
-     * @return
-     */
-    public String getNameResource() {
-        // TODO implement here
-        return "";
-    }
-
-    /**
-     * @param value
-     */
-    public void setNameResource(String value) {
-        // TODO implement here
-    }
-
-    /**
-     * @return
-     */
-    public String getDescriptionResource() {
-        // TODO implement here
-        return "";
-    }
-
-    /**
-     * @param value
-     */
-    public void setDescriptionResource(String value) {
-        // TODO implement here
-    }
-
-    /**
-     * @return
-     */
-    public String getStateResource() {
-        // TODO implement here
-        return null;
-    }
-
-    /**
-     * @param value
-     */
-    public void setStateResource(String value) {
-        // TODO implement here
-    }
-
-    /**
-     * @return
-     */
-    public float getVolumeResource() {
-        // TODO implement here
-        return 0;
-    }
-
-    /**
-     * @param value
-     */
-    public void setVolumeResource(float value) {
-        // TODO implement here
-    }
-
-    /**
-     * @return
-     */
-    public int getQuantityResource() {
-        // TODO implement here
-        return 0;
-    }
-
-    /**
-     * @param value
-     */
-    public void setQuantityResource(int value) {
-        // TODO implement here
-    }
-
-    /**
-     * @return
-     */
-    public String getLocationResource() {
-        // TODO implement here
-        return "";
-    }
-
-    /**
-     * @param value
-     */
-    public void setLocationResource(String value) {
-        // TODO implement here
-    }
-
-    /**
-     * @return
-     */
-    public float getPriceResource() {
-        // TODO implement here
-        return 0;
-    }
-
-    /**
-     * @param value
-     */
-    public void setPriceResource(float value) {
-        // TODO implement here
-    }
 
 }

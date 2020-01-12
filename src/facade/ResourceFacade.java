@@ -49,7 +49,7 @@ public class ResourceFacade {
      * you find the resource type in the resource model
      * @return
      */
-    public Resource addResource(Resource resource) {
+    public void addResource(Resource resource) {
     	
     	if (resource instanceof Material) {
     		System.out.println("Material");
@@ -61,7 +61,7 @@ public class ResourceFacade {
     	if (resource instanceof Vehicle) {
     		System.out.println("Vehicle");
     	}
-        return null;
+        
     }
 
     /**
@@ -69,7 +69,7 @@ public class ResourceFacade {
      * @param idEvent 
      * @return
      */
-    public void updateResource(Resource r, int idEvent) {
+    public void updateResource(String type, Resource r, int idEvent) {
         // TODO implement here
     }
 
@@ -78,17 +78,36 @@ public class ResourceFacade {
      * @param idEvent 
      * @return
      */
-    public void deleteResource(Resource r, int idEvent) {
-        // TODO implement here
+    public void deleteResource(String type, int idResource) {
+    	switch (type) {
+		case "material" : 
+			materialDAO.deleteResource(idResource);
+			break;
+		case "consomable" : 
+			consomableDAO.deleteResource(idResource);
+			break;
+		case "vehicle" : 
+			vehicleDAO.deleteResource(idResource);
+			break;
+		default :
+			throw new Error("Unexpected resource type give to facade"); 
+		}
     }
 
-    /**
-     * @param idEvent 
-     * @return
-     */
-    public Set<Resource> getAllResources(int idEvent) {
-        // TODO implement here
-        return null;
-    }
+
+
+	public List<Resource> getResourcesForEvent(String type, int idEvent) {
+		
+		switch (type) {
+		case "material" : 
+			return materialDAO.getAllResource(idEvent);
+		case "consomable" : 
+			return consomableDAO.getAllResource(idEvent);
+		case "vehicle" : 
+			return vehicleDAO.getAllResource(idEvent);
+		default :
+			throw new Error("Unexpected resource type give to facade"); 
+		}
+	}
 
 }

@@ -14,40 +14,10 @@ public abstract class ResourceDAO {
      */
     public ResourceDAO() {
     }
-
-    /**
-     * @param resource 
-     * @return
-     */
-    public void createResource(Resource resource) {
-        // TODO implement here
-       
-    }
-
-    /**
-     * @return
-     */
-    public Resource updateResource() {
-        // TODO implement here
-        return null;
-    }
-
-    /**
-     * @param id 
-     * @return
-     */
-    public boolean deleteResource(int id) {
-        // TODO implement here
-        return false;
-    }
-
-    /**
-     * @param id 
-     * @return
-     */
-    public Resource getResource(int id) {
-        // TODO implement here
-        return null;
-    }
+    public abstract void createResource(Resource resource);
+    public abstract Resource updateResource(Resource resource);
+    public abstract void deleteResource(int idResource);
+    public abstract Resource getResource(int id);
+	public abstract List<Resource> getAllResource(int eventId);
 
 }
