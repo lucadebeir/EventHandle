@@ -47,9 +47,18 @@ public class MaterialDAOMySQL extends ResourceDAO {
     }
 
     @Override
-	public Resource updateResource(Resource resource) {
-		// TODO Auto-generated method stub
-		return null;
+	public void updateResource(Resource resource) {
+    	try {
+			this.connect.createStatement(
+			ResultSet.TYPE_SCROLL_INSENSITIVE,
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("UPDATE `material` SET `nameMaterial`='" + resource.getNameResource() + "',`locationMaterial`='" + resource.getLocationResource() + "',"
+					+ "`descriptionMaterial`='"+ resource.getDescriptionResource() + "',`stateMaterial`='" + resource.getStateResource() + "',"
+					+ "`volumeMaterial`="+ resource.getVolumeResource() + ",`quantityMaterial`=" + resource.getQuantityResource() 
+					+ ",`priceMaterial`=" + resource.getPriceResource() + ",`idEvent`=" + resource.getEventId() + " WHERE `idMaterial`=" + resource.getIdResource());
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new Error("insert into database error");
+		}
 	}
 
 	@Override

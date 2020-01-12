@@ -23,5 +23,10 @@ public class Vehicle extends Resource {
 				priceResource, eventId);
 		// TODO Auto-generated constructor stub
 	}
+	
+	 public String getClassName() {
+	    	return "Vehicle";
+	    } 
+	    
 
 }

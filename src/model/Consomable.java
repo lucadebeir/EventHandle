@@ -37,6 +37,9 @@ public class Consomable extends Resource {
 	}
      
     
+    public String getClassName() {
+    	return "Consomable";
+    } 
     
 	/**
      * @return

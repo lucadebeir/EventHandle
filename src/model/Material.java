@@ -22,5 +22,9 @@ public class Material extends Resource {
 				priceResource, eventId);
 		// TODO Auto-generated constructor stub
 	}
+	
+	public String getClassName() {
+		return "Material";
+	}
 
 }

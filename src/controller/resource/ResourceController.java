@@ -33,6 +33,7 @@ public class ResourceController {
 	@FXML private ListView<Resource> materialList;
 	@FXML private ListView<Resource> vehicleList;
     @FXML private Button deleteButton;
+    @FXML private Button displayButton;
 	List<Resource> materials;
 	private ObservableList<Resource> materialObservableList;
     
@@ -60,16 +61,18 @@ public class ResourceController {
     	materialList.setCellFactory(resourceListView -> new ResourceListViewCell());
     	
     	deleteButton.setDisable(true);
-    	
+    	displayButton.setDisable(true);
     	
     	ChangeListener listenerMaterial = new ChangeListener() {  
     		@Override
     		public void changed(ObservableValue arg0, Object arg1, Object arg2) {
     			try {
     				selectedResource = materialList.getSelectionModel().getSelectedItem();
-    				deleteButton.setDisable(false);			
+    				deleteButton.setDisable(false);	
+    				displayButton.setDisable(false);
     			} catch (Exception e) {
     				deleteButton.setDisable(true);
+    				displayButton.setDisable(true);
     			}
     		}  
     	}; 	
@@ -93,20 +96,21 @@ public class ResourceController {
 	
 	}
     
-    public void goToUpdateResources() throws DisconnectedUserException, IOException {
-    	
-    }
     
     public void displayResource()  throws DisconnectedUserException, IOException {
-    	
+    	int idEvent = (int) Router.getInstance().getParams()[0];
+		Object[] params = new Object[3];
+		params[0] = idEvent;
+		params[1] = this.resourceFacade;
+		params[2] = selectedResource;
+		
+		Router.getInstance().activate("DisplayResource", params);
     }
 
     /**
      * @return
      */
     public void deleteResource() {
-    	System.out.println(resourceFacade.toString());
-    	System.out.println(selectedResource.getIdResource());
         resourceFacade.deleteResource("material",selectedResource.getIdResource());
         initialize();
     }

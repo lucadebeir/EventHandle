@@ -69,8 +69,18 @@ public class ResourceFacade {
      * @param idEvent 
      * @return
      */
-    public void updateResource(String type, Resource r, int idEvent) {
-        // TODO implement here
+    public void updateResource(Resource resource) {
+    	if (resource instanceof Material) {
+    		System.out.println("Material");
+    		this.materialDAO.updateResource(resource);
+    	}
+    	if (resource instanceof Consomable) {
+    		System.out.println("Consomable");
+    	}
+    	if (resource instanceof Vehicle) {
+    		System.out.println("Vehicle");
+    	}
+        
     }
 
     /**

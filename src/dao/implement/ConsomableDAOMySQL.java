@@ -22,8 +22,7 @@ public class ConsomableDAOMySQL extends ResourceDAO {
     public Connection connect;
     public Conservation conservationType;
 
-
-
+    
     /**
      * @param id 
      * @return
@@ -40,9 +39,8 @@ public class ConsomableDAOMySQL extends ResourceDAO {
 	}
 
 	@Override
-	public Resource updateResource(Resource resource) {
-		// TODO Auto-generated method stub
-		return null;
+	public void updateResource(Resource resource) {
+		
 	}
 
 	@Override

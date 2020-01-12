@@ -24,14 +24,7 @@ public class VehicleDAOMySQL extends ResourceDAO {
      */
     public Connection connect;
 
-    /**
-     * @param connect 
-     * @return
-     */
-    public VehicleDAOMySQL VehicleDAOMySQL(BdConnector connect) {
-        // TODO implement here
-        return null;
-    }
+   
 
    
     public Resource getResource(int id) {
@@ -46,9 +39,8 @@ public class VehicleDAOMySQL extends ResourceDAO {
 	}
 
 	@Override
-	public Resource updateResource(Resource resource) {
-		// TODO Auto-generated method stub
-		return null;
+	public void updateResource(Resource resource) {
+		
 	}
 
 	@Override

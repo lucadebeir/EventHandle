@@ -54,6 +54,10 @@ public class Resource {
 		this.priceResource = priceResource;
 		this.eventId = eventId;
 	}
+    
+    public String getClassName() {
+    	return "Resource";
+    }
 
 	public int getEventId() {
 		return eventId;
