@@ -54,7 +54,11 @@ public class Main extends Application {
 		r.add("Inbox", "/ui/event/message/MyMessages.fxml");
 		r.add("Resources", "/ui/event/resources/Resources.fxml");
 		r.add("AddResource", "/ui/event/resources/AddResource.fxml");
+<<<<<<< Updated upstream
 		r.add("DisplayResource", "/ui/event/resources/DisplayResource.fxml");
 		
+=======
+		r.add("SentMessage", "/ui/event/message/SentMessage.fxml");
+>>>>>>> Stashed changes
 	}
 }

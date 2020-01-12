@@ -96,7 +96,7 @@ public class EventController {
     	fetchListMessageView();
 		updateListView();
     	
-    	this.messageEvent.setCellFactory(messageListView -> new MessageListViewCell());
+    	this.messageEvent.setCellFactory(messageListView -> new MessageListViewCell(false));
     	    	
     	/*messageEvent.itemsProperty().bind(listPropertyMessages);
     	listPropertyMessages.set(FXCollections.observableArrayList(listMessagesCell));*/

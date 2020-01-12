@@ -16,6 +16,9 @@ public class MessageInboxListView extends ListCell<Message> {
 	
 	private MessageController controller;
 	
+	@FXML
+	private Label cellFromOrTo;
+	
 	@FXML 
 	private Label cellNameSender;
 	
@@ -28,12 +31,15 @@ public class MessageInboxListView extends ListCell<Message> {
 	@FXML 
 	private BorderPane cellLayout;
 	
+	boolean isSent;
+	
 	FXMLLoader mLLoader;
 	
 	LoginFacade lF = new LoginFacade();
 
-	public MessageInboxListView() {
+	public MessageInboxListView(boolean isSent) {
 		super();
+		this.isSent = isSent;
 	}
 	
 
@@ -57,11 +63,19 @@ public class MessageInboxListView extends ListCell<Message> {
 					e.printStackTrace();
 				}
 
-            }
+            }            
             
-            this.cellNameSender.setText(String.valueOf(lF.find(mc.getIdSender()).getFirstNameUser()));
             this.cellObject.setText(String.valueOf(mc.getTitleMessage()));
-            this.cellObject.setWrapText(true);
+            this.cellContentMessage.setText(String.valueOf(mc.getContentMessage()));
+            this.cellContentMessage.setWrapText(true);
+            
+            if (this.isSent) {
+            	this.cellFromOrTo.setText(String.valueOf("To"));
+            	this.cellNameSender.setText(String.valueOf(lF.find(mc.getIdReceiver()).getFirstNameUser()));
+            } else {
+            	this.cellFromOrTo.setText(String.valueOf("From"));
+            	this.cellNameSender.setText(String.valueOf(lF.find(mc.getIdSender()).getFirstNameUser()));
+            }
             
             setText(null);
             setGraphic(cellLayout);

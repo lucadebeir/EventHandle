@@ -38,6 +38,26 @@ public class MessageFacade {
     	int idReceiver = LoginFacade.getInstance().getConnectedUser().getId();
     	return messageDAO.getMessageOfReceiver(idReceiver,id);
     }
+    
+    public ArrayList<Message> getMessageSentByReceiver(int id) throws DisconnectedUserException {
+    	int idReceiver = LoginFacade.getInstance().getConnectedUser().getId();
+    	return messageDAO.getMessageSentByReceiver(idReceiver,id);
+    }
+    
+    public Message getMessageById(int id) {
+    	return messageDAO.getMessageById(id);
+    }
+    
+    public void sentMessage(String messageFrom, String messageTo, String messageObject, String messageContent, int idEvent) throws DisconnectedUserException {
+    	int idReceiver = LoginFacade.getInstance().getConnectedUser().getId();
+    	LoginFacade lF = new LoginFacade();
+    	int idSender = lF.getUserByMail(messageTo);
+    	messageDAO.sentMessage(idReceiver, idSender, messageObject, messageContent, idEvent);
+    }
+    
+    public void deleteMessage(int idMessage) {
+    	messageDAO.deleteMessage(idMessage);
+    }
 
 
     /**
