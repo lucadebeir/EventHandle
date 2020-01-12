@@ -1,39 +1,52 @@
 package dao.implement;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 
-import model.Ressource;
+import model.Resource;
 import database.BdConnector;
 
 /**
  * 
  */
-public class MaterialDAOMySQL extends RessourceDAO {
+public class MaterialDAOMySQL extends ResourceDAO {
 
     /**
      * Default constructor
      */
-	public MaterialDAOMySQL(BdConnector connect) {
+	public MaterialDAOMySQL(Connection conn) {
+		this.connect = conn; 
     }
 
     /**
      * 
      */
-    public BdConnector connect;
+    public Connection connect;
 
 
     /**
      * @return
      */
-    public Ressource createRessource() {
-        // TODO implement here
-        return null;
+    public void createResource(Resource resource) {
+    	try {
+			this.connect.createStatement(
+			ResultSet.TYPE_SCROLL_INSENSITIVE,
+			ResultSet.CONCUR_READ_ONLY).executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
     }
+    
+    private static final String SQL_INSERT = "INSERT INTO Utilisateur (email, mot_de_passe, nom, date_inscription) VALUES (?, ?, ?, NOW())";
+    
 
     /**
      * @return
      */
-    public Ressource updateRessource() {
+    public Resource updateResource() {
         // TODO implement here
         return null;
     }
@@ -42,7 +55,7 @@ public class MaterialDAOMySQL extends RessourceDAO {
      * @param id 
      * @return
      */
-    public boolean deleteRessource(int id) {
+    public boolean deleteResource(int id) {
         // TODO implement here
         return false;
     }
@@ -51,7 +64,7 @@ public class MaterialDAOMySQL extends RessourceDAO {
      * @param id 
      * @return
      */
-    public Ressource getRessource(int id) {
+    public Resource getResource(int id) {
         // TODO implement here
         return null;
     }

@@ -148,7 +148,7 @@ public class EventController {
 		Object[] params = new Object[1];
 		params[0] = idEvent;
 		
-		Router.getInstance().activate("ListOfResources", params);
+		Router.getInstance().activate("Resources", params);
 	
 	}
 	

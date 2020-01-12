@@ -1,25 +1,28 @@
 package dao.implement;
 
+import java.sql.Connection;
 import java.util.*;
 
 import database.BdConnector;
-import model.Ressource;
+import model.Resource;
 
 /**
  * 
  */
-public class VehicleDAOMySQL extends RessourceDAO {
+public class VehicleDAOMySQL extends ResourceDAO {
 
     /**
      * Default constructor
+     * @param conn 
      */
-    public VehicleDAOMySQL() {
+    public VehicleDAOMySQL(Connection conn) {
+    	this.connect = conn;
     }
 
     /**
      * 
      */
-    public BdConnector connect;
+    public Connection connect;
 
     /**
      * @param connect 
@@ -33,15 +36,14 @@ public class VehicleDAOMySQL extends RessourceDAO {
     /**
      * @return
      */
-    public Ressource createRessource() {
+    public void createResource() {
         // TODO implement here
-        return null;
     }
 
     /**
      * @return
      */
-    public Ressource updateRessource() {
+    public Resource updateResource() {
         // TODO implement here
         return null;
     }
@@ -50,7 +52,7 @@ public class VehicleDAOMySQL extends RessourceDAO {
      * @param id 
      * @return
      */
-    public boolean deleteRessource(int id) {
+    public boolean deleteResource(int id) {
         // TODO implement here
         return false;
     }
@@ -59,7 +61,7 @@ public class VehicleDAOMySQL extends RessourceDAO {
      * @param id 
      * @return
      */
-    public Ressource getRessource(int id) {
+    public Resource getResource(int id) {
         // TODO implement here
         return null;
     }

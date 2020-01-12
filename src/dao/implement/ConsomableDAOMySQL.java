@@ -1,24 +1,25 @@
 package dao.implement;
 
+import java.sql.Connection;
 import java.util.*;
 
 import model.Conservation;
-import model.Ressource;
+import model.Resource;
 import database.BdConnector;
 
 /**
  * 
  */
-public class ConsomableDAOMySQL extends RessourceDAO {
+public class ConsomableDAOMySQL extends ResourceDAO {
 
     /**
      * Default constructor
      */
-	public ConsomableDAOMySQL(BdConnector connect) {
-      
+	public ConsomableDAOMySQL(Connection conn) {
+      this.connect = conn;
     }
 
-    public BdConnector connect;
+    public Connection connect;
     public Conservation conservationType;
 
     
@@ -26,15 +27,13 @@ public class ConsomableDAOMySQL extends RessourceDAO {
     /**
      * @return
      */
-    public Ressource createRessource() {
-        // TODO implement here
-        return null;
+    public void createResource() {
     }
 
     /**
      * @return
      */
-    public Ressource updateRessource() {
+    public Resource updateResource() {
         // TODO implement here
         return null;
     }
@@ -43,7 +42,7 @@ public class ConsomableDAOMySQL extends RessourceDAO {
      * @param id 
      * @return
      */
-    public boolean deleteRessource(int id) {
+    public boolean deleteResource(int id) {
         // TODO implement here
         return false;
     }
@@ -52,7 +51,7 @@ public class ConsomableDAOMySQL extends RessourceDAO {
      * @param id 
      * @return
      */
-    public Ressource getRessource(int id) {
+    public Resource getResource(int id) {
         // TODO implement here
         return null;
     }

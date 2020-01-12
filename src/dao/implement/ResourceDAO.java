@@ -2,31 +2,32 @@ package dao.implement;
 
 import java.util.*;
 
-import model.Ressource;
+import model.Resource;
 
 /**
  * 
  */
-public abstract class RessourceDAO {
+public abstract class ResourceDAO {
 
     /**
      * Default constructor
      */
-    public RessourceDAO() {
+    public ResourceDAO() {
     }
 
     /**
+     * @param resource 
      * @return
      */
-    public Ressource createRessource() {
+    public void createResource(Resource resource) {
         // TODO implement here
-        return null;
+       
     }
 
     /**
      * @return
      */
-    public Ressource updateRessource() {
+    public Resource updateResource() {
         // TODO implement here
         return null;
     }
@@ -35,7 +36,7 @@ public abstract class RessourceDAO {
      * @param id 
      * @return
      */
-    public boolean deleteRessource(int id) {
+    public boolean deleteResource(int id) {
         // TODO implement here
         return false;
     }
@@ -44,7 +45,7 @@ public abstract class RessourceDAO {
      * @param id 
      * @return
      */
-    public Ressource getRessource(int id) {
+    public Resource getResource(int id) {
         // TODO implement here
         return null;
     }
