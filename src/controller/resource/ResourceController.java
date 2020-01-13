@@ -81,7 +81,7 @@ public class ResourceController {
     
     @FXML
 	private void backToMyEvent(ActionEvent event) {
-		Router.getInstance().activate("HomePage", Router.getInstance().getParams());
+		Router.getInstance().activate("Event", Router.getInstance().getParams());
 	}
 
     @FXML
