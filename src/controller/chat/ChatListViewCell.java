@@ -11,6 +11,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import model.Chat;
 
+/*
+ * @author lucadebeir
+ */
+
 public class ChatListViewCell extends ListCell<Chat> {
 
 	@FXML

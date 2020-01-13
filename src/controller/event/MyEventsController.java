@@ -28,6 +28,10 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import ui.Router;
 
+/*
+ * @author lucadebeir
+ */
+
 public class MyEventsController {
 	
 	@FXML private ListView<Event> pastEvent;

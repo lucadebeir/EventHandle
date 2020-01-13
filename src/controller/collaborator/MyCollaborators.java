@@ -23,6 +23,10 @@ import model.Message;
 import model.User;
 import ui.Router;
 
+/*
+ * @author lucadebeir
+ */
+
 public class MyCollaborators {
 	
 	@FXML

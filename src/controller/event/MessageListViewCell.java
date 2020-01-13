@@ -10,6 +10,10 @@ import javafx.scene.control.ListCell;
 import javafx.scene.layout.BorderPane;
 import model.Message;
 
+/*
+ * @author lucadebeir
+ */
+
 public class MessageListViewCell extends ListCell<Message> {
 	
 	

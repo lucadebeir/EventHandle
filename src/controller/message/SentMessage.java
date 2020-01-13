@@ -20,6 +20,10 @@ import javafx.stage.Stage;
 import model.MyDate;
 import ui.Router;
 
+/*
+ * @author lucadebeir
+ */
+
 public class SentMessage {
 	
 	MessageFacade mF = new MessageFacade();

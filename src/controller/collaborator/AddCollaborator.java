@@ -2,7 +2,6 @@ package controller.collaborator;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import facade.LoginFacade;
 import facade.exception.DisconnectedUserException;
 import javafx.collections.FXCollections;
@@ -12,8 +11,11 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
-import model.Message;
 import ui.Router;
+
+/*
+ * @author lucadebeir
+ */
 
 public class AddCollaborator {
 
