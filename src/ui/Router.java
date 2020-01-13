@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import src.application.Main;
 import java.lang.Object;
-import application.Main;
+import src.application.Main;
 import javafx.fxml.FXMLLoader;
 
 /**
