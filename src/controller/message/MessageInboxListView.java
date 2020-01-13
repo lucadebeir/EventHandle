@@ -12,6 +12,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import model.Message;
 
+/*
+ * @author lucadebeir
+ */
+
 public class MessageInboxListView extends ListCell<Message> {
 	
 	private MessageController controller;

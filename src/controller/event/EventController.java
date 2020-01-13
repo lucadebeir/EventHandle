@@ -25,6 +25,10 @@ import model.Notification;
 import model.NotificationCell;
 import ui.Router;
 
+/*
+ * @author lucadebeir
+ */
+
 public class EventController {
 	
 	@FXML private ListView<Chat> chatEvent;

@@ -23,6 +23,10 @@ import model.Message;
 import model.User;
 import ui.Router;
 
+/*
+ * @author lucadebeir
+ */
+
 public class MyCollaborators {
 	
 	@FXML
@@ -106,24 +110,39 @@ public class MyCollaborators {
 		nextStage.show();
 	}
 	
-	/*@FXML
-	public void deleteCollaborator() {
+	@FXML
+	public void deleteCollaborator() throws DisconnectedUserException {
 		int index = 0;
     	User user = null;
-    	for (User m : listMessages) {
-    		if (m.getIdMessage()==(messageSelectedId)) {
-    			index = listMessages.indexOf(m);
-    			message = m;
+    	for (User m : listVolunteer) {
+    		if (m.getId()==(volunteerSelectedId)) {
+    			index = listVolunteer.indexOf(m);
+    			user = m;
     		}
     	}
-    	listMessages.remove(message);
-    	listMessagesId.remove(index);
-    	lF.deleteUserCollaborator(idEvent, idUser, role);
-    	fetchListIntervenerView();	
+    	if (index == 0) {
+    		for (User u : listIntervener) {
+    			if (u.getId()==intervenerSelectedId) {
+    				index = listIntervener.indexOf(u);
+    				user = u;
+    			}
+    		}
+    		listIntervener.remove(user);
+    		listInterveners.remove(user.getFirstNameUser() + " " + user.getLastNameUser());
+    		listIntervenersId.remove(index);
+    		lF.deleteUserCollaborator(idEvent, user.getId(), "isIntervener");
+    		fetchListIntervenerView();
+    	} else {
+    		listVolunteer.remove(user);
+    		listVolunteers.remove(user.getFirstNameUser() + " " + user.getLastNameUser());
+    		listVolunteersId.remove(index);
+    		lF.deleteUserCollaborator(idEvent, user.getId(), "isVolunteer");
+    		fetchListVolunteerView();
+    	}
 		
-		buttonAnswer.setDisable(true);
-		buttonDelete.setDisable(true);
-	}*/
+    	buttonDisplay.setDisable(true);
+		deleteUser.setDisable(true);
+	}
 	
 	@FXML
 	public void initialize() throws DisconnectedUserException {

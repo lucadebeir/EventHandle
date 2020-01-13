@@ -17,6 +17,10 @@ import model.Message;
 import model.MyDate;
 import ui.Router;
 
+/*
+ * @author lucadebeir
+ */
+
 public class SentAnswer {
 	
 	private int idMessage;

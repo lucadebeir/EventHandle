@@ -10,6 +10,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import model.NotificationCell;
 
+/*
+ * @author lucadebeir
+ */
+
 public class NotificationListViewCell extends ListCell<NotificationCell> {
 	
 	
