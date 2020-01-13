@@ -180,7 +180,7 @@ public class EventController {
 		Object[] params = new Object[1];
 		params[0] = idEvent;
 		
-		Router.getInstance().activate("ListOfSponsors", params);
+		Router.getInstance().activate("Sponsors", params);
 	
 	}
 	

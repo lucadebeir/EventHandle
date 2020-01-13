@@ -11,6 +11,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -44,29 +45,6 @@ public class SponsorController {
     
 	public void initialize() {
 	    	
-	    	fetchSponsorsLists(); 
-	    	sponsorObservableList = FXCollections.observableArrayList();
-	
-	    	sponsorList.setItems(this.sponsorObservableList);
-	    	//sponsorList.setCellFactory(resourceListView -> new SponsorListViewCell());  // ListViewCell = vue, pas encore implémentée 
-	    	
-	    	deleteButton.setDisable(true);
-	    	displayButton.setDisable(true);
-	    	
-	    	ChangeListener listenerSponsor = new ChangeListener() {  // à quoi sert ce listener ?
-	    		@Override
-	    		public void changed(ObservableValue arg0, Object arg1, Object arg2) {
-	    			try {
-	    				selectedSponsor = sponsorList.getSelectionModel().getSelectedItem();
-	    				deleteButton.setDisable(false);	
-	    				displayButton.setDisable(false);
-	    			} catch (Exception e) {
-	    				deleteButton.setDisable(true);
-	    				displayButton.setDisable(true);
-	    			}
-	    		}
-	    		
-	    	};
 	}
 	
     public void displayResource()  throws DisconnectedUserException, IOException {
@@ -79,6 +57,24 @@ public class SponsorController {
 		Router.getInstance().activate("DisplaySponsor", params);
     }
     
-    
-    
+	public void backToMyEvent(ActionEvent event) {
+		Router.getInstance().activate("Event", Router.getInstance().getParams());
+	}
+	
+	public void goToAddSponsor(ActionEvent event) {	
+	
+	}
+	
+	public void deleteSponsor(ActionEvent event) {
+	
+	}
+	
+	public void displaySponsor(ActionEvent event) {
+		
+	}
+	
+	
 }
+    
+    
+    
