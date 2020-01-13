@@ -6,6 +6,15 @@ import java.util.*;
  * 
  */
 public class Task {
+	
+	private int idTask;
+	private String taskName;
+    private Date startDateTask;
+    private Date endDateTask;
+    private String descriptionTask;
+    private ArrayList volunteerList;
+    private boolean statusTask;
+    private int idActivity;
 
     /**
      * Default constructor
@@ -13,36 +22,74 @@ public class Task {
     public Task() {
     }
 
-    /**
-     * 
-     */
-    private String taskName;
+	public int getIdTask() {
+		return idTask;
+	}
 
-    /**
-     * 
-     */
-    private Date startDate;
+	public void setIdTask(int idTask) {
+		this.idTask = idTask;
+	}
 
-    /**
-     * 
-     */
-    private Date endDate;
+	public String getTaskName() {
+		return taskName;
+	}
 
-    /**
-     * 
-     */
-    private String descriptionTask;
+	public void setTaskName(String taskName) {
+		this.taskName = taskName;
+	}
 
-    /**
-     * 
-     */
-    private ArrayList volunteerList;
+	public Date getStartDateTask() {
+		return startDateTask;
+	}
 
-    /**
-     * 
-     */
-    private boolean statusTask;
+	public void setStartDateTask(Date startDateTask) {
+		this.startDateTask = startDateTask;
+	}
 
+	public Date getEndDateTask() {
+		return endDateTask;
+	}
+
+	public void setEndDateTask(Date endDateTask) {
+		this.endDateTask = endDateTask;
+	}
+
+	public String getDescriptionTask() {
+		return descriptionTask;
+	}
+
+	public void setDescriptionTask(String descriptionTask) {
+		this.descriptionTask = descriptionTask;
+	}
+
+	public ArrayList getVolunteerList() {
+		return volunteerList;
+	}
+
+	public void setVolunteerList(ArrayList volunteerList) {
+		this.volunteerList = volunteerList;
+	}
+
+	public boolean isStatusTask() {
+		return statusTask;
+	}
+
+	public void setStatusTask(boolean statusTask) {
+		this.statusTask = statusTask;
+	}
+
+	public int getIdActivity() {
+		return idActivity;
+	}
+
+	public void setIdActivity(int idActivity) {
+		this.idActivity = idActivity;
+	}
+	
+	@Override
+	public String toString() {
+		return this.taskName;
+	}
 
 
 }

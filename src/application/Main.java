@@ -54,6 +54,8 @@ public class Main extends Application {
 		r.add("ListOfResources", "/ui/event/resources/ListOfResources.fxml");
 		r.add("Chat", "/ui/event/chat/Chat.fxml");
 		r.add("Inbox", "/ui/event/message/MyMessages.fxml");
+		r.add("ActivityList", "/ui/event/activities/ActivityList.fxml");
+		r.add("ActivityDetail", "/ui/event/activities/ActivityDetail.fxml");
 		
 	}
 }

@@ -5,11 +5,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import application.Main;
+import controller.activity.ActivityController;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import facade.EventFacade;
@@ -137,8 +142,14 @@ public class EventController {
 		Object[] params = new Object[1];
 		params[0] = idEvent;
 		
-		Router.getInstance().activate("ListOfActivities", params);
-	
+		Router.getInstance().activate("ActivityList", params);
+				
+//		FXMLLoader root = new FXMLLoader(getClass().getResource("/ui/event/activities/ActivityList.fxml"));
+//	    Parent skillLayout = root.load();
+//        ActivityController lg = root.getController();
+//		lg.initializeList();
+//		Scene scene = new Scene(skillLayout, 1000, 800);
+//		Main.primaryStage.setScene(scene);
 	}
 	
 	@FXML

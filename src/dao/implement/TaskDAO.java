@@ -1,19 +1,24 @@
 package dao.implement;
 
+import java.sql.Connection;
 import java.util.*;
 
 import database.BdConnector;
+import model.Activity;
 import model.Task;
 
 /**
  * 
  */
 public abstract class TaskDAO {
+	
+	protected Connection connect = null;
 
     /**
      * Default constructor
      */
-    public TaskDAO() {
+    public TaskDAO(Connection conn) {
+    	this.connect = conn;
     }
 
     /**
@@ -56,5 +61,7 @@ public abstract class TaskDAO {
         // TODO implement here
         return null;
     }
+    
+    public abstract List<Task> getListTask(int idActivity);
 
 }

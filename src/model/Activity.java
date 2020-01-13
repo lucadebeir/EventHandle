@@ -4,41 +4,64 @@ package model;
  * 
  */
 public class Activity {
+	
+	private int idActivity;
+	private String nameActivity;
+	private String descriptionActivity;
+	private boolean statusActivity;
+	private int idEvent;
 
     /**
      * Default constructor
      */
     public Activity() {
     }
+    
+    
 
-    /**
-     * 
-     */
-    private String nameActivity;
+    public int getIdActivity() {
+		return idActivity;
+	}
+	
+	public void setIdActivity(int idActivity) {
+		this.idActivity = idActivity;
+	}
+	
+	public String getNameActivity() {
+		return nameActivity;
+	}
 
+	public void setNameActivity(String nameActivity) {
+		this.nameActivity = nameActivity;
+	}
 
-    /**
-     * @return
-     */
-    public String getNameActivity() {
-        // TODO implement here
-        return "";
-    }
+	public boolean isStatusActivity() {
+		return statusActivity;
+	}
 
-    /**
-     * @param nameActivity 
-     * @return
-     */
-    public void setNameActivity(String nameActivity) {
-        // TODO implement here
-    }
+	public void setStatusActivity(boolean statusActivity) {
+		this.statusActivity = statusActivity;
+	}
+	
+	public String getDescriptionActivity() {
+		return descriptionActivity;
+	}
+	
+	public void setDescriptionActivity(String descriptionActivity) {
+		this.descriptionActivity = descriptionActivity;
+	}
+	
+	public int getIdEvent() {
+		return idEvent;
+	}
 
-    /**
-     * @return
-     */
-    public Task[] getTasks() {
-        // TODO implement here
-        return null;
-    }
-
+	public void setIdEvent(int idEvent) {
+		this.idEvent = idEvent;
+	}
+	
+	@Override
+	public String toString() {
+		return  nameActivity;
+	}
+		
 }
