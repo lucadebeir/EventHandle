@@ -1,38 +1,21 @@
 package dao.implement;
 
 import java.sql.Connection;
+import java.util.List;
 
 import database.BdConnector;
+import model.Resource;
 import model.Sponsor;
 
-/**
- * 
- */
+
 public abstract class SponsorDAO {
 
-	protected Connection connect = null;
 	
-    /**
-     * Default constructor
-     */
-    public SponsorDAO(Connection conn) {
-    	this.connect = conn;
-    }
-    
-    /**
-     * Default constructor
-     */
     public SponsorDAO() {
     }
 
-
-    /**
-     * @param connect
-     */
-    public void SponsorDAO(BdConnector connect) {
-        // TODO implement here
-    }
-
+    public abstract void createSponsorDAO();
+	public abstract List<Sponsor> getAllSponsor(int eventId);
 
 
 }

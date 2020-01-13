@@ -1,148 +1,97 @@
 package model;
 
-
-/**
- * 
- */
 public class Sponsor {
 
-    /**
-     * Default constructor
-     */
+
     public Sponsor() {
     }
-
-    /**
-     * 
-     */
+    
+    public int idSponsor;
+    public int idEvent;
     public String nameSponsor;
-
-    /**
-     * 
-     */
     public int numSiretSponsor;
-
-    /**
-     * 
-     */
     public String numTelContactSponsor;
-
-    /**
-     * 
-     */
     public String lastNameContactSponsor;
-
-    /**
-     * 
-     */
     public String firstNameContactSponsor;
-
-    /**
-     * 
-     */
     public String emailContactSponsor;
+	
+    public Sponsor(int idSponsor,int numSiretSponsor, String nameSponsor, String numTelContactSponsor,
+			String lastNameContactSponsor, String firstNameContactSponsor, String emailContactSponsor) {
+		super();
+		this.idSponsor = idSponsor;
+		this.nameSponsor = nameSponsor;
+		this.numSiretSponsor = numSiretSponsor;
+		this.numTelContactSponsor = numTelContactSponsor;
+		this.lastNameContactSponsor = lastNameContactSponsor;
+		this.firstNameContactSponsor = firstNameContactSponsor;
+		this.emailContactSponsor = emailContactSponsor;
+	}
 
-    /**
-     * @return
-     */
-    public String getNameSponsor() {
-        // TODO implement here
-        return "";
-    }
+	public int getIdSponsor() {
+		return idSponsor;
+	}
 
-    /**
-     * @return
-     */
-    public int getNumSiretSponsor() {
-        // TODO implement here
-        return 0;
-    }
+	public void setIdSponsor(int idSponsor) {
+		this.idSponsor = idSponsor;
+	}
 
-    /**
-     * @return
-     */
-    public String getNumTelContactSponsor() {
-        // TODO implement here
-        return "";
-    }
+	public int getIdEvent() {
+		return idEvent;
+	}
 
-    /**
-     * @return
-     */
-    public String getFirstNameContactSponsor() {
-        // TODO implement here
-        return "";
-    }
+	public void setIdEvent(int idEvent) {
+		this.idEvent = idEvent;
+	}
 
-    /**
-     * @return
-     */
-    public String getLastNameContactSponsor() {
-        // TODO implement here
-        return "";
-    }
+	public String getNameSponsor() {
+		return nameSponsor;
+	}
 
-    /**
-     * @return
-     */
-    public String getEmailContactSponsor() {
-        // TODO implement here
-        return "";
-    }
+	public void setNameSponsor(String nameSponsor) {
+		this.nameSponsor = nameSponsor;
+	}
 
-    /**
-     * @param nameSponsor 
-     * @return
-     */
-    public void setNameSponsor(String nameSponsor) {
-        // TODO implement here
-    }
+	public int getNumSiretSponsor() {
+		return numSiretSponsor;
+	}
 
-    /**
-     * @param numSiretSponsor 
-     * @return
-     */
-    public void setNumSiretSponsor(int numSiretSponsor) {
-        // TODO implement here
-    }
+	public void setNumSiretSponsor(int numSiretSponsor) {
+		this.numSiretSponsor = numSiretSponsor;
+	}
 
-    /**
-     * @param numTelContactSponsor 
-     * @return
-     */
-    public void setNumTelContactSponsor(String numTelContactSponsor) {
-        // TODO implement here
-    }
+	public String getNumTelContactSponsor() {
+		return numTelContactSponsor;
+	}
 
-    /**
-     * @param lastNameContactSponsor 
-     * @return
-     */
-    public void setLastNameContactSponsor(String lastNameContactSponsor) {
-        // TODO implement here
-    }
+	public void setNumTelContactSponsor(String numTelContactSponsor) {
+		this.numTelContactSponsor = numTelContactSponsor;
+	}
 
-    /**
-     * @param firstNameContactSponsor 
-     * @return
-     */
-    public void setFirstNameContactSponsor(String firstNameContactSponsor) {
-        // TODO implement here
-    }
+	public String getLastNameContactSponsor() {
+		return lastNameContactSponsor;
+	}
 
-    /**
-     * @param emailContactSponsor 
-     * @return
-     */
-    public void setEmailContactSponsor(String emailContactSponsor) {
-        // TODO implement here
-    }
+	public void setLastNameContactSponsor(String lastNameContactSponsor) {
+		this.lastNameContactSponsor = lastNameContactSponsor;
+	}
 
-    /**
-     * @return
-     */
-    public void deleteSponsor() {
-        // TODO implement here
-    }
+	public String getFirstNameContactSponsor() {
+		return firstNameContactSponsor;
+	}
+
+	public void setFirstNameContactSponsor(String firstNameContactSponsor) {
+		this.firstNameContactSponsor = firstNameContactSponsor;
+	}
+
+	public String getEmailContactSponsor() {
+		return emailContactSponsor;
+	}
+
+	public void setEmailContactSponsor(String emailContactSponsor) {
+		this.emailContactSponsor = emailContactSponsor;
+	}
+    
+    
+    
 
 }
