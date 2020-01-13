@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.ToggleButton;
 import model.Activity;
 import model.Task;
 import ui.Router;
@@ -38,6 +39,8 @@ public class ActivityDetailController {
 	@FXML
 	private TextArea descriptionArea;
 	
+	@FXML
+	private ToggleButton statusButton;
 	
 	
 	
@@ -60,6 +63,7 @@ public class ActivityDetailController {
 		//descriptionLabel.setText(a.getDescriptionActivity());
 		descriptionArea.setText(a.getDescriptionActivity());
 		descriptionArea.setWrapText(false);
+		statusButton.setSelected(a.isStatusActivity());
 		
 	}
 	
