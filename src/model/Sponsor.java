@@ -10,7 +10,6 @@ public class Sponsor {
     public int idEvent;
     public String nameSponsor;
     public int numSiretSponsor;
-    public String numTelContactSponsor;
     public String lastNameContactSponsor;
     public String firstNameContactSponsor;
     public String emailContactSponsor;
@@ -21,7 +20,6 @@ public class Sponsor {
 		this.idSponsor = idSponsor;
 		this.nameSponsor = nameSponsor;
 		this.numSiretSponsor = numSiretSponsor;
-		this.numTelContactSponsor = numTelContactSponsor;
 		this.lastNameContactSponsor = lastNameContactSponsor;
 		this.firstNameContactSponsor = firstNameContactSponsor;
 		this.emailContactSponsor = emailContactSponsor;
@@ -57,14 +55,6 @@ public class Sponsor {
 
 	public void setNumSiretSponsor(int numSiretSponsor) {
 		this.numSiretSponsor = numSiretSponsor;
-	}
-
-	public String getNumTelContactSponsor() {
-		return numTelContactSponsor;
-	}
-
-	public void setNumTelContactSponsor(String numTelContactSponsor) {
-		this.numTelContactSponsor = numTelContactSponsor;
 	}
 
 	public String getLastNameContactSponsor() {
