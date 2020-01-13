@@ -55,4 +55,16 @@ public abstract class UserDAO {
      * @param obj
      */
 	public abstract boolean deleteUser(User obj);
+	
+	public abstract ArrayList<User> getAllIntervenerOfAnEvent(int idEvent);
+	
+	public abstract ArrayList<User> getAllVolunteerOfAnEvent(int idEvent);
+	
+	public abstract ArrayList<User> getAllUsersNotCollaborator(int iEvent);
+	
+	public abstract boolean deleteUserCollaborator(int idUser, int idEvent, String role);
+	
+	public abstract void addCollaborator(int idUser, int idEvent, String role);
+	
+	public abstract int getUserByName(String name);
 }

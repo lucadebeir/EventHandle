@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+
+<BorderPane prefHeight="400.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controller.collaborator.AddCollaborator">
+   <top>
+      <Label text="Add a collaborator" textFill="#f8a122" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="Arial Black" size="18.0" />
+         </font>
+         <BorderPane.margin>
+            <Insets top="10.0" />
+         </BorderPane.margin>
+      </Label>
+   </top>
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <BorderPane.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </BorderPane.margin>
+         <children>
+            <ChoiceBox fx:id="role" prefWidth="150.0" GridPane.columnIndex="1" />
+            <ChoiceBox fx:id="user" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Role" textFill="#f8a122" GridPane.halignment="CENTER">
+               <font>
+                  <Font name="Arial Black" size="20.0" />
+               </font>
+            </Label>
+            <Label text="User" textFill="#f8a122" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Arial Black" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+   </center>
+   <bottom>
+      <GridPane prefHeight="54.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button mnemonicParsing="false" onAction="#cancel" style="-fx-background-color: #000000;" text="Back" textFill="WHITE" GridPane.halignment="CENTER">
+               <font>
+                  <Font name="Arial Black" size="14.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#add" style="-fx-background-color: #f8a122;" text="Add" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+               <font>
+                  <Font name="Arial Black" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </GridPane>
+   </bottom>
+</BorderPane>
