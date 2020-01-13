@@ -28,6 +28,7 @@ import model.Event;
 import model.Message;
 import model.Notification;
 import model.NotificationCell;
+import model.User;
 import ui.Router;
 
 /*
@@ -50,6 +51,10 @@ public class EventController {
 	MessageFacade mF = null;
 	ChatFacade cF = null;
 	LoginFacade lF = null;
+	
+	List<User> listManager;
+	List<User> listVolunteer;
+	List<User> listIntervener;
 	
 	List<Notification> listNotifs;
 	List<NotificationCell> listNotifsCell;
@@ -76,6 +81,10 @@ public class EventController {
 		mF = new MessageFacade();
 		cF = new ChatFacade();
 		lF = new LoginFacade();
+		
+		listManager = lF.getAllManagerOfAnEvent(idEvent);
+		listVolunteer = lF.getAllVolunteerOfAnEvent(idEvent);
+		listIntervener = lF.getAllIntervenerOfAnEvent(idEvent);
 		
 		//initialisation du nom de l'event
 		Event event = eF.findEventById(idEvent);

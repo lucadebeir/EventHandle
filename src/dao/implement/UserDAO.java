@@ -60,6 +60,8 @@ public abstract class UserDAO {
 	
 	public abstract ArrayList<User> getAllVolunteerOfAnEvent(int idEvent);
 	
+	public abstract ArrayList<User> getAllManagerOfAnEvent(int idEvent);
+	
 	public abstract ArrayList<User> getAllUsersNotCollaborator(int iEvent);
 	
 	public abstract boolean deleteUserCollaborator(int idUser, int idEvent, String role);
