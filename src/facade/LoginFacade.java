@@ -89,6 +89,10 @@ public class LoginFacade {
     	return userDAO.getAllIntervenerOfAnEvent(idEvent);
     }
     
+    public ArrayList<User> getAllManagerOfAnEvent(int idEvent) {
+    	return userDAO.getAllManagerOfAnEvent(idEvent);
+    }
+    
     public ArrayList<String> getAllUsersNotCollaborator(int idEvent) {
     	ArrayList<User> list = userDAO.getAllUsersNotCollaborator(idEvent);
     	ArrayList<String> listUser = new ArrayList<String>();

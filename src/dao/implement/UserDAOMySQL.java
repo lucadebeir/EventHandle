@@ -216,6 +216,31 @@ public class UserDAOMySQL extends UserDAO {
 		return list;
 	}
 	
+	public ArrayList<User> getAllManagerOfAnEvent(int idEvent) {
+		ArrayList<User> list = new ArrayList<User>();
+		User user;
+		
+		String sql = "Select * FROM user WHERE idUser IN (Select idUser FROM isManager WHERE idEvent = ?)";
+		// TODO Auto-generated method stub
+		try {
+			PreparedStatement preparedStatement = this.connect.prepareStatement(sql);
+			preparedStatement.setInt(1, idEvent);
+			ResultSet result = preparedStatement.executeQuery();
+			while(result.next()) {
+				user = new User(
+				    	result.getInt("idUser"),
+				        result.getString("lastNameUser"),
+				        result.getString("firstNameUser"),
+				        result.getString("email"),
+				        result.getString("password"));
+				list.add(user);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
 	public ArrayList<User> getAllUsersNotCollaborator(int idEvent) {
 		ArrayList<User> list = new ArrayList<User>();
 		User user;
