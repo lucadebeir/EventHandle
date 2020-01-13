@@ -1,62 +1,76 @@
 package dao.implement;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import database.BdConnector;
+import model.Material;
+import model.Resource;
 import model.Sponsor;
 
-/**
- * 
- */
+
 public class SponsorDAOMySQL extends SponsorDAO {
 
-    /**
-     * Default constructor
-     */
+
     public SponsorDAOMySQL() {
     }
 
-    /**
-     * 
-     */
-    public BdConnector connect;
+    public Connection connect;
 
-    /**
-     * @param connect
-     */
-    public void SponsorDAOMySQL(BdConnector connect) {
-        // TODO implement here
+    public void SponsorDAOMySQL(Connection connect) {
+		this.connect = connect; 
     }
 
-    /**
-     * @param obj 
-     * @return
-     */
-    public void createSponsor(Sponsor obj) {
-        // TODO implement here
+
+    public void createSponsor(Sponsor sponsor) {
+    	try {
+			this.connect.createStatement(
+			ResultSet.TYPE_SCROLL_INSENSITIVE,
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("INSERT INTO `sponsor`(`idSponsor`, `nameSponsor`, `numSiretSponsor`, `lastNameSponsor`, `firstNameSponsor`, `emailSponsor`) VALUES (NULL,'" 
+			+ sponsor.getNameSponsor() + "','" + sponsor.getNumSiretSponsor() + "','" + sponsor.getLastNameContactSponsor() + "','" 
+			+ sponsor.getFirstNameContactSponsor() + "','" + sponsor.getEmailContactSponsor() +"')" );
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new Error("insert into database error");
+		}
     }
 
-    /**
-     * @param id 
-     * @return
-     */
     public Sponsor findSponsor(int id) {
-        // TODO implement here
         return null;
     }
 
-    /**
-     * @param obj 
-     * @return
-     */
     public void updateSponsor(Sponsor obj) {
-        // TODO implement here
     }
 
-    /**
-     * @param obj 
-     * @return
-     */
     public void deleteSponsor(Sponsor obj) {
-        // TODO implement here
     }
+    
+	public List<Sponsor> getAllSponsor(int eventId) {
+		ArrayList<Sponsor> sponsors = new ArrayList<Sponsor>();
+		Sponsor sponsor;
+
+		try {
+			ResultSet result = this.connect
+					.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
+					.executeQuery("SELECT * FROM `sponsor` WHERE `idEvent`= " + eventId );
+			while (result.next()) {
+				sponsor = new Sponsor(result.getInt("idEvent"),result.getInt("idSponsor"),result.getString("nameSponsor"),result.getString("numSiretSponsor"),
+						result.getString("lastNameSponsor"), result.getString("firstNameSponsor"), result.getString("emailSponsor"));
+				sponsors.add(sponsor);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return sponsors;
+	}
+
+
+	@Override
+	public void createSponsorDAO() {
+	}
 
 }
