@@ -249,7 +249,7 @@ public class UserDAOMySQL extends UserDAO {
 		try {
 			this.connect.createStatement(
 			ResultSet.TYPE_SCROLL_INSENSITIVE,
-			ResultSet.CONCUR_READ_ONLY).executeUpdate("DELETE FROM is" + role + " WHERE idUser = '" + idUser + "' AND idEvent = '" + idEvent + "'");
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("DELETE FROM " + role + " WHERE idUser = '" + idUser + "' AND idEvent = '" + idEvent + "'");
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
