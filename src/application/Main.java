@@ -60,5 +60,6 @@ public class Main extends Application {
 		r.add("DisplayResource", "/ui/event/resources/DisplayResource.fxml");
 		r.add("SentMessage", "/ui/event/message/SentMessage.fxml");
 		r.add("Sponsors", "/ui/event/sponsors/Sponsors.fxml");
+		r.add("AddSponsor", "/ui/event/sponsors/AddSponsor.fxml");
 	}
 }

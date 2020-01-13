@@ -10,8 +10,10 @@ import model.Sponsor;
 
 public abstract class SponsorDAO {
 
+	protected Connection connect = null;
 	
-    public SponsorDAO() {
+    public SponsorDAO( Connection connect) {
+    	this.connect=connect;
     }
 
     public abstract void createSponsorDAO();
