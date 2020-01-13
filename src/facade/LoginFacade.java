@@ -1,5 +1,7 @@
 package facade;
 
+import java.util.ArrayList;
+
 import dao.AbstractDAOFactory;
 import dao.implement.UserDAO;
 import facade.exception.DisconnectedUserException;
@@ -49,6 +51,14 @@ public class LoginFacade {
 	public void updateUser(User uCo) {
 		userDAO.updateUser(uCo);
 		
+	}
+	
+	public ArrayList<String> getAllEmailUserOfEvent(int idEvent) {
+		return userDAO.getAllEmailUserOfEvent(idEvent);
+	}
+	
+	public int getUserByMail(String email) {
+		return userDAO.getUserByMail(email);
 	}
 	
 	public User getConnectedUser() throws DisconnectedUserException {

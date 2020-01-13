@@ -96,7 +96,7 @@ public class EventController {
     	fetchListMessageView();
 		updateListView();
     	
-    	this.messageEvent.setCellFactory(messageListView -> new MessageListViewCell());
+    	this.messageEvent.setCellFactory(messageListView -> new MessageListViewCell(false));
     	    	
     	/*messageEvent.itemsProperty().bind(listPropertyMessages);
     	listPropertyMessages.set(FXCollections.observableArrayList(listMessagesCell));*/
@@ -148,7 +148,7 @@ public class EventController {
 		Object[] params = new Object[1];
 		params[0] = idEvent;
 		
-		Router.getInstance().activate("ListOfResources", params);
+		Router.getInstance().activate("Resources", params);
 	
 	}
 	

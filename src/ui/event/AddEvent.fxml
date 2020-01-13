@@ -19,9 +19,9 @@
    <children>
       <BorderPane prefHeight="106.0" prefWidth="600.0">
          <center>
-            <Label text="Add en event" textFill="#357ab7" BorderPane.alignment="CENTER">
+            <Label text="Add en event" textFill="#f8a122" BorderPane.alignment="CENTER">
                <font>
-                  <Font name="Arial Bold" size="35.0" />
+                  <Font name="Arial Black" size="35.0" />
                </font>
             </Label>
          </center>
@@ -43,21 +43,21 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Location" textFill="#357ab7" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+            <Label text="Location" textFill="#f8a122" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                <font>
-                  <Font size="21.0" />
+                  <Font name="Arial Black" size="21.0" />
                </font>
             </Label>
             <TextField fx:id="locationEvent" alignment="CENTER_RIGHT" prefHeight="26.0" prefWidth="286.0" promptText="Ex : Montpellier" style="-fx-background-color: f0f0f0;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label text="Description" textFill="#357ab7" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+            <Label text="Description" textFill="#f8a122" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                <font>
-                  <Font name="System Bold" size="21.0" />
+                  <Font name="Arial Black" size="21.0" />
                </font>
             </Label>
             <TextField fx:id="nameEvent" alignment="CENTER_RIGHT" prefHeight="27.0" prefWidth="268.0" promptText="Ex : Marché de Noël" style="-fx-background-color: f0f0f0;" GridPane.columnIndex="1" />
-            <Label text="Name" textFill="#357ab7" GridPane.halignment="CENTER">
+            <Label text="Name" textFill="#f8a122" GridPane.halignment="CENTER">
                <font>
-                  <Font size="21.0" />
+                  <Font name="Arial Black" size="21.0" />
                </font>
             </Label>
             <TextArea fx:id="descriptionEvent" prefHeight="36.0" prefWidth="543.0" style="-fx-background-color: #f0f0f0;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
@@ -77,9 +77,9 @@
             <RowConstraints maxHeight="76.1007080078125" minHeight="10.0" prefHeight="67.8165283203125" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Date (Start and End)" textFill="#357ab7" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <Label text="Date (Start and End)" textFill="#f8a122" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
-                  <Font name="System Bold" size="21.0" />
+                  <Font name="Arial Black" size="19.0" />
                </font>
             </Label>
             <DatePicker fx:id="dateStart" GridPane.columnIndex="1" GridPane.rowIndex="1" />
@@ -94,7 +94,7 @@
                </font></Button>
          </bottom>
          <top>
-            <Button mnemonicParsing="false" onAction="#addEvent" prefHeight="44.0" prefWidth="125.0" style="-fx-background-color: #357AB7#357AB7; -fx-text-fill: white;" text="Validate" BorderPane.alignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#addEvent" prefHeight="44.0" prefWidth="125.0" style="-fx-background-color: #f8a122; -fx-text-fill: white;" text="Validate" BorderPane.alignment="CENTER">
                <font>
                   <Font size="22.0" />
                </font>

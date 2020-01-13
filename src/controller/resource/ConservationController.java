@@ -1,4 +1,4 @@
-package controller.ressource;
+package controller.resource;
 
 /**
  * 

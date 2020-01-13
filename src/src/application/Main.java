@@ -50,9 +50,15 @@ public class Main extends Application {
 		r.add("ListOfCollaborators", "/ui/event/collaborators/ListOfCollaborators.fxml");
 		r.add("ListOfActivities", "/ui/event/activities/ListOfActivities.fxml");
 		r.add("ListOfSponsors", "/ui/event/sponsors/ListOfSponsors.fxml");
-		r.add("ListOfResources", "/ui/event/resources/ListOfResources.fxml");
 		r.add("Chat", "/ui/event/chat/Chat.fxml");
 		r.add("Inbox", "/ui/event/message/MyMessages.fxml");
+		r.add("Resources", "/ui/event/resources/Resources.fxml");
+		r.add("AddResource", "/ui/event/resources/AddResource.fxml");
+<<<<<<< Updated upstream
+		r.add("DisplayResource", "/ui/event/resources/DisplayResource.fxml");
 		
+=======
+		r.add("SentMessage", "/ui/event/message/SentMessage.fxml");
+>>>>>>> Stashed changes
 	}
 }

@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-
-<BorderPane prefHeight="800.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controller.message.MessageController">
+<BorderPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.message.MessageController">
    <top>
       <Label style="-fx-text-fill: #f8a122;" text="My Messages" BorderPane.alignment="CENTER">
          <font>
@@ -36,7 +35,7 @@
                   <Font name="Arial Black" size="24.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#goAnswer" style="-fx-background-color: #295af8;" text="Answer" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+            <Button fx:id="buttonAnswer" mnemonicParsing="false" onAction="#goAnswer" style="-fx-background-color: #295af8;" text="Answer" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                <font>
                   <Font name="Arial Black" size="24.0" />
                </font>
@@ -46,7 +45,7 @@
                   <Font name="Arial Black" size="26.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#deleteMessage" style="-fx-background-color: #f81a16;" text="Delete" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER">
+            <Button fx:id="buttonDelete" mnemonicParsing="false" onAction="#deleteMessage" style="-fx-background-color: #f81a16;" text="Delete" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER">
                <font>
                   <Font name="Arial Black" size="24.0" />
                </font>

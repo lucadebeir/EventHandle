@@ -1,7 +1,9 @@
 package dao.implement;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
+import model.Event;
 import model.User;
 
 /**
@@ -22,6 +24,10 @@ public abstract class UserDAO {
 	}
 	 
 	public abstract User find(int id);
+	
+	public abstract int getUserByMail(String mail);
+	
+	public abstract ArrayList<String> getAllEmailUserOfEvent(int id);
 	
 	/**
      * Log in the user on the app, if it's true.
