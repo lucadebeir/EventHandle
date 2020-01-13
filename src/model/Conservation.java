@@ -5,90 +5,69 @@ package model;
  */
 public class Conservation {
 
-    /**
-     * Default constructor
-     */
-    public Conservation() {
-    }
-
-    /**
-     * 
-     */
     private int idConcervation;
+    private String NameConcervation;
+    private String descriptionConservation;
+    private int storageTempConservation;
+	
+    
+    public Conservation(int idConcervation, String nameConcervation, String descriptionConservation,
+			int storageTempConservation) {
+		super();
+		this.idConcervation = idConcervation;
+		NameConcervation = nameConcervation;
+		this.descriptionConservation = descriptionConservation;
+		this.storageTempConservation = storageTempConservation;
+	}
 
-    /**
-     * 
-     */
-    private String concervationName;
 
-    /**
-     * 
-     */
-    private String conservationDescription;
+	public Conservation(String nameConcervation, String descriptionConservation, int storageTempConservation) {
+		super();
+		NameConcervation = nameConcervation;
+		this.descriptionConservation = descriptionConservation;
+		this.storageTempConservation = storageTempConservation;
+	}
 
-    /**
-     * 
-     */
-    private int storageTemperature;
 
-    /**
-     * @return
-     */
-    public int getIdConcervation() {
-        // TODO implement here
-        return 0;
-    }
+	public int getIdConcervation() {
+		return idConcervation;
+	}
 
-    /**
-     * @param value
-     */
-    public void setIdConcervation(int value) {
-        // TODO implement here
-    }
 
-    /**
-     * @return
-     */
-    public String getConcervationName() {
-        // TODO implement here
-        return "";
-    }
+	public void setIdConcervation(int idConcervation) {
+		this.idConcervation = idConcervation;
+	}
 
-    /**
-     * @param value
-     */
-    public void setConcervationName(String value) {
-        // TODO implement here
-    }
 
-    /**
-     * @return
-     */
-    public String getConservationDescription() {
-        // TODO implement here
-        return "";
-    }
+	public String getNameConcervation() {
+		return NameConcervation;
+	}
 
-    /**
-     * @param value
-     */
-    public void setConservationDescription(String value) {
-        // TODO implement here
-    }
 
-    /**
-     * @return
-     */
-    public int getStorageTemperature() {
-        // TODO implement here
-        return 0;
-    }
+	public void setNameConcervation(String nameConcervation) {
+		NameConcervation = nameConcervation;
+	}
 
-    /**
-     * @param value
-     */
-    public void setStorageTemperature(int value) {
-        // TODO implement here
-    }
+
+	public String getDescriptionConservation() {
+		return descriptionConservation;
+	}
+
+
+	public void setDescriptionConservation(String descriptionConservation) {
+		this.descriptionConservation = descriptionConservation;
+	}
+
+
+	public int getStorageTempConservation() {
+		return storageTempConservation;
+	}
+
+
+	public void setStorageTempConservation(int storageConservation) {
+		this.storageTempConservation = storageConservation;
+	}
+	
+    
 
 }

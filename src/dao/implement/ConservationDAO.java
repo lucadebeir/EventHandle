@@ -2,49 +2,13 @@ package dao.implement;
 
 import model.Conservation;
 
-/**
- * 
- */
+
 public abstract class ConservationDAO {
 
-    /**
-     * Default constructor
-     */
-    public ConservationDAO() {
-    }
 
-    /**
-     * @return
-     */
-    public Conservation createConservation() {
-        // TODO implement here
-        return null;
-    }
-
-    /**
-     * @return
-     */
-    public Conservation updateConservation() {
-        // TODO implement here
-        return null;
-    }
-
-    /**
-     * @param id 
-     * @return
-     */
-    public boolean deleteConservation(int id) {
-        // TODO implement here
-        return false;
-    }
-
-    /**
-     * @param id 
-     * @return
-     */
-    public Conservation getConservation(int id) {
-        // TODO implement here
-        return null;
-    }
+    public abstract void createConservation(Conservation conservationDTO); 
+    public abstract void updateConservation(Conservation conservationDTO);
+    public abstract void deleteConservation(int idConservation);
+    public abstract Conservation getConservation(int idConservation);
 
 }

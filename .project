@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>img/logo_eventhandle.png</name>
+			<type>1</type>
+			<location>C:/Users/Proprietaire/Desktop/logo_eventhandle.png</location>
+		</link>
+	</linkedResources>
 </projectDescription>

@@ -1,6 +1,7 @@
 package controller.resource;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.function.UnaryOperator;
 
@@ -131,17 +132,13 @@ ResourceFacade resourceFacade;
 	
 	private Resource updateResourceDTO() {
 		
-		Resource resourceDTO;
-		
 		int quantity = !(quantityResource.getText().isBlank()) ? Integer.parseInt(quantityResource.getText()) : null; 
 		float price = !(priceResource.getText().isBlank()) ? Float.parseFloat(priceResource.getText()) : null ;
 		float volume = !(volumeResource.getText().isBlank()) ? Float.parseFloat(volumeResource.getText()) : null ;
 		
-	
-		System.out.println(resource.getClass().getName());
 		switch (resource.getClassName()) {
 	    case "Consomable":	
-	    	return resourceDTO = new Consomable(this.resource.getIdResource(), 
+	    	return new Consomable(this.resource.getIdResource(), 
 	    			nameResource.getText(),
 	    			locationResource.getText(),
 	    			descriptionResource.getText(),
@@ -150,11 +147,11 @@ ResourceFacade resourceFacade;
 	    			quantity,
 	    			price,
 	    			this.eventId,
-	    			null,
-	    			null);
+	    			new Date(10,10,10),
+	    			10);
 	    	
 	    case "Material":
-	    	return resourceDTO = new Material(this.resource.getIdResource(),
+	    	return new Material(this.resource.getIdResource(),
 	    			nameResource.getText(),
 	    			locationResource.getText(),
 	    			descriptionResource.getText(),
@@ -165,7 +162,7 @@ ResourceFacade resourceFacade;
 	    			this.eventId);
 	    	
 	    case "Vehicle" :
-	    	return resourceDTO = new Vehicle(this.resource.getIdResource(),
+	    	return new Vehicle(this.resource.getIdResource(),
 	    			nameResource.getText(),
 	    			locationResource.getText(),
 	    			descriptionResource.getText(),

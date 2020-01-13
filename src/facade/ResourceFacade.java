@@ -29,21 +29,11 @@ public class ResourceFacade {
      */
     public ResourceFacade() {
     	factory = AbstractDAOFactory.getFactory(AbstractDAOFactory.DAO_FACTORY);
-    	vehicleDAO = factory.createResourceDAO("Consommable");
+    	vehicleDAO = factory.createResourceDAO("Vehicle");
     	materialDAO = factory.createResourceDAO("Material");
-    	consomableDAO = factory.createResourceDAO("Vehicle");
+    	consomableDAO = factory.createResourceDAO("Consomable");
     }
 
-
-
-
-    /**
-     * @return
-     */
-    public ResourceFacade getInstance() {
-    	return null;
-        
-    }
 
     /**
      * you find the resource type in the resource model
@@ -57,9 +47,11 @@ public class ResourceFacade {
     	}
     	if (resource instanceof Consomable) {
     		System.out.println("Consomable");
+    		this.consomableDAO.createResource(resource);
     	}
     	if (resource instanceof Vehicle) {
     		System.out.println("Vehicle");
+    		this.vehicleDAO.createResource(resource);
     	}
         
     }
@@ -76,9 +68,11 @@ public class ResourceFacade {
     	}
     	if (resource instanceof Consomable) {
     		System.out.println("Consomable");
+    		this.consomableDAO.updateResource(resource);
     	}
     	if (resource instanceof Vehicle) {
     		System.out.println("Vehicle");
+    		this.vehicleDAO.updateResource(resource);
     	}
         
     }
@@ -90,13 +84,13 @@ public class ResourceFacade {
      */
     public void deleteResource(String type, int idResource) {
     	switch (type) {
-		case "material" : 
+		case "Material" : 
 			materialDAO.deleteResource(idResource);
 			break;
-		case "consomable" : 
+		case "Consomable" : 
 			consomableDAO.deleteResource(idResource);
 			break;
-		case "vehicle" : 
+		case "Vehicle" : 
 			vehicleDAO.deleteResource(idResource);
 			break;
 		default :
@@ -109,11 +103,11 @@ public class ResourceFacade {
 	public List<Resource> getResourcesForEvent(String type, int idEvent) {
 		
 		switch (type) {
-		case "material" : 
+		case "Material" : 
 			return materialDAO.getAllResource(idEvent);
-		case "consomable" : 
+		case "Consomable" : 
 			return consomableDAO.getAllResource(idEvent);
-		case "vehicle" : 
+		case "Vehicle" : 
 			return vehicleDAO.getAllResource(idEvent);
 		default :
 			throw new Error("Unexpected resource type give to facade"); 
