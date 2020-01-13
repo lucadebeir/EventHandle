@@ -33,9 +33,9 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="41.0" prefWidth="215.0" text="LOGIN" textFill="#357ab7" GridPane.columnIndex="1">
+                  <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="41.0" prefWidth="215.0" text="LOGIN" textFill="#f8a122" GridPane.columnIndex="1">
                      <font>
-                        <Font name="System Bold" size="34.0" />
+                        <Font name="Arial Black" size="34.0" />
                      </font>
                   </Label>
                   <ImageView fitHeight="172.0" fitWidth="205.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
@@ -78,7 +78,7 @@
                   <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#login" style="-fx-background-color: #357AB7#357AB7; -fx-text-fill: white;" text="Sign in" GridPane.rowIndex="1">
+                  <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#login" style="-fx-background-color: #f8a122; -fx-text-fill: white;" text="Sign in" GridPane.rowIndex="1">
                      <font>
                         <Font size="20.0" />
                      </font></Button>
@@ -88,16 +88,16 @@
                      </font></Button>
                </children>
             </GridPane>
-            <Label text="Email :" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+            <Label text="Email :" textFill="#f8a122" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                <font>
-                  <Font name="System Bold" size="21.0" />
+                  <Font name="Arial Black" size="22.0" />
                </font>
             </Label>
             <TextField fx:id="txtEmailUser" alignment="CENTER_RIGHT" prefHeight="27.0" prefWidth="167.0" promptText="Your email adress" style="-fx-background-color: f0f0f0;" GridPane.columnIndex="1" GridPane.rowIndex="1">
       </TextField>
-            <Label text="Password :" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+            <Label text="Password :" textFill="#f8a122" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                <font>
-                  <Font size="22.0" />
+                  <Font name="Arial Black" size="24.0" />
                </font>
             </Label>
             <PasswordField fx:id="txtPassWord" alignment="CENTER_RIGHT" promptText="Your password" style="-fx-background-color: f0f0f0;" GridPane.columnIndex="1" GridPane.rowIndex="3">
