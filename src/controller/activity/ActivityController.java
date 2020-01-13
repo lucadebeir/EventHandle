@@ -42,11 +42,16 @@ public class ActivityController {
 	}
 	
 	@FXML
+	public void goBack() {
+		Router.getInstance().activate("Event", Router.getInstance().getParams());
+	}
+	
+	@FXML
 	public void initialize() throws SQLException, DisconnectedUserException {
 		activityObsList = FXCollections.observableArrayList();
 		activityFacade = new ActivityFacade();
 		
-		List<Activity> listA = activityFacade.getListActivity();
+		List<Activity> listA = activityFacade.getListActivity(idEvent);
 		activityObsList.addAll(listA);
 		activityList.setItems(activityObsList);
 		this.itemSelected();
@@ -56,8 +61,8 @@ public class ActivityController {
 	public void itemSelected() {
 		activityList.getSelectionModel().selectedItemProperty().addListener(observable -> {			
 			Activity selectedA = activityList.getSelectionModel().getSelectedItem();
-			Object[] params = new Object[1];
-			params[0] = selectedA.getIdActivity();
+			Object[] params = Router.getInstance().getParams();
+			params[1] = selectedA.getIdActivity();
 			Router.getInstance().activate("ActivityDetail", params);
 		});
 	}		

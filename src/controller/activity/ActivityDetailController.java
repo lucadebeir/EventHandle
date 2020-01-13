@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import model.Activity;
 import model.Task;
 import ui.Router;
@@ -22,7 +23,7 @@ public class ActivityDetailController {
 	TaskFacade taskFacade;
 	ActivityFacade activityFacade;
 	
-	int idActivity = (int) Router.getInstance().getParams()[0];
+	int idActivity = (int) Router.getInstance().getParams()[1];
 	
 	@FXML
 	private ListView<Task> taskList;
@@ -31,8 +32,11 @@ public class ActivityDetailController {
 	@FXML
     private Label nameLabel;
 	
+	//@FXML
+    //private Label descriptionLabel;
+	
 	@FXML
-    private Label descriptionLabel;
+	private TextArea descriptionArea;
 	
 	
 	
@@ -53,7 +57,9 @@ public class ActivityDetailController {
 		activityFacade = new ActivityFacade();
 		Activity a = activityFacade.getActivityById(idActivity);
 		nameLabel.setText(a.getNameActivity());
-		descriptionLabel.setText(a.getDescriptionActivity());
+		//descriptionLabel.setText(a.getDescriptionActivity());
+		descriptionArea.setText(a.getDescriptionActivity());
+		descriptionArea.setWrapText(false);
 		
 	}
 	
@@ -80,6 +86,11 @@ public class ActivityDetailController {
 	@FXML
 	private void deleteActivity(ActionEvent e) throws IOException{
 		
+	}
+	
+	@FXML
+	private void goBack() {
+		Router.getInstance().activate("ActivityList", Router.getInstance().getParams());
 	}
 	
 	

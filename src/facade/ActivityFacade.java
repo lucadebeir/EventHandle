@@ -35,8 +35,8 @@ public class ActivityFacade {
     }
     
     // TO DO : change idEvent !
-    public List<Activity> getListActivity(){
-    	return activityDAO.getListActivity(3);
+    public List<Activity> getListActivity(int id){
+    	return activityDAO.getListActivity(id);
     }
     
     // TO DO

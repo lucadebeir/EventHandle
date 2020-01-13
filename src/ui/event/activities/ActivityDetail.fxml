@@ -1,25 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="696.0" prefWidth="944.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.activity.ActivityDetailController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="696.0" prefWidth="944.0" style="-fx-background-color: #fefee2;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.activity.ActivityDetailController">
    <center>
-      <ListView fx:id="taskList" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-   </center>
-   <right>
-      <ScrollBar orientation="VERTICAL" BorderPane.alignment="CENTER" />
-   </right>
-   <bottom>
-      <Button mnemonicParsing="false" onAction="#addTask" prefHeight="31.0" prefWidth="268.0" text="Add Task" BorderPane.alignment="CENTER">
+      <ListView fx:id="taskList" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets bottom="10.0" top="10.0" />
-         </BorderPane.margin>
-      </Button>
-   </bottom>
+            <Insets bottom="10.0" left="60.0" right="60.0" top="20.0" />
+         </BorderPane.margin></ListView>
+   </center>
    <top>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -28,21 +22,73 @@
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Activity name:" />
-            <Label text="Description:" GridPane.rowIndex="1" />
-            <Label text="Status:" GridPane.rowIndex="2" />
-            <Label fx:id="nameLabel" text="Label" GridPane.columnIndex="1" />
-            <Label fx:id="descriptionLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <ToggleButton fx:id="statusButton" mnemonicParsing="false" text="ToggleButton" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" onAction="#modifyActivity" text="Modify Activity" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" onAction="#deleteActivity" text="Delete Activity" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Label text="Activity name :" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Arial Black" size="18.0" />
+               </font></Label>
+            <Label text="Description :" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Arial Black" size="18.0" />
+               </font></Label>
+            <Label text="Status :" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+               <font>
+                  <Font name="Arial Black" size="18.0" />
+               </font></Label>
+            <Label fx:id="nameLabel" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Arial Black" size="18.0" />
+               </font></Label>
+            <ToggleButton fx:id="statusButton" mnemonicParsing="false" text="ToggleButton" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+            <Button mnemonicParsing="false" onAction="#modifyActivity" style="-fx-background-color: #faf400;" text="Modify Activity" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Arial Black" size="15.0" />
+               </font></Button>
+            <Button mnemonicParsing="false" onAction="#deleteActivity" style="-fx-background-color: ff000e;" text="Delete Activity" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Arial Black" size="15.0" />
+               </font></Button>
+            <Label contentDisplay="CENTER" text="Activity Detail" textFill="#f8a122" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+               <font>
+                  <Font name="Arial Black" size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets top="20.0" />
+               </GridPane.margin>
+            </Label>
+            <TextArea fx:id="descriptionArea" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
    </top>
+   <bottom>
+      <GridPane prefHeight="104.0" prefWidth="944.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button mnemonicParsing="false" onAction="#addTask" prefHeight="31.0" prefWidth="181.0" style="-fx-background-color: #f8a122;" text="Add Task" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+               <font>
+                  <Font name="Arial Black" size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#goBack" style="-fx-background-color: #000000;" text="Back" textFill="WHITE" GridPane.halignment="CENTER">
+               <font>
+                  <Font name="Arial Black" size="24.0" />
+               </font>
+            </Button>
+         </children>
+      </GridPane>
+   </bottom>
 </BorderPane>
