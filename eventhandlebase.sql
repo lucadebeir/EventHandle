@@ -324,6 +324,7 @@ CREATE TABLE `resource` (
 
 CREATE TABLE `sponsor` (
   `idSponsor` int(11) NOT NULL,
+  `idEvent` int(11) NOT NULL,
   `nameSponsor` varchar(32) NOT NULL,
   `numSiretSponsor` int(11) NOT NULL,
   `lastNameSponsor` varchar(32) NOT NULL,
