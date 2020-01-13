@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import controller.chat.ChatListViewCell;
 import controller.event.MessageListViewCell;
 import controller.event.UpdateEvent;
 import facade.LoginFacade;
@@ -28,7 +27,6 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.Event;
 import model.Message;
-import model.MessageCell;
 import ui.Router;
 
 /**

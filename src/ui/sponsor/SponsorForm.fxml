@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.DialogPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+   <children>
+      <BorderPane layoutX="-197.0" layoutY="-231.0" prefHeight="200.0" prefWidth="200.0" fx:controller="controller.sponsor.SponsorControlller" />
+      <DialogPane layoutX="-114.0" />
+   </children>
 </AnchorPane>
-
