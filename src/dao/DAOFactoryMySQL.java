@@ -40,7 +40,7 @@ public class DAOFactoryMySQL extends AbstractDAOFactory {
 	 */
 	public ActivityDAO createActivityDAO() {
 	    // TODO implement here
-	    return null;
+		return new ActivityDAOMySQL(conn);
 	}
 	
 	/**
@@ -96,7 +96,7 @@ public class DAOFactoryMySQL extends AbstractDAOFactory {
 	 */
 	public TaskDAO createTaskDAO() {
 	    // TODO implement here
-	    return null;
+		return new TaskDAOMySQL(conn);
 	}
   
 }

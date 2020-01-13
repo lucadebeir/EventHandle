@@ -1,30 +1,32 @@
 package dao.implement;
 
+import java.sql.Connection;
 import java.util.*;
 
 import model.Activity;
 import model.Task;
-import database.BdConnector;
 /**
  * 
  */
 public abstract class ActivityDAO {
+	
+	protected Connection connect = null;
 
-    /**
+	/**
      * Default constructor
      */
-    public ActivityDAO() {
-    }
+	public ActivityDAO(Connection conn) {
+		this.connect = conn;
+	}
+	
+	/**
+	 * Get all activity for a event 
+	 * @param	idEvent of the event 
+	 * @return	list of all activity of the event
+	 */
+	public abstract List<Activity> getListActivity(int idEvent);
+	
 
-
-    /**
-     * @param connect 
-     * @return
-     */
-    public ActivityDAO ActivityDAO(BdConnector connect) {
-        // TODO implement here
-        return null;
-    }
 
     /**
      * @param obj 

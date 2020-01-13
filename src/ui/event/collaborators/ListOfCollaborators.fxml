@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.collaborator.MyCollaborators">
+<BorderPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #fefee2;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.collaborator.MyCollaborators">
    <top>
       <Label text="Collaborators" textFill="#f8a122" BorderPane.alignment="CENTER">
          <font>

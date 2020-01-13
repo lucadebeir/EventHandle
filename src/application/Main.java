@@ -1,5 +1,6 @@
 package application;
 
+
 import java.io.IOException;
 
 import javafx.application.Application;
@@ -48,10 +49,12 @@ public class Main extends Application {
 		r.add("AddEvent", "/ui/event/AddEvent.fxml");
 		r.add("Event", "/ui/event/Event.fxml");
 		r.add("ListOfCollaborators", "/ui/event/collaborators/ListOfCollaborators.fxml");
-		r.add("ListOfActivities", "/ui/event/activities/ListOfActivities.fxml");
 		r.add("ListOfSponsors", "/ui/event/sponsors/ListOfSponsors.fxml");
 		r.add("Chat", "/ui/event/chat/Chat.fxml");
 		r.add("Inbox", "/ui/event/message/MyMessages.fxml");
+		r.add("ActivityList", "/ui/event/activities/ActivityList.fxml");
+		r.add("ActivityDetail", "/ui/event/activities/ActivityDetail.fxml");
+		r.add("TaskDetail", "/ui/event/task/TaskDetail.fxml");
 		r.add("Resources", "/ui/event/resources/Resources.fxml");
 		r.add("AddResource", "/ui/event/resources/AddResource.fxml");
 		r.add("DisplayResource", "/ui/event/resources/DisplayResource.fxml");

@@ -4,11 +4,16 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import application.Main;
+import controller.activity.ActivityController;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -144,7 +149,7 @@ public class EventController {
 	public void goToCollaborators() throws DisconnectedUserException, IOException {
 	
 		int idEvent = (int) Router.getInstance().getParams()[0];
-		Object[] params = new Object[1];
+		Object[] params = new Object[5];
 		params[0] = idEvent;
 		
 		Router.getInstance().activate("ListOfCollaborators", params);
@@ -155,18 +160,24 @@ public class EventController {
 	public void goToActivities() throws DisconnectedUserException, IOException {
 	
 		int idEvent = (int) Router.getInstance().getParams()[0];
-		Object[] params = new Object[1];
+		Object[] params = new Object[5];
 		params[0] = idEvent;
 		
-		Router.getInstance().activate("ListOfActivities", params);
-	
+		Router.getInstance().activate("ActivityList", params);
+				
+//		FXMLLoader root = new FXMLLoader(getClass().getResource("/ui/event/activities/ActivityList.fxml"));
+//	    Parent skillLayout = root.load();
+//        ActivityController lg = root.getController();
+//		lg.initializeList();
+//		Scene scene = new Scene(skillLayout, 1000, 800);
+//		Main.primaryStage.setScene(scene);
 	}
 	
 	@FXML
 	public void goToResources() throws DisconnectedUserException, IOException {
 	
 		int idEvent = (int) Router.getInstance().getParams()[0];
-		Object[] params = new Object[1];
+		Object[] params = new Object[5];
 		params[0] = idEvent;
 		
 		Router.getInstance().activate("Resources", params);
@@ -177,7 +188,7 @@ public class EventController {
 	public void goToSponsors() throws DisconnectedUserException, IOException {
 	
 		int idEvent = (int) Router.getInstance().getParams()[0];
-		Object[] params = new Object[1];
+		Object[] params = new Object[5];
 		params[0] = idEvent;
 		
 		Router.getInstance().activate("Sponsors", params);
@@ -188,7 +199,7 @@ public class EventController {
 	public void goToChat() throws DisconnectedUserException, IOException {
 		
 		int idEvent = (int) Router.getInstance().getParams()[0];
-		Object[] params = new Object[1];
+		Object[] params = new Object[5];
 		params[0] = idEvent;
 		
 		Router.getInstance().activate("Chat", params);
@@ -199,7 +210,7 @@ public class EventController {
 	public void goToInbox() throws DisconnectedUserException, IOException {
 		
 		int idEvent = (int) Router.getInstance().getParams()[0];
-		Object[] params = new Object[1];
+		Object[] params = new Object[5];
 		params[0] = idEvent;
 		
 		Router.getInstance().activate("Inbox", params);
