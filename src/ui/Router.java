@@ -3,7 +3,7 @@ package ui;
 import java.io.IOException;
 import java.util.HashMap;
 
-import application.Main;
+import src.application.Main;
 import javafx.fxml.FXMLLoader;
 
 /**

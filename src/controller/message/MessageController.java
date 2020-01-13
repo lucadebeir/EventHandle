@@ -3,9 +3,7 @@ package controller.message;
 import java.sql.SQLException;
 import java.util.List;
 
-import controller.chat.ChatListViewCell;
 import controller.event.MessageListViewCell;
-import facade.LoginFacade;
 import facade.MessageFacade;
 import facade.exception.DisconnectedUserException;
 import javafx.beans.property.ListProperty;
@@ -16,7 +14,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import model.Message;
-import model.MessageCell;
 import ui.Router;
 
 /**
