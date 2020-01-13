@@ -7,7 +7,7 @@ import dao.implement.ChatDAO;
 import model.Chat;
 
 /**
- * 
+ * @author lucadebeir
  */
 public class ChatFacade {
 

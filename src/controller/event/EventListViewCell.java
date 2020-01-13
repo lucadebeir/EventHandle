@@ -9,6 +9,10 @@ import javafx.scene.control.ListCell;
 import javafx.scene.layout.BorderPane;
 import model.Event;
 
+/*
+ * @author lucadebeir
+ */
+
 public class EventListViewCell extends ListCell<Event> {
 	
 	

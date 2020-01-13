@@ -20,8 +20,13 @@ public abstract class MessageDAO {
     }
     
     public abstract ArrayList<Message> getMessageOfReceiver(int id, int idEvent);
+    
+    public abstract ArrayList<Message> getMessageSentByReceiver(int id, int idEvent);
 
+    public abstract Message getMessageById(int id);
 
+    public abstract void sentMessage(int messageFrom, int messageTo, String messageObject, String messageContent, int idEvent);
+    
     /**
      * @return
      */

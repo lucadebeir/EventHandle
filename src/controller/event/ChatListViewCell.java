@@ -2,25 +2,26 @@ package controller.event;
 
 import java.io.IOException;
 
+import facade.LoginFacade;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
-import model.NotificationCell;
+import model.Chat;
 
 /*
  * @author lucadebeir
  */
 
-public class NotificationListViewCell extends ListCell<NotificationCell> {
+public class ChatListViewCell extends ListCell<Chat> {
 	
 	
 	private EventController controller;
-	
+		
 	@FXML 
-	private Label cellLabelTitle;
+	private Label cellName;
 	
 	@FXML 
 	private TextArea cellTextArea;
@@ -29,24 +30,25 @@ public class NotificationListViewCell extends ListCell<NotificationCell> {
 	private BorderPane cellLayout;
 	
 	FXMLLoader mLLoader;
+	
+	LoginFacade lF = new LoginFacade();
 
-	public NotificationListViewCell() {
-		super();
+	public ChatListViewCell() {
 	}
 	
 
 	@Override
-	protected void updateItem(NotificationCell nc, boolean empty) {
-        super.updateItem(nc, empty);
+	protected void updateItem(Chat mc, boolean empty) {
+        super.updateItem(mc, empty);
         
-        if(empty || nc == null) {
+        if(empty || mc == null) {
 
             setText(null);
             setGraphic(null);
 
         } else {
             if (mLLoader == null) {
-                mLLoader = new FXMLLoader(getClass().getResource("../../ui/event/NotificationListViewCell.fxml"));
+                mLLoader = new FXMLLoader(getClass().getResource("../../ui/event/ChatListViewCell.fxml"));
                 mLLoader.setController(this);
                 try {
 					mLLoader.load();
@@ -57,15 +59,15 @@ public class NotificationListViewCell extends ListCell<NotificationCell> {
 
             }
             
-            this.cellLabelTitle.setText(String.valueOf(nc.getTitle()));
-            this.cellTextArea.setText(String.valueOf(nc.getContent()));
-            this.cellTextArea.setEditable(false);
+            this.cellTextArea.setText(String.valueOf(mc.getContentMessage()));
             this.cellTextArea.setWrapText(true);
+            this.cellName.setText(String.valueOf(lF.find(mc.getIdSender()).getFirstNameUser()));
             
             setText(null);
             setGraphic(cellLayout);
         }
 
     }
-	
+
 }
+

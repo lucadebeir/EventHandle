@@ -10,10 +10,16 @@ import javafx.scene.control.ListCell;
 import javafx.scene.layout.BorderPane;
 import model.Message;
 
+/*
+ * @author lucadebeir
+ */
+
 public class MessageListViewCell extends ListCell<Message> {
 	
 	
 	private EventController controller;
+	
+	boolean isSent;
 	
 	@FXML 
 	private Label cellNameSender;
@@ -28,8 +34,8 @@ public class MessageListViewCell extends ListCell<Message> {
 	
 	LoginFacade lF = new LoginFacade();
 
-	public MessageListViewCell() {
-		super();
+	public MessageListViewCell(boolean isSent) {
+		this.isSent = isSent;
 	}
 	
 
@@ -55,9 +61,14 @@ public class MessageListViewCell extends ListCell<Message> {
 
             }
             
-            this.cellNameSender.setText(String.valueOf(lF.find(mc.getIdSender()).getFirstNameUser()));
             this.cellObject.setText(String.valueOf(mc.getTitleMessage()));
             this.cellObject.setWrapText(true);
+            
+            if(this.isSent) {
+            	this.cellNameSender.setText(String.valueOf(lF.find(mc.getIdReceiver()).getFirstNameUser()));
+            } else {
+            	this.cellNameSender.setText(String.valueOf(lF.find(mc.getIdSender()).getFirstNameUser()));
+            }
             
             setText(null);
             setGraphic(cellLayout);

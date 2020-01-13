@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import application.Main;
 import controller.activity.ActivityController;
 import javafx.beans.property.ListProperty;
@@ -17,6 +16,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import facade.ChatFacade;
 import facade.EventFacade;
 import facade.LoginFacade;
 import facade.MessageFacade;
@@ -25,10 +26,13 @@ import facade.exception.DisconnectedUserException;
 import model.Chat;
 import model.Event;
 import model.Message;
-import model.MessageCell;
 import model.Notification;
 import model.NotificationCell;
 import ui.Router;
+
+/*
+ * @author lucadebeir
+ */
 
 public class EventController {
 	
@@ -37,12 +41,14 @@ public class EventController {
 	@FXML private ListView<NotificationCell> listNotifEvent;
 	
 	@FXML private Label nameEvent;
+	@FXML private TextField cellTextField;
 	
 	int idEvent = (int) Router.getInstance().getParams()[0];
 	
 	EventFacade eF = null;
 	NotificationFacade nF = null;
 	MessageFacade mF = null;
+	ChatFacade cF = null;
 	LoginFacade lF = null;
 	
 	List<Notification> listNotifs;
@@ -53,6 +59,9 @@ public class EventController {
 	List<Message> listMessages;
 	ObservableList<Message> myMessageObservableList;
 	protected ListProperty<Message> listPropertyMessages = new SimpleListProperty<>();
+	
+	List<Chat> listChat;
+	protected ListProperty<Chat> listPropertyChat = new SimpleListProperty<>();
 	
 	/**
      * Default constructor
@@ -65,6 +74,7 @@ public class EventController {
 		eF = new EventFacade();
 		nF = new NotificationFacade();
 		mF = new MessageFacade();
+		cF = new ChatFacade();
 		lF = new LoginFacade();
 		
 		//initialisation du nom de l'event
@@ -93,7 +103,7 @@ public class EventController {
     	
     	
     	
-    	//initialisation des notifications dans la tableView listMessageEvent
+    	//initialisation des messages dans la tableView listMessageEvent
     	listMessages = mF.getMessageOfReceiver(idEvent);
     			
     	myMessageObservableList = FXCollections.observableArrayList();
@@ -101,10 +111,11 @@ public class EventController {
     	fetchListMessageView();
 		updateListView();
     	
-    	this.messageEvent.setCellFactory(messageListView -> new MessageListViewCell());
+    	this.messageEvent.setCellFactory(messageListView -> new MessageListViewCell(false));
     	    	
-    	/*messageEvent.itemsProperty().bind(listPropertyMessages);
-    	listPropertyMessages.set(FXCollections.observableArrayList(listMessagesCell));*/
+    	
+    	//initialisation des chat dans la tableview
+		fetchListChatView();
     	
 	}
 	
@@ -116,6 +127,16 @@ public class EventController {
 	
 	private void fetchListMessageView() throws DisconnectedUserException {
 		listMessages = mF.getMessageOfReceiver(idEvent);
+	}
+	
+	private void fetchListChatView() throws DisconnectedUserException {
+		listChat = cF.getAllChatOfAnEvent(idEvent);
+		
+		this.chatEvent.setCellFactory(chatListView -> new ChatListViewCell());
+		
+		
+		chatEvent.itemsProperty().bind(listPropertyChat);
+		listPropertyChat.set(FXCollections.observableArrayList(listChat));
 	}
 	
 	@FXML
@@ -159,7 +180,7 @@ public class EventController {
 		Object[] params = new Object[1];
 		params[0] = idEvent;
 		
-		Router.getInstance().activate("ListOfResources", params);
+		Router.getInstance().activate("Resources", params);
 	
 	}
 	
@@ -194,6 +215,18 @@ public class EventController {
 		
 		Router.getInstance().activate("Inbox", params);
 		
+	}
+	
+	@FXML
+	public void addChat() throws DisconnectedUserException {
+		String content = this.cellTextField.getText().toString();
+    	this.cellTextField.clear();
+    	
+    	int idUser = LoginFacade.getInstance().getConnectedUser().getId();
+    	Chat newChat = new Chat(content, idUser, idEvent);
+    	cF.addMessageToChat(newChat);
+    	
+    	fetchListChatView();
 	}
 
 }

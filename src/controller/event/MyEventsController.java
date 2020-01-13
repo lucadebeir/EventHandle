@@ -28,6 +28,10 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import ui.Router;
 
+/*
+ * @author lucadebeir
+ */
+
 public class MyEventsController {
 	
 	@FXML private ListView<Event> pastEvent;
@@ -36,6 +40,7 @@ public class MyEventsController {
 	private int eventSelectedId = -1;
 	
 	List<Event> myPastEvent;
+	
 	protected List<Integer> listPastEventId = new ArrayList<>();
 	List<Event> myFuturEvent;
 	protected List<Integer> listFuturEventId = new ArrayList<>();

@@ -1,4 +1,4 @@
-package src.ui.sponsor;
+package ui.sponsor;
 
 import java.io.IOException;
 

@@ -1,5 +1,7 @@
 package facade;
 
+import java.util.ArrayList;
+
 import dao.AbstractDAOFactory;
 import dao.implement.UserDAO;
 import facade.exception.DisconnectedUserException;
@@ -51,6 +53,18 @@ public class LoginFacade {
 		
 	}
 	
+	public ArrayList<String> getAllEmailUserOfEvent(int idEvent) {
+		return userDAO.getAllEmailUserOfEvent(idEvent);
+	}
+	
+	public int getUserByMail(String email) {
+		return userDAO.getUserByMail(email);
+	}
+	
+	public int getUserByName(String name) {
+		return userDAO.getUserByName(name);
+	}
+	
 	public User getConnectedUser() throws DisconnectedUserException {
 		return this.user;
 	}
@@ -65,6 +79,33 @@ public class LoginFacade {
     
     public User find(int id) {
     	return userDAO.find(id);
+    }
+    
+    public ArrayList<User> getAllVolunteerOfAnEvent(int idEvent) {
+    	return userDAO.getAllVolunteerOfAnEvent(idEvent);
+    }
+    
+    public ArrayList<User> getAllIntervenerOfAnEvent(int idEvent) {
+    	return userDAO.getAllIntervenerOfAnEvent(idEvent);
+    }
+    
+    public ArrayList<String> getAllUsersNotCollaborator(int idEvent) {
+    	ArrayList<User> list = userDAO.getAllUsersNotCollaborator(idEvent);
+    	ArrayList<String> listUser = new ArrayList<String>();
+    	String name;
+    	for (User u : list) {
+    		name = u.getFirstNameUser() + " " + u.getLastNameUser();
+    		listUser.add(name);
+    	}
+    	return listUser;
+    }
+    
+    public void deleteUserCollaborator(int idEvent, int idUser, String role) {
+    	userDAO.deleteUserCollaborator(idUser, idEvent, role);
+    }
+    
+    public void addCollaborator(int idEvent, int idUser, String role) {
+    	userDAO.addCollaborator(idUser, idEvent, role);
     }
 
 }

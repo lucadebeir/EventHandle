@@ -5,26 +5,43 @@ import java.util.*;
 /**
  * 
  */
-public class Consomable extends Ressource {
+public class Consomable extends Resource {
 
-    /**
-     * Default constructor
-     */
-    public Consomable() {
-    }
-
-    /**
-     * 
-     */
     private Date limiteDate;
-
-    /**
-     * 
-     */
     private Conservation conservation;
 
+    
+    public Consomable(int idResource, String nameResource, String locationResource, String descriptionResource,
+			String stateResource, float volumeResource, int quantityResource, float priceResource, int eventId, Date limiteDate,
+			Conservation conservation) {
+    	
+		super(idResource, nameResource, locationResource, descriptionResource, stateResource, volumeResource,
+				quantityResource, priceResource, eventId);
+		this.limiteDate = limiteDate;
+		this.conservation = conservation;
+	}
+    
 
     /**
+     * constructor Consomable as ConsomableDTO
+     * @param eventId 
+     */
+    public Consomable(String nameResource, String locationResource, String descriptionResource,
+			String stateResource, float volumeResource, int quantityResource, float priceResource,int eventId, Date limiteDate,
+			Conservation conservation) {
+    	
+		super(nameResource, locationResource, descriptionResource, stateResource, volumeResource,
+				quantityResource, priceResource, eventId);
+		this.limiteDate = limiteDate;
+		this.conservation = conservation;
+	}
+     
+    
+    public String getClassName() {
+    	return "Consomable";
+    } 
+    
+	/**
      * @return
      */
     public Date getLimiteDate() {

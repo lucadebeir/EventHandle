@@ -6,7 +6,7 @@ import java.util.*;
 import model.Chat;
 
 /**
- * 
+ * @author lucadebeir
  */
 public abstract class ChatDAO {
 
