@@ -18,7 +18,7 @@ public abstract class AbstractDAOFactory {
   public abstract EventDAO createEventDAO();
   public abstract SponsorDAO createSponsorDAO();
   public abstract ActivityDAO createActivityDAO();
-  public abstract ResourceDAO createResourceDAO(String type); 
+  //public abstract ResourceDAO createResourceDAO(String type); 
   public abstract MessageDAO createMessageDAO(); 
   public abstract ConservationDAO createConcervationDAO(); 
   public abstract ChatDAO createChatDAO();

@@ -46,18 +46,18 @@ public class DAOFactoryMySQL extends AbstractDAOFactory {
 	/**
 	 * @return
 	 */
-	public ResourceDAO createResourceDAO(String type) {
-		
-		switch (type) {
-        case "Consomable":
-        	return new ConsomableDAOMySQL(conn);
-        case "Material":
-        	return new MaterialDAOMySQL(conn);
-        case "Vehicle" :
-        	return new VehicleDAOMySQL(conn);
-   	 }
-	    return null;
-	}
+//	public ResourceDAO createResourceDAO(String type) {
+//		
+//		switch (type) {
+//        case "Consomable":
+//        	return new ConsomableDAOMySQL(conn);
+//        case "Material":
+//        	return new MaterialDAOMySQL(conn);
+//        case "Vehicle" :
+//        	return new VehicleDAOMySQL(conn);
+//   	 }
+//	    return null;
+//	}
 	
 	/**
 	 * @return

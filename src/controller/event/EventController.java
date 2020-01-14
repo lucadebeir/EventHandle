@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import application.Main;
 import controller.activity.ActivityController;
+import controller.chat.ChatListViewCell;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;

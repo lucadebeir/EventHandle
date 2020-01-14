@@ -24,7 +24,7 @@ public class ActivityDetailController {
 	TaskFacade taskFacade;
 	ActivityFacade activityFacade;
 	
-	int idActivity = (int) Router.getInstance().getParams()[1];
+	int idActivity = (int) Router.getInstance().getParams()[0];
 	
 	@FXML
 	private ListView<Task> taskList;
@@ -79,7 +79,9 @@ public class ActivityDetailController {
 	
 	@FXML
 	private void addTask(ActionEvent e) throws IOException{
-		Router.getInstance().activate("addActivity");
+		Object[] params = new Object[1];
+		params[0] = idActivity;
+		Router.getInstance().activate("addTask",params);
 	}
 	
 	@FXML

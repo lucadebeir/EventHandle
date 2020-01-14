@@ -33,17 +33,13 @@ public abstract class TaskDAO {
     /**
      * @return
      */
-    public Task createTask() {
-        // TODO implement here
-        return null;
-    }
+    public abstract int createTask(Task t);
 
     /**
      * @return
      */
-    public Task updateTask() {
+    public void updateTask(Task t) {
         // TODO implement here
-        return null;
     }
 
     /**
@@ -57,7 +53,7 @@ public abstract class TaskDAO {
      * @param id 
      * @return
      */
-    public Task findTask(int id) {
+    public Task findTask(int idTask) {
         // TODO implement here
         return null;
     }

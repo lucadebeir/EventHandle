@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -27,7 +28,8 @@ public class UpdateEvent implements Initializable {
 	@FXML private DatePicker dateStartEvent;
 	@FXML private DatePicker dateEndEvent;
 	@FXML private TextArea descriptionEvent;
-
+	@FXML private Label statusTask;
+	
     /**
      * Default constructor
      */

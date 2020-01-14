@@ -1,10 +1,13 @@
 package dao.implement;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.*;
 import database.BdConnector;
+import model.MyDate;
 import model.Task;
 
 /**
@@ -31,17 +34,37 @@ public class TaskDAOMySQL extends TaskDAO {
     /**
      * @return
      */
-    public Task createTask() {
-        // TODO implement here
-        return null;
+    public int createTask(Task t) {
+    	int idTask = -1;
+    	String query = "INSERT INTO task VALUES (NULL,'" + t.getTaskName() + "','" + t.getStartDateTask().getSQLDate() + "','" + t.getEndDateTask().getSQLDate() + "','" + t.getDescriptionTask() + "', 0,'" + t.getIdActivity() + "')";
+    	System.out.println(query);
+        try {
+        	this.connect.createStatement(
+        			ResultSet.TYPE_SCROLL_INSENSITIVE,
+        			ResultSet.CONCUR_READ_ONLY).executeUpdate(query);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        return idTask;
     }
 
     /**
      * @return
      */
-    public Task updateTask() {
+    public void updateTask(Task t) {
         // TODO implement here
-        return null;
+        String query = "UPDATE task SET nameTask = ?, startDateTask = ?, endDateTask = ?, descriptionTask = ?, statusTask = ? WHERE idTask = ?";
+        try {
+			PreparedStatement preparedStatement = this.connect.prepareStatement(query);
+			preparedStatement.setString(1,t.getTaskName());
+			preparedStatement.setString(2,t.getStartDateTask().getSQLDate());
+			preparedStatement.setString(3,t.getEndDateTask().getSQLDate());
+			preparedStatement.setString(4,t.getDescriptionTask());
+			preparedStatement.setInt(5,t.isStatusTask() ? 1 : 0);
+			preparedStatement.setInt(6,t.getIdTask());
+        } catch (SQLException e) {
+			e.printStackTrace();
+		}
     }
 
     /**
@@ -55,9 +78,20 @@ public class TaskDAOMySQL extends TaskDAO {
      * @param id 
      * @return
      */
-    public Task findTask(int id) {
-        // TODO implement here
-        return null;
+    public Task findTask(int idTask) {
+    	String query = "SELECT * FROM task WHERE idTask = " + idTask;
+		Task task = null;
+		try {
+			ResultSet result = this.connect.createStatement(
+			  	    ResultSet.TYPE_SCROLL_INSENSITIVE,
+			  	    ResultSet.CONCUR_READ_ONLY).executeQuery(query);
+			if(result.first()) {
+				task = map(result);
+			}
+		} catch (SQLException e) {
+	  	    e.printStackTrace();
+	  	  }
+		return task;
     }
     
     /**
@@ -94,8 +128,8 @@ public class TaskDAOMySQL extends TaskDAO {
 	    Task task = new Task();
 	    task.setIdTask(resultSet.getInt("idTask"));
 	    task.setTaskName(resultSet.getString("nameTask"));
-	    task.setStartDateTask(resultSet.getDate("startDateTask"));
-	    task.setEndDateTask(resultSet.getDate("endDateTask"));
+	    task.setStartDateTask(new MyDate(resultSet.getDate("startDateTask").toString()));
+	    task.setEndDateTask(new MyDate(resultSet.getDate("endDateTask").toString()));
 	    task.setStatusTask(resultSet.getInt("statusTask") == 1);
 	    task.setDescriptionTask(resultSet.getString("descriptionTask"));
 	    task.setIdActivity(resultSet.getInt("idActivity"));
