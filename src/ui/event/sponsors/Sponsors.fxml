@@ -50,7 +50,7 @@
                   </GridPane>
                </children>
             </HBox>
-            <GridPane alignment="CENTER" prefHeight="458.0" prefWidth="928.0">
+            <GridPane alignment="CENTER" prefHeight="414.0" prefWidth="928.0">
                <children>
                   <Label style="-fx-text-fill: #f8a122;" text="Sponsor" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                      <font>
@@ -74,7 +74,7 @@
             </GridPane>
             <VBox alignment="CENTER" prefHeight="127.0" prefWidth="1000.0">
                <children>
-                  <GridPane prefHeight="79.0" prefWidth="1000.0">
+                  <GridPane prefHeight="119.0" prefWidth="928.0">
                      <children>
                         <Button fx:id="addButton" mnemonicParsing="false" onAction="#goToAddSponsor" prefHeight="48.0" prefWidth="103.0" style="-fx-background-color: #51ff62;" text="Add " GridPane.columnIndex="3">
                            <font>
