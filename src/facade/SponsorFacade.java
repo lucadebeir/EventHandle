@@ -6,7 +6,11 @@ import dao.AbstractDAOFactory;
 import dao.implement.ResourceDAO;
 import dao.implement.SponsorDAO;
 import javafx.scene.control.ListView;
+import model.Consomable;
+import model.Material;
+import model.Resource;
 import model.Sponsor;
+import model.Vehicle;
 
 /**
  * 
@@ -14,7 +18,7 @@ import model.Sponsor;
 public class SponsorFacade {
 
 	public AbstractDAOFactory factory;
-    private SponsorDAO sponsorDAO;
+    public SponsorDAO sponsorDAO;
 
     public SponsorFacade() {
     	factory = AbstractDAOFactory.getFactory(AbstractDAOFactory.DAO_FACTORY);
@@ -25,8 +29,13 @@ public class SponsorFacade {
         return null;
     }
 
-	public List<Sponsor> getSponsorForEvent(String string, int eventId) {
+	public List<Sponsor> getSponsorsForEvent(int eventId) {
+
 		return sponsorDAO.getAllSponsor(eventId);
 	}
+	
+    public void addSponsor(Sponsor sponsor) {
+    	this.sponsorDAO.createSponsor(sponsor);       
+    }
 
 }

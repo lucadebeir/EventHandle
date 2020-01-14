@@ -16,8 +16,7 @@ public class SponsorDAOMySQL extends SponsorDAO {
 	
 	
     public SponsorDAOMySQL(Connection connect) {
-		super(connect);
-		// TODO Auto-generated constructor stub
+		this.connect = connect;
 	}
     
 	public Connection connect;
@@ -51,11 +50,9 @@ public class SponsorDAOMySQL extends SponsorDAO {
 		Sponsor sponsor;
 
 		try {
-			ResultSet result = this.connect
-					.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
-					.executeQuery("SELECT * FROM `sponsor` WHERE `idEvent`= " + eventId );
+			ResultSet result = this.connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM `sponsor` WHERE `idEvent`= " + eventId );
 			while (result.next()) {
-				sponsor = new Sponsor(result.getInt("idSponsor"),result.getInt("idEvent"),result.getString("nameSponsor"),result.getString("numSiretSponsor"),
+				sponsor = new Sponsor(result.getInt("idEvent"),result.getString("nameSponsor"),result.getInt("numSiretSponsor"),
 						result.getString("lastNameSponsor"), result.getString("firstNameSponsor"), result.getString("emailSponsor"));
 				sponsors.add(sponsor);
 			}

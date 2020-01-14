@@ -14,7 +14,6 @@ public abstract class AbstractDAOFactory {
 
   //Retourne un objet Classe interagissant avec la BDD
   public abstract UserDAO createUserDAO();
-  
   public abstract EventDAO createEventDAO();
   public abstract SponsorDAO createSponsorDAO();
   public abstract ActivityDAO createActivityDAO();
