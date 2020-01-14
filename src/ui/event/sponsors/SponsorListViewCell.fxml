@@ -19,7 +19,7 @@
                   <Image url="@../../../../img/location.png" />
                </image>
             </ImageView>
-            <Label fx:id="lastNameContactSponsor" text="lastNameContactSponsor" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+            <Label fx:id="lastNameSponsor" text="lastNameSponsor" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                <font>
                   <Font name="Arial Black" size="18.0" />
                </font>
