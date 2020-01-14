@@ -286,6 +286,37 @@ CREATE TABLE IF NOT EXISTS `isvolunteer` (
 INSERT INTO `isvolunteer` (`idUser`, `idEvent`) VALUES
 (2, 7);
 
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `material`
+--
+
+DROP TABLE IF EXISTS `material`;
+CREATE TABLE IF NOT EXISTS `material` (
+  `idMaterial` int(11) NOT NULL AUTO_INCREMENT,
+  `nameMaterial` varchar(32) NOT NULL,
+  `locationMaterial` varchar(32) NOT NULL,
+  `descriptionMaterial` text NOT NULL,
+  `stateMaterial` varchar(32) NOT NULL,
+  `volumeMaterial` float DEFAULT NULL,
+  `quantityMaterial` int(11) DEFAULT NULL,
+  `priceMaterial` float DEFAULT NULL,
+  `idEvent` int(11) NOT NULL,
+  PRIMARY KEY (`idMaterial`),
+  KEY `materialToEvent` (`idEvent`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `material`
+--
+
+INSERT INTO `material` (`idMaterial`, `nameMaterial`, `locationMaterial`, `descriptionMaterial`, `stateMaterial`, `volumeMaterial`, `quantityMaterial`, `priceMaterial`, `idEvent`) VALUES
+(3, 'ed', 'de', 'dede', 'Stock', 14, 41, 14, 10),
+(7, 'try', 'lol', 'rzdnzidnece', 'Order', 98, 60, 42, 10);
+
+
 -- --------------------------------------------------------
 
 --
@@ -500,6 +531,13 @@ ALTER TABLE `ismanager`
 ALTER TABLE `isvolunteer`
   ADD CONSTRAINT `volunteerEvent` FOREIGN KEY (`idEvent`) REFERENCES `event` (`idEvent`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `volunteerUser` FOREIGN KEY (`idUser`) REFERENCES `user` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `material`
+--
+ALTER TABLE `material`
+  ADD CONSTRAINT `materialToEvent` FOREIGN KEY (`idEvent`) REFERENCES `event` (`idEvent`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
 
 --
 -- Contraintes pour la table `message`

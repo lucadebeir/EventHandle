@@ -54,7 +54,7 @@ public class ResourceController {
 	}
     
     private void fetchResourceLists() {
-		materials = resourceFacade.getResourcesForEvent("material",this.eventId);	
+		materials = resourceFacade.getResourcesForEvent("Material",this.eventId);	
 	}
     
     public void initialize() throws DisconnectedUserException {
