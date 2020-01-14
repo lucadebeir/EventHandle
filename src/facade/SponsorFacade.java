@@ -35,7 +35,11 @@ public class SponsorFacade {
 	}
 	
     public void addSponsor(Sponsor sponsor) {
+		System.out.println("AddSponsor");
     	this.sponsorDAO.createSponsor(sponsor);       
     }
 
+    public void deleteSponsor(int id) {
+		sponsorDAO.deleteSponsor(id);
+    }
 }

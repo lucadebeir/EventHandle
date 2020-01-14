@@ -1,6 +1,7 @@
 package dao.implement;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class SponsorDAOMySQL extends SponsorDAO {
 	public Connection connect;
 
     public void createSponsor(Sponsor sponsor) {
+    	System.out.println("on rentre bien dans le DAOMySQL");
     	try {
 			this.connect.createStatement(
 			ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -52,7 +54,7 @@ public class SponsorDAOMySQL extends SponsorDAO {
 		try {
 			ResultSet result = this.connect.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM `sponsor` WHERE `idEvent`= " + eventId );
 			while (result.next()) {
-				sponsor = new Sponsor(result.getInt("idEvent"),result.getString("nameSponsor"),result.getInt("numSiretSponsor"),
+				sponsor = new Sponsor(result.getInt("idSponsor"), result.getInt("idEvent"),result.getString("nameSponsor"),result.getInt("numSiretSponsor"),
 						result.getString("lastNameSponsor"), result.getString("firstNameSponsor"), result.getString("emailSponsor"));
 				sponsors.add(sponsor);
 			}
@@ -61,10 +63,25 @@ public class SponsorDAOMySQL extends SponsorDAO {
 		}
 		return sponsors;
 	}
+	
 
+	@Override
+	public void deleteSponsor(int id) {
+		String sql = "DELETE FROM sponsor WHERE idSponsor = ?";
+		try {
+			PreparedStatement preparedStatement = this.connect.prepareStatement(sql);
+			preparedStatement.setInt(1, id);
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new Error("delete into database error");
+		}
+	}
 
 	@Override
 	public void createSponsorDAO() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
