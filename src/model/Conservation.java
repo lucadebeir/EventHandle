@@ -20,7 +20,7 @@ public class Conservation {
 		this.storageTempConservation = storageTempConservation;
 	}
 
-
+    // conservation as DTO
 	public Conservation(String nameConcervation, String descriptionConservation, int storageTempConservation) {
 		super();
 		NameConcervation = nameConcervation;
