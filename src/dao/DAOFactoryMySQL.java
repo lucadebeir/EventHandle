@@ -32,7 +32,7 @@ public class DAOFactoryMySQL extends AbstractDAOFactory {
 	 */
 	public SponsorDAO createSponsorDAO() {
 	    // TODO implement here
-	    return null;
+	    return new SponsorDAOMySQL(conn);
 	}
 	
 	/**

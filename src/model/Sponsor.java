@@ -14,10 +14,11 @@ public class Sponsor {
     public String firstNameContactSponsor;
     public String emailContactSponsor;
 	
-    public Sponsor(int idSponsor,int numSiretSponsor, String nameSponsor, String numTelContactSponsor,
+    public Sponsor(int idEvent, String nameSponsor,int numSiretSponsor, 
 			String lastNameContactSponsor, String firstNameContactSponsor, String emailContactSponsor) {
 		super();
-		this.idSponsor = idSponsor;
+		this.idEvent = idEvent;
+		this.numSiretSponsor = numSiretSponsor;
 		this.nameSponsor = nameSponsor;
 		this.numSiretSponsor = numSiretSponsor;
 		this.lastNameContactSponsor = lastNameContactSponsor;

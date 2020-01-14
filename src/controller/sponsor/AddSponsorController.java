@@ -1,5 +1,6 @@
 package controller.sponsor;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.function.UnaryOperator;
 
@@ -15,7 +16,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.control.TextFormatter.Change;
+import model.Consomable;
 import model.Resource;
+import model.Sponsor;
 import ui.Router;
 
 public class AddSponsorController {
@@ -26,10 +29,12 @@ public class AddSponsorController {
 
 	@FXML private TextField nameSponsor;
 	@FXML private TextField numSiretSponsor;
-	@FXML private TextArea lastNameSponsor;
+	@FXML private TextField lastNameSponsor;
 	@FXML private TextField firstNameSponsor;
 	@FXML private TextField emailSponsor;
+	@FXML private TextField numTelContactSponsor;
 	
+	@FXML private Label errorLabel;
 	
 	@FXML
 	public void AddSponsorController() {
@@ -40,27 +45,9 @@ public class AddSponsorController {
     public void initialize() throws SQLException, DisconnectedUserException {
 		
 		this.sponsorFacade = (SponsorFacade) Router.getInstance().getParams()[1];  
-		
-		UnaryOperator<Change> intfilter = intChange -> {
-		    String text = intChange.getText();
 
-		    if (text.matches("[0-9]*")) {
-		        return intChange;
-		    }
-
-		    return null;
-		};
-		
-		UnaryOperator<Change> floatfilter = floatChange -> {
-		    String text = floatChange.getText();
-
-		    if (text.matches("[\\-\\+]?[0-9]*(\\,[0-9]+)?")) {
-		        return floatChange;
-		    }
-
-		    return null;
-		};
 	}
+	
 	
 	
 	@FXML
@@ -70,10 +57,50 @@ public class AddSponsorController {
 	}
 	
 	@FXML
-	private void addSponsor() {
+	private Sponsor createSponsorDTO() {
+		
+		Sponsor sponsorDTO;
+		
+		String nameSponsor = this.nameSponsor.getText();
+		int numSiretSponsor = Integer.parseInt(this.numSiretSponsor.getText());
+		String lastNameSponsor = this.lastNameSponsor.getText();
+		String firstNameSponsor = this.firstNameSponsor.getText();
+		String emailSponsor = this.emailSponsor.getText();
+		
+    	return sponsorDTO = new Sponsor(eventId,nameSponsor,numSiretSponsor,lastNameSponsor,firstNameSponsor,emailSponsor);
+
 	}
 	
+	@FXML
+    private void addSponsor(ActionEvent event) throws IOException, DisconnectedUserException {
+		
+		if (formValidator()) {	
+
+			try {
+				this.sponsorFacade.addSponsor(this.createSponsorDTO());
+			}
+			catch(Error e) {
+				errorLabel.setText("Database Error : Please retry after");
+			}
+			
+			Router.getInstance().activate("Resources", Router.getInstance().getParams());
+			
+			
+		} else {
+			errorLabel.setText("Error : Missing Field");
+    	}
+	}
 	
+	private boolean formValidator() {
+		
+		boolean filled = !nameSponsor.getText().isBlank() 
+				&& !numSiretSponsor.getText().isBlank() 
+				&& !lastNameSponsor.getText().isBlank()
+				&& !firstNameSponsor.getText().isBlank()
+				&& !emailSponsor.getText().isBlank()
+				&& !numTelContactSponsor.getText().isBlank();
+		return filled;
+	}
 	
 	
 }

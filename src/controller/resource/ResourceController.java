@@ -56,7 +56,7 @@ public class ResourceController {
     	for (Resource resource : materials) {
     		materialObservableList.add(resource);
 		}
-
+    	
     	materialList.setItems(this.materialObservableList);
     	materialList.setCellFactory(resourceListView -> new ResourceListViewCell());
     	
