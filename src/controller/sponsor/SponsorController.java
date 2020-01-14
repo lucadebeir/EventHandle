@@ -11,6 +11,7 @@ import javafx.beans.property.SimpleListProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -33,7 +34,8 @@ public class SponsorController {
     @FXML private Button displayButton;
     @FXML private Button addButton;
 	List<Sponsor> sponsors = new ArrayList<Sponsor>();
-	//private ObservableList<Sponsor> sponsorObservableList;
+	private ObservableList<Sponsor> sponsorObservableList;
+	
 	protected ListProperty<Sponsor> listPropertySponsor = new SimpleListProperty<>();
 	
 	//pour la partie manager vs volunteer vs intervener
@@ -55,6 +57,7 @@ public class SponsorController {
 	}
     
 	public void initialize() throws DisconnectedUserException {
+		System.out.println("on initialize");
 		sponsorFacade = new SponsorFacade();
 		
 		//pour la partie manager vs volunteer vs intervener
@@ -66,12 +69,10 @@ public class SponsorController {
 		isVolunteer = lF.isVolunteer(listVolunteer);
 		isIntervener = lF.isIntervener(listIntervener);
 		
-		
-		
 		sponsorList.itemsProperty().bind(listPropertySponsor);
 		listPropertySponsor.set(FXCollections.observableArrayList());
 		
-    	fetchSponsorsLists(); // probl�me entre le daoMySQL et le dao, on ne rentre pas dans getAllSponsor // c'est bon c'�tait le daofactory et le connect qui foirait
+    	fetchSponsorsLists();
 
     	this.sponsorList.setCellFactory(sponsorListView -> new SponsorListViewCell());
     	
@@ -79,9 +80,9 @@ public class SponsorController {
 		listPropertySponsor.set(FXCollections.observableArrayList(sponsors));
 		
 		if(isVolunteer || isIntervener) {
-			addButton.setVisible(false);
-			deleteButton.setVisible(false);
-			displayButton.setVisible(false);
+		addButton.setVisible(false);
+		deleteButton.setVisible(false);
+		displayButton.setVisible(false);
 		}
 
     	deleteButton.setDisable(true);
@@ -92,6 +93,7 @@ public class SponsorController {
     		public void changed(ObservableValue arg0, Object arg1, Object arg2) {
     			try {
     				selectedSponsor = sponsorList.getSelectionModel().getSelectedItem();
+    				System.out.println(selectedSponsor);
     				deleteButton.setDisable(false);	
     				displayButton.setDisable(false);
     			} catch (Exception e) {
@@ -121,15 +123,11 @@ public class SponsorController {
 		Router.getInstance().activate("AddSponsor", Router.getInstance().getParams());
 	}
 	
-	public void deleteSponsor(ActionEvent event) {
-	
-	}
-	
-	public void displaySponsor(ActionEvent event) {
-		
-	}
-	
-	
+    public void deleteSponsor() throws DisconnectedUserException {
+        sponsorFacade.deleteSponsor(selectedSponsor.getIdSponsor());
+        initialize();
+    }
+
 }
     
     
