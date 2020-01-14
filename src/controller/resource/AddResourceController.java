@@ -140,7 +140,7 @@ public class AddResourceController {
 	    			price,
 	    			this.eventId,
 	    			new Date(10,10,10),
-	    			12);
+	    			3);
 	    	
 	    case "Material":
 	    	return new Material(nameResource.getText(),

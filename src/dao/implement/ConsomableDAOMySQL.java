@@ -63,7 +63,7 @@ public class ConsomableDAOMySQL extends ResourceDAO {
 			ResultSet.CONCUR_READ_ONLY).executeUpdate("UPDATE `consomable` SET `nameconsomable`='" + resource.getNameResource() + "',`locationconsomable`='" + resource.getLocationResource() + "',"
 					+ "`descriptionconsomable`='"+ resource.getDescriptionResource() + "',`stateconsomable`='" + resource.getStateResource() + "',"
 					+ "`volumeconsomable`="+ resource.getVolumeResource() + ",`quantityconsomable`=" + resource.getQuantityResource() 
-					+ ",`priceconsomable`=" + resource.getPriceResource() + ",`idEvent`=" + resource.getEventId() + "`limiteDate`='"+ resource.getLimiteDate()
+					+ ",`priceconsomable`=" + resource.getPriceResource() + ",`idEvent`=" + resource.getEventId() + ",`limiteDate`='"+ resource.getLimiteDate()
 					+ "',`idConservation`='"+ resource.getidConservation() + "' WHERE `idconsomable`=" + resource.getIdResource());
 		} catch (SQLException e) {
 			e.printStackTrace();

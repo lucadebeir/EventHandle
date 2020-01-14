@@ -148,7 +148,7 @@ ResourceFacade resourceFacade;
 	    			price,
 	    			this.eventId,
 	    			new Date(10,10,10),
-	    			10);
+	    			3);
 	    	
 	    case "Material":
 	    	return new Material(this.resource.getIdResource(),
