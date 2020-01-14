@@ -2,63 +2,56 @@ package controller.sponsor;
 
 import java.io.IOException;
 import java.util.*;
-
-import controller.resource.ResourceListViewCell;
 import facade.SponsorFacade;
 import facade.exception.DisconnectedUserException;
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleListProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.stage.Stage;
-import model.Resource;
 import model.Sponsor;
 import ui.Router;
 
 
 public class SponsorController {
 
-	private SponsorFacade sponsorFacade;
-	private int eventId;
+	private SponsorFacade sponsorFacade = null;
+	private int eventId = (int) Router.getInstance().getParams()[0];;
 	private Sponsor selectedSponsor;
-	
+		
 	@FXML private ListView<Sponsor> sponsorList; 
     @FXML private Button deleteButton;
     @FXML private Button displayButton;
-	List<Sponsor> sponsors;
-	private ObservableList<Sponsor> sponsorObservableList;
+	List<Sponsor> sponsors = new ArrayList<Sponsor>();
+	//private ObservableList<Sponsor> sponsorObservableList;
+	protected ListProperty<Sponsor> listPropertySponsor = new SimpleListProperty<>();
     
     public SponsorController() {
-    	eventId = (int) Router.getInstance().getParams()[0];
     	
-    	this.sponsorFacade = new SponsorFacade();
-
-    	this.sponsorObservableList = FXCollections.observableArrayList();
     }
     
     
     
     public void fetchSponsorsLists() {
-		sponsors = sponsorFacade.getSponsorsForEvent(this.eventId);	
+		sponsors = sponsorFacade.getSponsorsForEvent(eventId);	
 	}
     
 	public void initialize() {
-    	fetchSponsorsLists(); // problème entre le daoMySQL et le dao, on ne rentre pas dans getAllSponsor // c'est bon c'était le daofactory et le connect qui foirait
-    	sponsorObservableList = FXCollections.observableArrayList();
-    	System.out.println("juste avant le for "+sponsorObservableList);
+		sponsorFacade = new SponsorFacade();
+		
+		sponsorList.itemsProperty().bind(listPropertySponsor);
+		listPropertySponsor.set(FXCollections.observableArrayList());
+		
+    	fetchSponsorsLists(); // problï¿½me entre le daoMySQL et le dao, on ne rentre pas dans getAllSponsor // c'est bon c'ï¿½tait le daofactory et le connect qui foirait
 
-    	for (Sponsor sponsor : sponsors) {
-    		sponsorObservableList.add(sponsor);
-		}
+    	this.sponsorList.setCellFactory(sponsorListView -> new SponsorListViewCell());
     	
-    	System.out.println("juste avant le set "+sponsorObservableList);
-    	//sponsorList.setItems(this.sponsorObservableList);
-    	//sponsorList.setCellFactory(sponsorListView -> new SponsorListViewCell());
+    	sponsorList.itemsProperty().bind(listPropertySponsor);
+		listPropertySponsor.set(FXCollections.observableArrayList(sponsors));
 
     	deleteButton.setDisable(true);
     	displayButton.setDisable(true);

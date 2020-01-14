@@ -18,9 +18,11 @@
    <center>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="440.764892578125" minWidth="10.0" prefWidth="440.764892578125" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="325.7616882324219" minWidth="10.0" prefWidth="130.56597900390625" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="430.24359130859375" minWidth="10.0" prefWidth="428.43402099609375" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="440.764892578125" minWidth="10.0" prefWidth="235.51776123046875" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="440.764892578125" minWidth="10.0" prefWidth="159.48223876953125" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="440.764892578125" minWidth="10.0" prefWidth="244.29986572265625" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="325.7616882324219" minWidth="10.0" prefWidth="123.70013427734375" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="430.24359130859375" minWidth="10.0" prefWidth="227.967529296875" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints maxHeight="260.7616882324219" minHeight="10.0" prefHeight="65.32771301269531" vgrow="SOMETIMES" />
@@ -30,14 +32,20 @@
             <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
          </BorderPane.margin>
          <children>
-            <ListView fx:id="volunteerList" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
-            <ListView fx:id="intervenerList" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Label text="Volunteer List" textFill="#f8a122">
+            <ListView fx:id="volunteerList" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <ListView fx:id="intervenerList" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <Label text="Volunteer List" textFill="#f8a122" GridPane.columnIndex="2">
                <font>
                   <Font name="Arial Black" size="24.0" />
                </font>
             </Label>
-            <Label text="Intervener List" textFill="#f8a122" GridPane.columnIndex="2">
+            <Label text="Intervener List" textFill="#f8a122" GridPane.columnIndex="4">
+               <font>
+                  <Font name="Arial Black" size="24.0" />
+               </font>
+            </Label>
+            <ListView fx:id="managerList" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
+            <Label text="Manager List" textFill="#f8a122">
                <font>
                   <Font name="Arial Black" size="24.0" />
                </font>
