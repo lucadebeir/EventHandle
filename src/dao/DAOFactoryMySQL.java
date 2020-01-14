@@ -55,8 +55,9 @@ public class DAOFactoryMySQL extends AbstractDAOFactory {
         	return new MaterialDAOMySQL(conn);
         case "Vehicle" :
         	return new VehicleDAOMySQL(conn);
+        default :
+        	throw new Error("Unexpected type in createresourceDAO");
    	 }
-	    return null;
 	}
 	
 	/**
@@ -71,8 +72,7 @@ public class DAOFactoryMySQL extends AbstractDAOFactory {
 	 * @return
 	 */
 	public ConservationDAO createConcervationDAO() {
-	    // TODO implement here
-	    return null;
+	    return new ConservationDAOMySql(conn);
 	}
 	
 	/**

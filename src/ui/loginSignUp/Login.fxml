@@ -40,7 +40,7 @@
                   </Label>
                   <ImageView fitHeight="172.0" fitWidth="205.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
                      <image>
-                     	<Image url="@../../../assets/img/eventhandle.jpg" />
+                     	<Image url="@../../../assets/img/logo_eventhandle.png" />
                      </image>
                      <GridPane.margin>
                         <Insets />

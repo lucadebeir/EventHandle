@@ -8,17 +8,17 @@ import java.util.*;
 public class Consomable extends Resource {
 
     private Date limiteDate;
-    private Conservation conservation;
+    private int idConservation;
 
     
     public Consomable(int idResource, String nameResource, String locationResource, String descriptionResource,
 			String stateResource, float volumeResource, int quantityResource, float priceResource, int eventId, Date limiteDate,
-			Conservation conservation) {
+			int idConservation) {
     	
 		super(idResource, nameResource, locationResource, descriptionResource, stateResource, volumeResource,
 				quantityResource, priceResource, eventId);
 		this.limiteDate = limiteDate;
-		this.conservation = conservation;
+		this.idConservation = idConservation;
 	}
     
 
@@ -28,47 +28,39 @@ public class Consomable extends Resource {
      */
     public Consomable(String nameResource, String locationResource, String descriptionResource,
 			String stateResource, float volumeResource, int quantityResource, float priceResource,int eventId, Date limiteDate,
-			Conservation conservation) {
+			int idConservation) {
     	
 		super(nameResource, locationResource, descriptionResource, stateResource, volumeResource,
 				quantityResource, priceResource, eventId);
 		this.limiteDate = limiteDate;
-		this.conservation = conservation;
+		this.idConservation = idConservation;
 	}
      
     
     public String getClassName() {
     	return "Consomable";
-    } 
+    }
+
+
+	public Date getLimiteDate() {
+		return limiteDate;
+	}
+
+
+	public void setLimiteDate(Date limiteDate) {
+		this.limiteDate = limiteDate;
+	}
+
+
+	public int getidConservation() {
+		return idConservation;
+	}
+
+
+	public void setidConservation(int idConservation) {
+		this.idConservation = idConservation;
+	} 
     
-	/**
-     * @return
-     */
-    public Date getLimiteDate() {
-        // TODO implement here
-        return null;
-    }
-
-    /**
-     * @param value
-     */
-    public void setLimiteDate(Date value) {
-        // TODO implement here
-    }
-
-    /**
-     * @return
-     */
-    public Conservation getConservation() {
-        // TODO implement here
-        return null;
-    }
-
-    /**
-     * @param value
-     */
-    public void setConservation(Conservation value) {
-        // TODO implement here
-    }
+	
 
 }
