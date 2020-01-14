@@ -24,12 +24,11 @@ public class SponsorDAOMySQL extends SponsorDAO {
 
     public void createSponsor(Sponsor sponsor) {
     	System.out.println("on rentre bien dans le DAOMySQL");
+    	String query = "INSERT INTO sponsor VALUES (NULL,'" + sponsor.getNameSponsor() + "','" + sponsor.getNumSiretSponsor() + "','" + sponsor.getLastNameContactSponsor() + "','" + sponsor.getFirstNameContactSponsor() + "','" + sponsor.emailContactSponsor + "','" + sponsor.getIdEvent() + "')";
     	try {
 			this.connect.createStatement(
 			ResultSet.TYPE_SCROLL_INSENSITIVE,
-			ResultSet.CONCUR_READ_ONLY).executeUpdate("INSERT INTO `sponsor`(`idSponsor`, `nameSponsor`, `numSiretSponsor`, `lastNameSponsor`, `firstNameSponsor`, `emailSponsor`,'idEvent') VALUES (NULL,'" 
-			+ sponsor.getNameSponsor() + "','" + sponsor.getNumSiretSponsor() + "','" + sponsor.getLastNameContactSponsor() + "','" 
-			+ sponsor.getFirstNameContactSponsor() + "','" + sponsor.getEmailContactSponsor() + "','" + sponsor.getIdEvent() +"')" );
+			ResultSet.CONCUR_READ_ONLY).executeUpdate(query);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

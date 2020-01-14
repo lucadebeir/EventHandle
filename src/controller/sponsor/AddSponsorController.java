@@ -42,8 +42,10 @@ public class AddSponsorController {
 	
 	@FXML
     public void initialize() throws SQLException, DisconnectedUserException {
-		
-		this.sponsorFacade = (SponsorFacade) Router.getInstance().getParams()[1];  
+		System.out.println("init");
+		this.sponsorFacade = new SponsorFacade();  
+		System.out.println(sponsorFacade);
+		this.eventId = (int) Router.getInstance().getParams()[0];
 	}
 	
 	@FXML
@@ -57,13 +59,11 @@ public class AddSponsorController {
 		
 		System.out.println("on rentre bien dans le addSponsor");
 		if (formValidator()) {	
-
-			try {
-				this.sponsorFacade.addSponsor(this.createSponsorDTO());
-			}
-			catch(Error e) {
-				errorLabel.setText("Database Error : Please retry after");
-			}
+			
+			Sponsor sponsor = this.createSponsorDTO();
+			System.out.println(sponsor +", on a bien l'objet");
+			System.out.println(sponsorFacade + ", sponsor facade");
+			this.sponsorFacade.addSponsor(sponsor);  //ici ça plante
 			
 			Router.getInstance().activate("Sponsors", Router.getInstance().getParams());
 		} else {
@@ -93,8 +93,12 @@ public class AddSponsorController {
 		
 		System.out.println(nameSponsor);
 		System.out.println(numSiretSponsor);
+		System.out.println(lastNameSponsor);
+		System.out.println(firstNameSponsor);
+		System.out.println(emailSponsor);
 
     	sponsorDTO = new Sponsor(eventId,nameSponsor,numSiretSponsor,lastNameSponsor,firstNameSponsor,emailSponsor);
+    	System.out.println(eventId);
     	System.out.println(sponsorDTO +", objet crée, donc on le renvoi pour l'addSponsor");
     	
     	return sponsorDTO;
