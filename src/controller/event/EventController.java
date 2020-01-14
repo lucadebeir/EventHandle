@@ -4,12 +4,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-<<<<<<< HEAD
 import application.Main;
 import controller.activity.ActivityController;
 import controller.chat.ChatListViewCell;
-=======
->>>>>>> 82527c23199e688711bbcfc242aac813de439409
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;

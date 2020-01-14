@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3308
--- Généré le :  Dim 12 jan. 2020 à 15:59
+-- Généré le :  mar. 14 jan. 2020 à 21:47
 -- Version du serveur :  8.0.18
 -- Version de PHP :  7.3.12
 
@@ -136,10 +136,11 @@ CREATE TABLE IF NOT EXISTS `conservation` (
 INSERT INTO `conservation` (`idConservation`, `nameConservation`, `descriptionConservation`, `storageTemperature`, `dateConservation`) VALUES
 (3, 'Sauce tomate', 'Bolo pour pâte', 27, '2020-02-28'),
 (4, 'Jus d\'orange', 'Sans pulpe', 25, '2020-01-24');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `consomable`
+-- Structure de la table `consomable`
 --
 
 DROP TABLE IF EXISTS `consomable`;
@@ -263,6 +264,7 @@ INSERT INTO `ismanager` (`idUser`, `idEvent`) VALUES
 (1, 10),
 (1, 11),
 (2, 7),
+(4, 3),
 (4, 3);
 
 -- --------------------------------------------------------
@@ -286,11 +288,10 @@ CREATE TABLE IF NOT EXISTS `isvolunteer` (
 INSERT INTO `isvolunteer` (`idUser`, `idEvent`) VALUES
 (2, 7);
 
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `material`
+-- Structure de la table `material`
 --
 
 DROP TABLE IF EXISTS `material`;
@@ -309,13 +310,12 @@ CREATE TABLE IF NOT EXISTS `material` (
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `material`
+-- Déchargement des données de la table `material`
 --
 
 INSERT INTO `material` (`idMaterial`, `nameMaterial`, `locationMaterial`, `descriptionMaterial`, `stateMaterial`, `volumeMaterial`, `quantityMaterial`, `priceMaterial`, `idEvent`) VALUES
 (3, 'ed', 'de', 'dede', 'Stock', 14, 41, 14, 10),
 (7, 'try', 'lol', 'rzdnzidnece', 'Order', 98, 60, 42, 10);
-
 
 -- --------------------------------------------------------
 
@@ -367,6 +367,28 @@ CREATE TABLE IF NOT EXISTS `notification` (
 INSERT INTO `notification` (`idNotification`, `titleNotification`, `contentNotification`, `idEvent`) VALUES
 (1, 'Fin de la soirée P1', 'La soirée s\'est bien terminée. Faire la l\'inventaire des alcools qu\'il reste.', 7),
 (2, 'Commande Promocash', 'Commande promocash récupérée.', 7);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `participatetask`
+--
+
+DROP TABLE IF EXISTS `participatetask`;
+CREATE TABLE IF NOT EXISTS `participatetask` (
+  `idUser` int(11) NOT NULL,
+  `idTask` int(11) NOT NULL,
+  KEY `idUser` (`idUser`),
+  KEY `idTask` (`idTask`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `participatetask`
+--
+
+INSERT INTO `participatetask` (`idUser`, `idTask`) VALUES
+(4, 1),
+(1, 2);
 
 -- --------------------------------------------------------
 
@@ -425,7 +447,7 @@ CREATE TABLE IF NOT EXISTS `task` (
   `idActivity` int(11) NOT NULL,
   PRIMARY KEY (`idTask`),
   KEY `fk_idTaskActivity` (`idActivity`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `task`
@@ -433,7 +455,9 @@ CREATE TABLE IF NOT EXISTS `task` (
 
 INSERT INTO `task` (`idTask`, `nameTask`, `startDateTask`, `endDateTask`, `descriptionTask`, `statusTask`, `idActivity`) VALUES
 (1, 'Installer Sono', '2020-01-14', '2020-01-15', 'Installer sono', 0, 4),
-(2, 'Installer bar', '2020-01-14', '2020-01-15', '3 bidon de vodka\r\n3 bidon de whisky\r\n5 Bidon de biere', 0, 4);
+(2, 'Installer bar', '2020-01-14', '2020-01-15', '3 bidon de vodka\r\n3 bidon de whisky\r\n5 Bidon de biere', 0, 4),
+(3, 'aaaaaaaaaa', '2020-01-15', '2020-01-16', 'aaaaaaa', 0, 4),
+(4, 'tasktest', '2020-01-15', '2020-01-16', 'tasktest', 0, 3);
 
 -- --------------------------------------------------------
 
@@ -493,11 +517,10 @@ ALTER TABLE `concern`
   ADD CONSTRAINT `task` FOREIGN KEY (`idTask`) REFERENCES `task` (`idTask`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `consomable`
+-- Contraintes pour la table `consomable`
 --
 ALTER TABLE `consomable`
   ADD CONSTRAINT `consomableToEvent` FOREIGN KEY (`idEvent`) REFERENCES `event` (`idEvent`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
 
 --
 -- Contraintes pour la table `contract`
@@ -533,11 +556,10 @@ ALTER TABLE `isvolunteer`
   ADD CONSTRAINT `volunteerUser` FOREIGN KEY (`idUser`) REFERENCES `user` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `material`
+-- Contraintes pour la table `material`
 --
 ALTER TABLE `material`
   ADD CONSTRAINT `materialToEvent` FOREIGN KEY (`idEvent`) REFERENCES `event` (`idEvent`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
 
 --
 -- Contraintes pour la table `message`

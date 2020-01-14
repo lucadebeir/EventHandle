@@ -1,20 +1,25 @@
 package controller.task;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import facade.TaskFacade;
 import facade.exception.DisconnectedUserException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import model.Task;
+import model.User;
 import ui.Router;
 
 public class TaskDetail {
 	
 	TaskFacade tf = new TaskFacade();
 	int idTask = (int) Router.getInstance().getParams()[0];
+	
 	Task t;
 	
 	@FXML private Label nameTask;
@@ -23,7 +28,8 @@ public class TaskDetail {
 	@FXML private Label description;
 	@FXML private Label statusTask;
 	
-	@FXML private ListView<Task> listCollab;
+	@FXML private ListView<User> listCollab;
+	private ObservableList<User> listParticipant;
 	
 	
 	@FXML
@@ -36,6 +42,12 @@ public class TaskDetail {
 		String status = t.isStatusTask() ? "Effectuate" : "not effectuate";
 		System.out.println(status);
 		statusTask.setText(status);
+		
+		// initialize list of participant
+		listParticipant = FXCollections.observableArrayList();
+		List<User> listPart = tf.participantTask(idTask);
+		listParticipant.addAll(listPart);
+		listCollab.setItems(listParticipant);
 	}
 	
 	@FXML
@@ -44,6 +56,7 @@ public class TaskDetail {
 		params[0] = t.getIdActivity();
 		Router.getInstance().activate("ActivityDetail", params);
 	}
+	
 	@FXML
     private void modifyTask(ActionEvent event) {
 		Object[] params = Router.getInstance().getParams();

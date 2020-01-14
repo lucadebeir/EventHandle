@@ -39,11 +39,12 @@
                   <DatePicker fx:id="dateStartTask" layoutX="202.0" layoutY="140.0" prefHeight="31.0" prefWidth="322.0" />
                   <DatePicker fx:id="dateEndTask" layoutX="202.0" layoutY="182.0" prefHeight="31.0" prefWidth="322.0" />
                   <TextArea fx:id="description" layoutX="202.0" layoutY="267.0" prefHeight="91.0" prefWidth="322.0" />
-                  <ComboBox layoutX="202.0" layoutY="377.0" prefHeight="31.0" prefWidth="205.0" />
+                  <ComboBox fx:id="listPotential" layoutX="202.0" layoutY="377.0" prefHeight="31.0" prefWidth="205.0" />
                   <Button layoutX="433.0" layoutY="377.0" mnemonicParsing="false" onAction="#addBenevole" prefHeight="31.0" prefWidth="91.0" text="Add" />
                   <Label layoutX="90.0" layoutY="228.0" prefHeight="21.0" prefWidth="91.0" text="Status" />
                   <CheckBox fx:id="statusDone" layoutX="202.0" layoutY="228.0" mnemonicParsing="false" text="Effectuate" />
                   <CheckBox fx:id="statusNotDone" layoutX="340.0" layoutY="228.0" mnemonicParsing="false" text="Not Effectuate" />
+                  <Button layoutX="35.0" layoutY="23.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
                </children>
             </Pane>
             <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">

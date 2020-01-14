@@ -70,7 +70,7 @@ public class ActivityDetailController {
 	private void itemSelected() {
 		taskList.getSelectionModel().selectedItemProperty().addListener(observable -> {			
 			Task selectedT = taskList.getSelectionModel().getSelectedItem();
-			Object[] params = new Object[1];
+			Object[] params = Router.getInstance().getParams();
 			params[0] = selectedT.getIdTask();
 			Router.getInstance().activate("TaskDetail", params);
 		});
@@ -79,7 +79,7 @@ public class ActivityDetailController {
 	
 	@FXML
 	private void addTask(ActionEvent e) throws IOException{
-		Object[] params = new Object[1];
+		Object[] params = Router.getInstance().getParams();
 		params[0] = idActivity;
 		Router.getInstance().activate("addTask",params);
 	}

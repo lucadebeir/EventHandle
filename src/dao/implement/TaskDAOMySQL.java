@@ -9,6 +9,7 @@ import java.util.*;
 import database.BdConnector;
 import model.MyDate;
 import model.Task;
+import model.User;
 
 /**
  * 
@@ -37,7 +38,6 @@ public class TaskDAOMySQL extends TaskDAO {
     public int createTask(Task t) {
     	int idTask = -1;
     	String query = "INSERT INTO task VALUES (NULL,'" + t.getTaskName() + "','" + t.getStartDateTask().getSQLDate() + "','" + t.getEndDateTask().getSQLDate() + "','" + t.getDescriptionTask() + "', 0,'" + t.getIdActivity() + "')";
-    	System.out.println(query);
         try {
         	this.connect.createStatement(
         			ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -62,6 +62,7 @@ public class TaskDAOMySQL extends TaskDAO {
 			preparedStatement.setString(4,t.getDescriptionTask());
 			preparedStatement.setInt(5,t.isStatusTask() ? 1 : 0);
 			preparedStatement.setInt(6,t.getIdTask());
+			preparedStatement.executeUpdate();
         } catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -121,6 +122,42 @@ public class TaskDAOMySQL extends TaskDAO {
 		return lTask;
 	}
 	
+	
+	/**
+	 * Get potential participants of a event 
+	 * @param	idEvent of the Event
+	 * @return	list of all task of the activity
+	 */
+	public List<User> getPotentialExecutor(int idEvent){
+		List<User> lUser= new ArrayList<User>();
+		String[] query = new String[3];
+		query[0] = "select u.idUser,lastNameUser,firstNameUser,email,password,e.idEvent FROM event e, isvolunteer v, user u where e.idEvent = v.idEvent and v.idUser = u.idUser and e.idEvent = " + idEvent;
+		query[1] = "select u.idUser,lastNameUser,firstNameUser,email,password,e.idEvent FROM event e, ismanager v, user u where e.idEvent = v.idEvent and v.idUser = u.idUser and e.idEvent = " + idEvent;
+		query[2] = query[0] = "select u.idUser,lastNameUser,firstNameUser,email,password,e.idEvent FROM event e, isintervener v, user u where e.idEvent = v.idEvent and v.idUser = u.idUser and e.idEvent = " + idEvent;
+		User u;
+		
+		for(String q : query) {
+			try {
+			    ResultSet result = this.connect.createStatement(
+			    ResultSet.TYPE_SCROLL_INSENSITIVE,
+			    ResultSet.CONCUR_READ_ONLY).executeQuery(q);
+			    while (result.next()) {
+			    	u = new User(
+					    	result.getInt("idUser"),
+					        result.getString("lastNameUser"),
+					        result.getString("firstNameUser"),
+					        result.getString("email"),
+					        result.getString("password"));
+			    	lUser.add(u);
+			    }
+			} catch (SQLException e) {
+		  	    e.printStackTrace();
+		  	}
+		}
+		
+		return lUser;
+	}
+	
 	/*
 	 * Match/map a row in the table to the Task bean
 	 */
@@ -135,5 +172,68 @@ public class TaskDAOMySQL extends TaskDAO {
 	    task.setIdActivity(resultSet.getInt("idActivity"));
 	    return task;
 	}
+	
+	public int findIdEventTaskByID(int idTask) {
+		String query = "select e.idEvent from event e, activity a, task t WHERE e.idEvent = a.idEvent and a.idActivity = t.idActivity and t.idTask =" + idTask;
+		int res = -1;
+		try {
+			ResultSet result = this.connect.createStatement(
+			  	    ResultSet.TYPE_SCROLL_INSENSITIVE,
+			  	    ResultSet.CONCUR_READ_ONLY).executeQuery(query);
+			if(result.first()) {
+				res = result.getInt("idEvent");
+			}
+		} catch (SQLException e) {
+	  	    e.printStackTrace();
+	  	  }
+		return res;
+	}
+	
+	public List<User> participantTask(int idTask){
+		List<User> lUser= new ArrayList<User>();
+		User u;
+		String query = "select p.idUser, lastNameUser, firstNameUser , email, password, idTask from participatetask p, user u where p.idUser = u.idUser and p.idTask = " + idTask;
+		try {
+		    ResultSet result = this.connect.createStatement(
+		    ResultSet.TYPE_SCROLL_INSENSITIVE,
+		    ResultSet.CONCUR_READ_ONLY).executeQuery(query);
+		    while (result.next()) {
+		    	u = new User(
+				    	result.getInt("idUser"),
+				        result.getString("lastNameUser"),
+				        result.getString("firstNameUser"),
+				        result.getString("email"),
+				        result.getString("password"));
+		    	lUser.add(u);
+		    }
+		} catch (SQLException e) {
+	  	    e.printStackTrace();
+	  	}
+		return lUser;
+    }
+	
+	public void addParticipant(int idUser,int idTask) {
+    	String query = "INSERT INTO participatetask VALUES (" + idUser + "," + idTask + ")";
+    	try {
+        	this.connect.createStatement(
+        			ResultSet.TYPE_SCROLL_INSENSITIVE,
+        			ResultSet.CONCUR_READ_ONLY).executeUpdate(query);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void deleteParticipant(int idUser,int idTask) {
+		String query = "Delete from participatetask WHERE idTask = ? and idUser= ?";
+        try {
+			PreparedStatement preparedStatement = this.connect.prepareStatement(query);
+			preparedStatement.setInt(1,idTask);
+			preparedStatement.setInt(2,idUser);
+			preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 }

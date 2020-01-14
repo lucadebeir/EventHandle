@@ -6,6 +6,7 @@ import dao.AbstractDAOFactory;
 import dao.implement.TaskDAO;
 import model.MyDate;
 import model.Task;
+import model.User;
 
 /**
  * 
@@ -52,6 +53,26 @@ public class TaskFacade {
     public void updateTask(int idTask, String name,MyDate start,MyDate end,String description,boolean status,int idActivity) {
     	Task task = new Task(idTask, name, start, end, description, status, idActivity);
     	taskDAO.updateTask(task);
+    }
+    
+    public int findIdEventTaskByID(int idTask) {
+    	return taskDAO.findIdEventTaskByID(idTask);
+    }
+    
+    public List<User> getPotentialExecutor(int idEvent){
+    	return taskDAO.getPotentialExecutor(idEvent);
+    }
+    
+    public List<User> participantTask(int idTask){
+    	return taskDAO.participantTask(idTask);
+    }
+    
+    public void deleteParticipant(int idUser,int idTask) {
+    	taskDAO.deleteParticipant(idUser, idTask);
+    }
+    
+    public void addParticipant(int idUser,int idTask) {
+    	taskDAO.addParticipant(idUser, idTask);
     }
 
     

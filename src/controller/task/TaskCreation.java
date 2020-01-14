@@ -44,7 +44,9 @@ public class TaskCreation {
 	
 	@FXML
     private void cancelAdd(ActionEvent event) {
-		
+		Object[] params = Router.getInstance().getParams();
+		params[0] = idActivity;
+		Router.getInstance().activate("ActivityDetail", params);
 	}
 
 }
