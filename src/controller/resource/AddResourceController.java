@@ -1,6 +1,7 @@
 package controller.resource;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.function.UnaryOperator;
 
@@ -124,15 +125,13 @@ public class AddResourceController {
 	
 	private Resource createResourceDTO() {
 		
-		Resource resourceDTO;
-		
 		int quantity = !(quantityResource.getText().isBlank()) ? Integer.parseInt(quantityResource.getText()) : null; 
 		float price = !(priceResource.getText().isBlank()) ? Float.parseFloat(priceResource.getText()) : null ;
 		float volume = !(volumeResource.getText().isBlank()) ? Float.parseFloat(volumeResource.getText()) : null ;
 		
 		switch (this.typeResource.getSelectionModel().getSelectedItem()) {
 	    case "Consomable":	
-	    	return resourceDTO = new Consomable(nameResource.getText(),
+	    	return new Consomable(nameResource.getText(),
 	    			locationResource.getText(),
 	    			descriptionResource.getText(),
 	    			this.stateResource.getSelectionModel().getSelectedItem(),
@@ -140,11 +139,11 @@ public class AddResourceController {
 	    			quantity,
 	    			price,
 	    			this.eventId,
-	    			null,
-	    			null);
+	    			new Date(10,10,10),
+	    			3);
 	    	
 	    case "Material":
-	    	return resourceDTO = new Material(nameResource.getText(),
+	    	return new Material(nameResource.getText(),
 	    			locationResource.getText(),
 	    			descriptionResource.getText(),
 	    			this.stateResource.getSelectionModel().getSelectedItem(),
@@ -154,7 +153,7 @@ public class AddResourceController {
 	    			this.eventId);
 	    	
 	    case "Vehicle" :
-	    	return resourceDTO = new Vehicle(nameResource.getText(),
+	    	return new Vehicle(nameResource.getText(),
 	    			locationResource.getText(),
 	    			descriptionResource.getText(),
 	    			this.stateResource.getSelectionModel().getSelectedItem(),

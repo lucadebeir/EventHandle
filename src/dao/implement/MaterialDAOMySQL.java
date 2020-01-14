@@ -57,7 +57,7 @@ public class MaterialDAOMySQL extends ResourceDAO {
 					+ ",`priceMaterial`=" + resource.getPriceResource() + ",`idEvent`=" + resource.getEventId() + " WHERE `idMaterial`=" + resource.getIdResource());
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new Error("insert into database error");
+			throw new Error("update into database error");
 		}
 	}
 
@@ -70,6 +70,7 @@ public class MaterialDAOMySQL extends ResourceDAO {
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new Error("delete into database error");
 		}
 	}
 
@@ -98,6 +99,7 @@ public class MaterialDAOMySQL extends ResourceDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new Error("get all from database error");
 		}
 		return resources;
 	}

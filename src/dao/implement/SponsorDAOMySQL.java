@@ -13,25 +13,22 @@ import model.Sponsor;
 
 
 public class SponsorDAOMySQL extends SponsorDAO {
-
-
-    public SponsorDAOMySQL() {
-    }
-
-    public Connection connect;
-
-    public void SponsorDAOMySQL(Connection connect) {
-		this.connect = connect; 
-    }
-
+	
+	
+    public SponsorDAOMySQL(Connection connect) {
+		super(connect);
+		// TODO Auto-generated constructor stub
+	}
+    
+	public Connection connect;
 
     public void createSponsor(Sponsor sponsor) {
     	try {
 			this.connect.createStatement(
 			ResultSet.TYPE_SCROLL_INSENSITIVE,
-			ResultSet.CONCUR_READ_ONLY).executeUpdate("INSERT INTO `sponsor`(`idSponsor`, `nameSponsor`, `numSiretSponsor`, `lastNameSponsor`, `firstNameSponsor`, `emailSponsor`) VALUES (NULL,'" 
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("INSERT INTO `sponsor`(`idSponsor`, `nameSponsor`, `numSiretSponsor`, `lastNameSponsor`, `firstNameSponsor`, `emailSponsor`,'idEvent') VALUES (NULL,'" 
 			+ sponsor.getNameSponsor() + "','" + sponsor.getNumSiretSponsor() + "','" + sponsor.getLastNameContactSponsor() + "','" 
-			+ sponsor.getFirstNameContactSponsor() + "','" + sponsor.getEmailContactSponsor() +"')" );
+			+ sponsor.getFirstNameContactSponsor() + "','" + sponsor.getEmailContactSponsor() + "','" + sponsor.getIdEvent() +"')" );
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -58,7 +55,7 @@ public class SponsorDAOMySQL extends SponsorDAO {
 					.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
 					.executeQuery("SELECT * FROM `sponsor` WHERE `idEvent`= " + eventId );
 			while (result.next()) {
-				sponsor = new Sponsor(result.getInt("idEvent"),result.getInt("idSponsor"),result.getString("nameSponsor"),result.getString("numSiretSponsor"),
+				sponsor = new Sponsor(result.getInt("idSponsor"),result.getInt("idEvent"),result.getString("nameSponsor"),result.getString("numSiretSponsor"),
 						result.getString("lastNameSponsor"), result.getString("firstNameSponsor"), result.getString("emailSponsor"));
 				sponsors.add(sponsor);
 			}
