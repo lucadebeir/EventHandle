@@ -9,8 +9,8 @@ public class Task {
 	
 	private int idTask;
 	private String taskName;
-    private Date startDateTask;
-    private Date endDateTask;
+    private MyDate startDateTask;
+    private MyDate endDateTask;
     private String descriptionTask;
     private ArrayList volunteerList;
     private boolean statusTask;
@@ -21,6 +21,18 @@ public class Task {
      */
     public Task() {
     }
+    
+    
+
+	public Task(int idTask, String taskName, MyDate startDateTask, MyDate endDateTask, String descriptionTask, boolean statusTask, int idActivity) {
+		this.idTask = idTask;
+		this.taskName = taskName;
+		this.startDateTask = startDateTask;
+		this.endDateTask = endDateTask;
+		this.descriptionTask = descriptionTask;
+		this.statusTask = statusTask;
+		this.idActivity = idActivity;
+	}
 
 	public int getIdTask() {
 		return idTask;
@@ -38,19 +50,19 @@ public class Task {
 		this.taskName = taskName;
 	}
 
-	public Date getStartDateTask() {
+	public MyDate getStartDateTask() {
 		return startDateTask;
 	}
 
-	public void setStartDateTask(Date startDateTask) {
+	public void setStartDateTask(MyDate startDateTask) {
 		this.startDateTask = startDateTask;
 	}
 
-	public Date getEndDateTask() {
+	public MyDate getEndDateTask() {
 		return endDateTask;
 	}
 
-	public void setEndDateTask(Date endDateTask) {
+	public void setEndDateTask(MyDate endDateTask) {
 		this.endDateTask = endDateTask;
 	}
 

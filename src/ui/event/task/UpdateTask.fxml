@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="676.0" prefWidth="934.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.task.TaskDetail">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="676.0" prefWidth="934.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.task.TaskUpdate">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -31,23 +31,27 @@
          <children>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Label layoutX="168.0" layoutY="104.0" prefHeight="21.0" prefWidth="84.0" text="Name Task" />
-                  <Label layoutX="168.0" layoutY="145.0" prefHeight="21.0" prefWidth="112.0" text="Date start task" />
-                  <Label layoutX="168.0" layoutY="187.0" prefHeight="21.0" prefWidth="100.0" text="Date end task" />
-                  <Label layoutX="168.0" layoutY="277.0" prefHeight="21.0" prefWidth="84.0" text="Description" />
-                  <Label fx:id="nameTask" layoutX="315.0" layoutY="104.0" prefHeight="21.0" prefWidth="279.0" text="Label" />
-                  <Label fx:id="dateStartTask" layoutX="315.0" layoutY="145.0" prefHeight="21.0" prefWidth="279.0" text="Label" />
-                  <Label fx:id="dateEndTask" layoutX="315.0" layoutY="187.0" prefHeight="21.0" prefWidth="279.0" text="Label" />
-                  <Label fx:id="description" layoutX="315.0" layoutY="287.0" prefHeight="127.0" prefWidth="279.0" />
-                  <Button layoutX="31.0" layoutY="22.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
-                  <Label layoutX="168.0" layoutY="228.0" prefHeight="21.0" prefWidth="84.0" text="Status" />
-                  <Label fx:id="statusTask" layoutX="315.0" layoutY="228.0" text="Label" />
+                  <Label layoutX="90.0" layoutY="104.0" prefHeight="21.0" prefWidth="84.0" text="Name Task" />
+                  <Label layoutX="90.0" layoutY="145.0" prefHeight="21.0" prefWidth="112.0" text="Date start task" />
+                  <Label layoutX="90.0" layoutY="187.0" prefHeight="21.0" prefWidth="100.0" text="Date end task" />
+                  <Label layoutX="90.0" layoutY="267.0" prefHeight="21.0" prefWidth="84.0" text="Description" />
+                  <TextField fx:id="nameTask" layoutX="202.0" layoutY="99.0" prefHeight="31.0" prefWidth="322.0" />
+                  <DatePicker fx:id="dateStartTask" layoutX="202.0" layoutY="140.0" prefHeight="31.0" prefWidth="322.0" />
+                  <DatePicker fx:id="dateEndTask" layoutX="202.0" layoutY="182.0" prefHeight="31.0" prefWidth="322.0" />
+                  <TextArea fx:id="description" layoutX="202.0" layoutY="267.0" prefHeight="91.0" prefWidth="322.0" />
+                  <ComboBox fx:id="listPotential" layoutX="202.0" layoutY="377.0" prefHeight="31.0" prefWidth="205.0" />
+                  <Button layoutX="433.0" layoutY="377.0" mnemonicParsing="false" onAction="#addBenevole" prefHeight="31.0" prefWidth="91.0" text="Add" />
+                  <Label layoutX="90.0" layoutY="228.0" prefHeight="21.0" prefWidth="91.0" text="Status" />
+                  <CheckBox fx:id="statusDone" layoutX="202.0" layoutY="228.0" mnemonicParsing="false" text="Effectuate" />
+                  <CheckBox fx:id="statusNotDone" layoutX="340.0" layoutY="228.0" mnemonicParsing="false" text="Not Effectuate" />
+                  <Button layoutX="35.0" layoutY="23.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
                </children>
             </Pane>
             <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
                   <Label layoutX="14.0" layoutY="100.0" prefHeight="21.0" prefWidth="230.0" text="List of collaborators :" />
                   <ListView fx:id="listCollab" layoutX="14.0" layoutY="134.0" prefHeight="229.0" prefWidth="230.0" />
+                  <Button layoutX="73.0" layoutY="376.0" mnemonicParsing="false" onAction="#deleteBenevole" prefHeight="31.0" prefWidth="112.0" text="Delete" />
                </children>
             </Pane>
          </children>

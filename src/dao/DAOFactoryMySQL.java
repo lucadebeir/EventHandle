@@ -46,6 +46,7 @@ public class DAOFactoryMySQL extends AbstractDAOFactory {
 	/**
 	 * @return
 	 */
+
 	public ResourceDAO createResourceDAO(String type) {
 		
 		switch (type) {
