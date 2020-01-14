@@ -1,56 +1,71 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:8889
--- Generation Time: Jan 13, 2020 at 02:40 PM
--- Server version: 5.7.26
--- PHP Version: 7.3.8
+-- Hôte : 127.0.0.1:3308
+-- Généré le :  Dim 12 jan. 2020 à 15:59
+-- Version du serveur :  8.0.18
+-- Version de PHP :  7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
 --
--- Database: `eventhandle`
+-- Base de données :  `eventhandle`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `activity`
+-- Structure de la table `activity`
 --
 
-CREATE TABLE `activity` (
-  `idActivity` int(11) NOT NULL,
+DROP TABLE IF EXISTS `activity`;
+CREATE TABLE IF NOT EXISTS `activity` (
+  `idActivity` int(11) NOT NULL AUTO_INCREMENT,
   `nameActivity` varchar(32) NOT NULL,
   `statusActivity` tinyint(1) NOT NULL DEFAULT '0',
   `descriptionActivity` text NOT NULL,
-  `idEvent` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `idEvent` int(11) NOT NULL,
+  PRIMARY KEY (`idActivity`),
+  KEY `idEvent` (`idEvent`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `activity`
+-- Déchargement des données de la table `activity`
 --
 
 INSERT INTO `activity` (`idActivity`, `nameActivity`, `statusActivity`, `descriptionActivity`, `idEvent`) VALUES
-(1, 'Cuisine', 0, 'Toutes les activités liées à la cuisine.', 0),
-(2, 'Salle', 0, 'Toutes les activités liées à l\'installation de la salle.', 0);
+(3, 'Cuisine', 0, 'Toutes les activités liées à la cuisine.', 3),
+(4, 'Salle', 0, 'Toutes les activités liées à l\'installation de la salle.', 3);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `chat`
+-- Structure de la table `chat`
 --
 
-CREATE TABLE `chat` (
-  `idChat` int(11) NOT NULL,
+DROP TABLE IF EXISTS `chat`;
+CREATE TABLE IF NOT EXISTS `chat` (
+  `idChat` int(11) NOT NULL AUTO_INCREMENT,
   `idUser` int(11) NOT NULL,
   `idEvent` int(11) NOT NULL,
-  `contentMessage` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `contentMessage` text NOT NULL,
+  PRIMARY KEY (`idChat`),
+  KEY `chatUser` (`idUser`),
+  KEY `chatEvent` (`idEvent`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `chat`
+-- Déchargement des données de la table `chat`
 --
 
 INSERT INTO `chat` (`idChat`, `idUser`, `idEvent`, `contentMessage`) VALUES
@@ -66,96 +81,134 @@ INSERT INTO `chat` (`idChat`, `idUser`, `idEvent`, `contentMessage`) VALUES
 (10, 2, 7, 'ça va?'),
 (11, 1, 7, 'oklm'),
 (12, 1, 11, 'hey !'),
-(13, 1, 7, 'hey');
+(13, 1, 7, 'lll'),
+(14, 2, 7, 'a');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `collaborator`
+-- Structure de la table `collaborator`
 --
 
-CREATE TABLE `collaborator` (
+DROP TABLE IF EXISTS `collaborator`;
+CREATE TABLE IF NOT EXISTS `collaborator` (
   `idUser` int(11) NOT NULL,
   `idEvent` int(11) NOT NULL,
-  `typeCollaborator` varchar(32) NOT NULL
+  `typeCollaboraor` varchar(32) NOT NULL,
+  KEY `event` (`idEvent`),
+  KEY `user` (`idUser`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `concern`
+-- Structure de la table `concern`
 --
 
-CREATE TABLE `concern` (
+DROP TABLE IF EXISTS `concern`;
+CREATE TABLE IF NOT EXISTS `concern` (
   `idActivity` int(11) NOT NULL,
-  `idTask` int(11) NOT NULL
+  `idTask` int(11) NOT NULL,
+  KEY `activity` (`idActivity`),
+  KEY `task` (`idTask`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `conservation`
+-- Structure de la table `conservation`
 --
 
-CREATE TABLE `conservation` (
-  `idConservation` int(11) NOT NULL,
+DROP TABLE IF EXISTS `conservation`;
+CREATE TABLE IF NOT EXISTS `conservation` (
+  `idConservation` int(11) NOT NULL AUTO_INCREMENT,
   `nameConservation` varchar(32) NOT NULL,
   `descriptionConservation` text NOT NULL,
   `storageTemperature` int(11) NOT NULL,
-  `dateConservation` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `dateConservation` date NOT NULL,
+  PRIMARY KEY (`idConservation`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `conservation`
+-- Déchargement des données de la table `conservation`
 --
 
 INSERT INTO `conservation` (`idConservation`, `nameConservation`, `descriptionConservation`, `storageTemperature`, `dateConservation`) VALUES
 (3, 'Sauce tomate', 'Bolo pour pâte', 27, '2020-02-28'),
 (4, 'Jus d\'orange', 'Sans pulpe', 25, '2020-01-24');
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `consomable`
+--
+
+DROP TABLE IF EXISTS `consomable`;
+CREATE TABLE IF NOT EXISTS `consomable` (
+  `idconsomable` int(11) NOT NULL AUTO_INCREMENT,
+  `nameconsomable` varchar(32) NOT NULL,
+  `locationconsomable` varchar(32) NOT NULL,
+  `descriptionconsomable` text NOT NULL,
+  `stateconsomable` varchar(32) NOT NULL,
+  `volumeconsomable` float DEFAULT NULL,
+  `quantityconsomable` int(11) DEFAULT NULL,
+  `priceconsomable` float DEFAULT NULL,
+  `idEvent` int(11) NOT NULL,
+  PRIMARY KEY (`idconsomable`),
+  KEY `consomableToEvent` (`idEvent`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contract`
+-- Structure de la table `contract`
 --
 
-CREATE TABLE `contract` (
-  `numContract` int(11) NOT NULL,
+DROP TABLE IF EXISTS `contract`;
+CREATE TABLE IF NOT EXISTS `contract` (
+  `numContract` int(11) NOT NULL AUTO_INCREMENT,
   `libelleContract` text NOT NULL,
   `clauseContract` text NOT NULL,
   `idEvent` int(11) NOT NULL,
-  `idSponsor` int(11) NOT NULL
+  `idSponsor` int(11) NOT NULL,
+  PRIMARY KEY (`numContract`),
+  KEY `sponsor` (`idSponsor`),
+  KEY `eventSponsor` (`idEvent`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `event`
+-- Structure de la table `event`
 --
 
-CREATE TABLE `event` (
-  `idEvent` int(11) NOT NULL,
+DROP TABLE IF EXISTS `event`;
+CREATE TABLE IF NOT EXISTS `event` (
+  `idEvent` int(11) NOT NULL AUTO_INCREMENT,
   `nameEvent` varchar(32) NOT NULL,
   `dateStartEvent` date NOT NULL,
   `locationEvent` varchar(32) NOT NULL,
   `dateEndEvent` date NOT NULL,
   `descriptionEvent` text NOT NULL,
-  `idCreator` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `idCreator` int(11) NOT NULL,
+  PRIMARY KEY (`idEvent`),
+  KEY `managerUser` (`idCreator`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `event`
+-- Déchargement des données de la table `event`
 --
 
 INSERT INTO `event` (`idEvent`, `nameEvent`, `dateStartEvent`, `locationEvent`, `dateEndEvent`, `descriptionEvent`, `idCreator`) VALUES
 (3, 'Gala', '2020-03-07', 'La Grande Motte', '2019-12-08', 'Gala annuel de Polytech Montpellier', 1),
 (7, 'Soirée P1', '2019-10-17', 'Marsillargues', '2019-10-18', 'Première soirée privée de Polytech', 1),
 (9, 'Semaine blanche', '2020-01-25', 'Domaine Les Sybelles', '2020-02-01', 'Trop bien', 1),
+(10, 'Soirée P3', '2020-03-27', 'Montpellier', '2020-03-28', 'dernière soirée P', 1),
 (11, 'Soirée RDD', '2019-12-07', 'Montpellier', '2019-12-08', 'Soirée pour les diplômés', 1);
 
 --
--- Triggers `event`
+-- Déclencheurs `event`
 --
+DROP TRIGGER IF EXISTS `addManager`;
 DELIMITER $$
 CREATE TRIGGER `addManager` AFTER INSERT ON `event` FOR EACH ROW BEGIN
     IF NEW.idEvent IS NOT NULL THEN
@@ -169,62 +222,70 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `isIntervener`
+-- Structure de la table `isintervener`
 --
 
-CREATE TABLE `isIntervener` (
+DROP TABLE IF EXISTS `isintervener`;
+CREATE TABLE IF NOT EXISTS `isintervener` (
   `idUser` int(11) NOT NULL,
-  `idEvent` int(11) NOT NULL
+  `idEvent` int(11) NOT NULL,
+  KEY `intervenerEvent` (`idEvent`),
+  KEY `intervenerUser` (`idUser`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `isIntervener`
---
-
-INSERT INTO `isIntervener` (`idUser`, `idEvent`) VALUES
-(2, 7),
-(3, 11);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `isManager`
+-- Structure de la table `ismanager`
 --
 
-CREATE TABLE `isManager` (
+DROP TABLE IF EXISTS `ismanager`;
+CREATE TABLE IF NOT EXISTS `ismanager` (
   `idUser` int(11) NOT NULL,
-  `idEvent` int(11) NOT NULL
+  `idEvent` int(11) NOT NULL,
+  KEY `managerUser` (`idUser`),
+  KEY `managerEvent` (`idEvent`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `isManager`
+-- Déchargement des données de la table `ismanager`
 --
 
-INSERT INTO `isManager` (`idUser`, `idEvent`) VALUES
+INSERT INTO `ismanager` (`idUser`, `idEvent`) VALUES
+(1, 3),
+(1, 7),
+(1, 9),
+(1, 10),
+(1, 11),
 (1, 7),
 (1, 3),
 (1, 9),
+(1, 10),
 (1, 11),
-(2, 7);
+(2, 7),
+(4, 3);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `isVolunteer`
+-- Structure de la table `isvolunteer`
 --
 
-CREATE TABLE `isVolunteer` (
+DROP TABLE IF EXISTS `isvolunteer`;
+CREATE TABLE IF NOT EXISTS `isvolunteer` (
   `idUser` int(11) NOT NULL,
-  `idEvent` int(11) NOT NULL
+  `idEvent` int(11) NOT NULL,
+  KEY `volunteerUser` (`idUser`),
+  KEY `volunteerEvent` (`idEvent`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `isVolunteer`
+-- Déchargement des données de la table `isvolunteer`
 --
 
-INSERT INTO `isVolunteer` (`idUser`, `idEvent`) VALUES
-(3, 7),
-(2, 11);
+INSERT INTO `isvolunteer` (`idUser`, `idEvent`) VALUES
+(2, 7);
+
 
 -- --------------------------------------------------------
 
@@ -232,8 +293,9 @@ INSERT INTO `isVolunteer` (`idUser`, `idEvent`) VALUES
 -- Table structure for table `material`
 --
 
-CREATE TABLE `material` (
-  `idMaterial` int(11) NOT NULL,
+DROP TABLE IF EXISTS `material`;
+CREATE TABLE IF NOT EXISTS `material` (
+  `idMaterial` int(11) NOT NULL AUTO_INCREMENT,
   `nameMaterial` varchar(32) NOT NULL,
   `locationMaterial` varchar(32) NOT NULL,
   `descriptionMaterial` text NOT NULL,
@@ -241,57 +303,65 @@ CREATE TABLE `material` (
   `volumeMaterial` float DEFAULT NULL,
   `quantityMaterial` int(11) DEFAULT NULL,
   `priceMaterial` float DEFAULT NULL,
-  `idEvent` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `idEvent` int(11) NOT NULL,
+  PRIMARY KEY (`idMaterial`),
+  KEY `materialToEvent` (`idEvent`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `material`
 --
 
 INSERT INTO `material` (`idMaterial`, `nameMaterial`, `locationMaterial`, `descriptionMaterial`, `stateMaterial`, `volumeMaterial`, `quantityMaterial`, `priceMaterial`, `idEvent`) VALUES
-(3, 'ed', 'de', 'dede', 'Stock', 14, 41, 14, 7),
-(7, 'try', 'lol', 'rzdnzidnece', 'Order', 98, 60, 42, 7);
+(3, 'ed', 'de', 'dede', 'Stock', 14, 41, 14, 10),
+(7, 'try', 'lol', 'rzdnzidnece', 'Order', 98, 60, 42, 10);
+
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `message`
+-- Structure de la table `message`
 --
 
-CREATE TABLE `message` (
-  `idMessage` int(11) NOT NULL,
+DROP TABLE IF EXISTS `message`;
+CREATE TABLE IF NOT EXISTS `message` (
+  `idMessage` int(11) NOT NULL AUTO_INCREMENT,
   `idUserSender` int(11) NOT NULL,
   `idUserReceiver` int(11) NOT NULL,
   `idEvent` int(11) NOT NULL,
   `contentMessage` text NOT NULL,
-  `objectMessage` varchar(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `objectMessage` varchar(32) NOT NULL,
+  PRIMARY KEY (`idMessage`),
+  KEY `receiverMessage` (`idUserReceiver`),
+  KEY `senderMessage` (`idUserSender`),
+  KEY `eventMessage` (`idEvent`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `message`
+-- Déchargement des données de la table `message`
 --
 
 INSERT INTO `message` (`idMessage`, `idUserSender`, `idUserReceiver`, `idEvent`, `contentMessage`, `objectMessage`) VALUES
-(1, 2, 1, 7, 'Salut', 'Demande information'),
-(4, 1, 3, 7, ' lol ', ' lol '),
-(6, 1, 2, 7, 'aaaaaaaaaa', 'aaaa'),
-(7, 1, 2, 7, 'C\'est bien ça !', 'Re [Demande information]');
+(1, 2, 1, 7, 'Salut', 'Demande information');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `notification`
+-- Structure de la table `notification`
 --
 
-CREATE TABLE `notification` (
-  `idNotification` int(11) NOT NULL,
+DROP TABLE IF EXISTS `notification`;
+CREATE TABLE IF NOT EXISTS `notification` (
+  `idNotification` int(11) NOT NULL AUTO_INCREMENT,
   `titleNotification` varchar(32) NOT NULL,
   `contentNotification` text NOT NULL,
-  `idEvent` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `idEvent` int(11) NOT NULL,
+  PRIMARY KEY (`idNotification`),
+  KEY `eventNotif` (`idEvent`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `notification`
+-- Déchargement des données de la table `notification`
 --
 
 INSERT INTO `notification` (`idNotification`, `titleNotification`, `contentNotification`, `idEvent`) VALUES
@@ -301,11 +371,12 @@ INSERT INTO `notification` (`idNotification`, `titleNotification`, `contentNotif
 -- --------------------------------------------------------
 
 --
--- Table structure for table `resource`
+-- Structure de la table `resource`
 --
 
-CREATE TABLE `resource` (
-  `idResource` int(11) NOT NULL,
+DROP TABLE IF EXISTS `resource`;
+CREATE TABLE IF NOT EXISTS `resource` (
+  `idResource` int(11) NOT NULL AUTO_INCREMENT,
   `nameResource` varchar(32) NOT NULL,
   `descriptionResource` text NOT NULL,
   `volumeResource` int(11) NOT NULL,
@@ -313,117 +384,189 @@ CREATE TABLE `resource` (
   `locationResource` varchar(32) NOT NULL,
   `priceResource` int(11) NOT NULL,
   `idConservation` int(11) DEFAULT NULL,
-  `idActivity` int(11) NOT NULL
+  `idActivity` int(11) NOT NULL,
+  PRIMARY KEY (`idResource`),
+  KEY `conservartion` (`idConservation`),
+  KEY `fk_idActivity` (`idActivity`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sponsor`
+-- Structure de la table `sponsor`
 --
 
-CREATE TABLE `sponsor` (
-  `idSponsor` int(11) NOT NULL,
-  `idEvent` int(11) NOT NULL,
+DROP TABLE IF EXISTS `sponsor`;
+CREATE TABLE IF NOT EXISTS `sponsor` (
+  `idSponsor` int(11) NOT NULL AUTO_INCREMENT,
   `nameSponsor` varchar(32) NOT NULL,
   `numSiretSponsor` int(11) NOT NULL,
   `lastNameSponsor` varchar(32) NOT NULL,
   `firstNameSponsor` varchar(32) NOT NULL,
-  `emailSponsor` varchar(32) NOT NULL
+  `emailSponsor` varchar(32) NOT NULL,
+  `idEvent` int(11) NOT NULL,
+  PRIMARY KEY (`idSponsor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `task`
+-- Structure de la table `task`
 --
 
-CREATE TABLE `task` (
-  `idTask` int(11) NOT NULL,
+DROP TABLE IF EXISTS `task`;
+CREATE TABLE IF NOT EXISTS `task` (
+  `idTask` int(11) NOT NULL AUTO_INCREMENT,
   `nameTask` varchar(32) NOT NULL,
   `startDateTask` date NOT NULL,
   `endDateTask` date NOT NULL,
   `descriptionTask` text NOT NULL,
   `statusTask` tinyint(1) NOT NULL,
-  `idActivity` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `idActivity` int(11) NOT NULL,
+  PRIMARY KEY (`idTask`),
+  KEY `fk_idTaskActivity` (`idActivity`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `task`
+--
+
+INSERT INTO `task` (`idTask`, `nameTask`, `startDateTask`, `endDateTask`, `descriptionTask`, `statusTask`, `idActivity`) VALUES
+(1, 'Installer Sono', '2020-01-14', '2020-01-15', 'Installer sono', 0, 4),
+(2, 'Installer bar', '2020-01-14', '2020-01-15', '3 bidon de vodka\r\n3 bidon de whisky\r\n5 Bidon de biere', 0, 4);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Structure de la table `user`
 --
 
-CREATE TABLE `user` (
-  `idUser` int(32) NOT NULL,
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
+  `idUser` int(32) NOT NULL AUTO_INCREMENT,
   `lastNameUser` varchar(32) NOT NULL,
   `firstNameUser` varchar(32) NOT NULL,
   `email` varchar(32) NOT NULL,
-  `password` varchar(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `password` varchar(32) NOT NULL,
+  PRIMARY KEY (`idUser`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `user`
+-- Déchargement des données de la table `user`
 --
 
 INSERT INTO `user` (`idUser`, `lastNameUser`, `firstNameUser`, `email`, `password`) VALUES
 (1, 'Debeir', 'Luca', 'l.debeir@me.com', 'luca'),
 (2, 'Gayet', 'Simon', 's@s.s', 's'),
 (3, 'Debeir', 'Margaux', 'm@m.m', 'm'),
-(4, 'm', 'm', 'm@m.m', 'm'),
-(5, 'p', 'p', 'p', 'p');
+(4, 'Michel', 'RANA', 'michel@gmail.com', 'michel');
 
 --
--- Indexes for dumped tables
+-- Contraintes pour les tables déchargées
 --
 
 --
--- Indexes for table `activity`
+-- Contraintes pour la table `activity`
 --
 ALTER TABLE `activity`
-  ADD PRIMARY KEY (`idActivity`),
-  ADD KEY `idEvent` (`idEvent`);
+  ADD CONSTRAINT `fk_idEvent` FOREIGN KEY (`idEvent`) REFERENCES `event` (`idEvent`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Indexes for table `chat`
+-- Contraintes pour la table `chat`
 --
 ALTER TABLE `chat`
-  ADD PRIMARY KEY (`idChat`),
-  ADD KEY `chatUser` (`idUser`),
-  ADD KEY `chatEvent` (`idEvent`);
+  ADD CONSTRAINT `chatEvent` FOREIGN KEY (`idEvent`) REFERENCES `event` (`idEvent`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `chatUser` FOREIGN KEY (`idUser`) REFERENCES `user` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Indexes for table `collaborator`
+-- Contraintes pour la table `collaborator`
 --
 ALTER TABLE `collaborator`
-  ADD KEY `event` (`idEvent`),
-  ADD KEY `user` (`idUser`);
+  ADD CONSTRAINT `event` FOREIGN KEY (`idEvent`) REFERENCES `event` (`idEvent`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `user` FOREIGN KEY (`idUser`) REFERENCES `user` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Indexes for table `material`
+-- Contraintes pour la table `concern`
+--
+ALTER TABLE `concern`
+  ADD CONSTRAINT `activity` FOREIGN KEY (`idActivity`) REFERENCES `activity` (`idActivity`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `task` FOREIGN KEY (`idTask`) REFERENCES `task` (`idTask`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `consomable`
+--
+ALTER TABLE `consomable`
+  ADD CONSTRAINT `consomableToEvent` FOREIGN KEY (`idEvent`) REFERENCES `event` (`idEvent`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
+
+--
+-- Contraintes pour la table `contract`
+--
+ALTER TABLE `contract`
+  ADD CONSTRAINT `eventSponsor` FOREIGN KEY (`idEvent`) REFERENCES `event` (`idEvent`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `sponsor` FOREIGN KEY (`idSponsor`) REFERENCES `sponsor` (`idSponsor`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `event`
+--
+ALTER TABLE `event`
+  ADD CONSTRAINT `eventCreator` FOREIGN KEY (`idCreator`) REFERENCES `user` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `isintervener`
+--
+ALTER TABLE `isintervener`
+  ADD CONSTRAINT `intervenerEvent` FOREIGN KEY (`idEvent`) REFERENCES `event` (`idEvent`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `intervenerUser` FOREIGN KEY (`idUser`) REFERENCES `user` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `ismanager`
+--
+ALTER TABLE `ismanager`
+  ADD CONSTRAINT `managerEvent` FOREIGN KEY (`idEvent`) REFERENCES `event` (`idEvent`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `isvolunteer`
+--
+ALTER TABLE `isvolunteer`
+  ADD CONSTRAINT `volunteerEvent` FOREIGN KEY (`idEvent`) REFERENCES `event` (`idEvent`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `volunteerUser` FOREIGN KEY (`idUser`) REFERENCES `user` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `material`
 --
 ALTER TABLE `material`
-  ADD PRIMARY KEY (`idMaterial`),
-  ADD KEY `materialToEvent` (`idEvent`);
+  ADD CONSTRAINT `materialToEvent` FOREIGN KEY (`idEvent`) REFERENCES `event` (`idEvent`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
 
 --
--- AUTO_INCREMENT for dumped tables
+-- Contraintes pour la table `message`
 --
+ALTER TABLE `message`
+  ADD CONSTRAINT `eventMessage` FOREIGN KEY (`idEvent`) REFERENCES `event` (`idEvent`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `receiverMessage` FOREIGN KEY (`idUserReceiver`) REFERENCES `user` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `senderMessage` FOREIGN KEY (`idUserSender`) REFERENCES `user` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- AUTO_INCREMENT for table `activity`
+-- Contraintes pour la table `notification`
 --
-ALTER TABLE `activity`
-  MODIFY `idActivity` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `notification`
+  ADD CONSTRAINT `eventNotif` FOREIGN KEY (`idEvent`) REFERENCES `event` (`idEvent`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- AUTO_INCREMENT for table `chat`
+-- Contraintes pour la table `resource`
 --
-ALTER TABLE `chat`
-  MODIFY `idChat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+ALTER TABLE `resource`
+  ADD CONSTRAINT `conservartion` FOREIGN KEY (`idConservation`) REFERENCES `conservation` (`idConservation`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_idActivity` FOREIGN KEY (`idActivity`) REFERENCES `activity` (`idActivity`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- AUTO_INCREMENT for table `material`
+-- Contraintes pour la table `task`
 --
-ALTER TABLE `material`
-  MODIFY `idMaterial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+ALTER TABLE `task`
+  ADD CONSTRAINT `fk_idTaskActivity` FOREIGN KEY (`idActivity`) REFERENCES `activity` (`idActivity`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

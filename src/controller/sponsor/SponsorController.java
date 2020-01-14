@@ -2,6 +2,8 @@ package controller.sponsor;
 
 import java.io.IOException;
 import java.util.*;
+
+import facade.LoginFacade;
 import facade.SponsorFacade;
 import facade.exception.DisconnectedUserException;
 import javafx.beans.property.ListProperty;
@@ -14,21 +16,33 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import model.Sponsor;
+import model.User;
 import ui.Router;
 
 
 public class SponsorController {
 
 	private SponsorFacade sponsorFacade = null;
+	private LoginFacade lF = null;
+	
 	private int eventId = (int) Router.getInstance().getParams()[0];;
 	private Sponsor selectedSponsor;
 		
 	@FXML private ListView<Sponsor> sponsorList; 
     @FXML private Button deleteButton;
     @FXML private Button displayButton;
+    @FXML private Button addButton;
 	List<Sponsor> sponsors = new ArrayList<Sponsor>();
 	//private ObservableList<Sponsor> sponsorObservableList;
 	protected ListProperty<Sponsor> listPropertySponsor = new SimpleListProperty<>();
+	
+	//pour la partie manager vs volunteer vs intervener
+	List<User> listVolunteer;
+	List<User> listIntervener;
+	
+	boolean isVolunteer;
+	boolean isIntervener;
+	
     
     public SponsorController() {
     	
@@ -40,8 +54,19 @@ public class SponsorController {
 		sponsors = sponsorFacade.getSponsorsForEvent(eventId);	
 	}
     
-	public void initialize() {
+	public void initialize() throws DisconnectedUserException {
 		sponsorFacade = new SponsorFacade();
+		
+		//pour la partie manager vs volunteer vs intervener
+		lF = new LoginFacade();
+		
+		listVolunteer = lF.getAllVolunteerOfAnEvent(eventId);
+		listIntervener = lF.getAllIntervenerOfAnEvent(eventId);
+		
+		isVolunteer = lF.isVolunteer(listVolunteer);
+		isIntervener = lF.isIntervener(listIntervener);
+		
+		
 		
 		sponsorList.itemsProperty().bind(listPropertySponsor);
 		listPropertySponsor.set(FXCollections.observableArrayList());
@@ -52,6 +77,12 @@ public class SponsorController {
     	
     	sponsorList.itemsProperty().bind(listPropertySponsor);
 		listPropertySponsor.set(FXCollections.observableArrayList(sponsors));
+		
+		if(isVolunteer || isIntervener) {
+			addButton.setVisible(false);
+			deleteButton.setVisible(false);
+			displayButton.setVisible(false);
+		}
 
     	deleteButton.setDisable(true);
     	displayButton.setDisable(true);
