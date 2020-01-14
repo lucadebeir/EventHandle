@@ -59,6 +59,7 @@ public class AddCollaborator {
 		int idEvent = (int) Router.getInstance().getParams()[0];
 
 		ArrayList<String> listRoleBox = new ArrayList<String>();
+		listRoleBox.add("Manager");
 		listRoleBox.add("Volunteer");
 		listRoleBox.add("Intervener");
 		ObservableList<String> availableChoices = FXCollections.observableArrayList(listRoleBox); 

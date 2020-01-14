@@ -4,17 +4,18 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+<<<<<<< HEAD
 import application.Main;
 import controller.activity.ActivityController;
 import controller.chat.ChatListViewCell;
+=======
+>>>>>>> 82527c23199e688711bbcfc242aac813de439409
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -38,6 +39,12 @@ import ui.Router;
 
 public class EventController {
 	
+	@FXML private Button activitiesButton;
+	@FXML private Button tasksButton;
+	@FXML private Button collaboratorsManager;
+	@FXML private Button sponsorsManager;
+	@FXML private Button resourcesManager;
+	
 	@FXML private ListView<Chat> chatEvent;
 	@FXML private ListView<Message> messageEvent;
 	@FXML private ListView<NotificationCell> listNotifEvent;
@@ -56,6 +63,10 @@ public class EventController {
 	List<User> listManager;
 	List<User> listVolunteer;
 	List<User> listIntervener;
+	
+	boolean isManager;
+	boolean isVolunteer;
+	boolean isIntervener;
 	
 	List<Notification> listNotifs;
 	List<NotificationCell> listNotifsCell;
@@ -86,6 +97,10 @@ public class EventController {
 		listManager = lF.getAllManagerOfAnEvent(idEvent);
 		listVolunteer = lF.getAllVolunteerOfAnEvent(idEvent);
 		listIntervener = lF.getAllIntervenerOfAnEvent(idEvent);
+		
+		isManager = lF.isManager(listManager);
+		isVolunteer = lF.isVolunteer(listVolunteer);
+		isIntervener = lF.isIntervener(listIntervener);
 		
 		//initialisation du nom de l'event
 		Event event = eF.findEventById(idEvent);
@@ -126,7 +141,23 @@ public class EventController {
     	
     	//initialisation des chat dans la tableview
 		fetchListChatView();
-    	
+		
+		//changement selon le role de l'user
+		if(isManager) {
+			tasksButton.setVisible(false);
+		}
+		
+		if (isVolunteer) {
+			activitiesButton.setVisible(false);
+			tasksButton.setVisible(true);
+		}
+
+		if (isIntervener) {
+			activitiesButton.setVisible(false);
+			tasksButton.setVisible(true);
+			sponsorsManager.setVisible(false);
+		}
+		
 	}
 	
 	private void updateListView() {
@@ -174,13 +205,16 @@ public class EventController {
 		params[0] = idEvent;
 		
 		Router.getInstance().activate("ActivityList", params);
-				
-//		FXMLLoader root = new FXMLLoader(getClass().getResource("/ui/event/activities/ActivityList.fxml"));
-//	    Parent skillLayout = root.load();
-//        ActivityController lg = root.getController();
-//		lg.initializeList();
-//		Scene scene = new Scene(skillLayout, 1000, 800);
-//		Main.primaryStage.setScene(scene);
+	}
+	
+	@FXML
+	public void goToTasks() throws DisconnectedUserException, IOException {
+	
+		int idEvent = (int) Router.getInstance().getParams()[0];
+		Object[] params = new Object[5];
+		params[0] = idEvent;
+		
+		Router.getInstance().activate("TasksOfOneUser", params);
 	}
 	
 	@FXML

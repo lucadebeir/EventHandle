@@ -42,6 +42,17 @@ public class MyCollaborators {
 	
 	int idEvent = (int) Router.getInstance().getParams()[0];
 	
+	boolean isVolunteer;
+	boolean isIntervener;
+	
+	@FXML
+	private ListView<String> managerList;
+	List<User> listManager;
+	protected ListProperty<String> listPropertyManager = new SimpleListProperty<>();
+	protected List<String> listManagers = new ArrayList<>();
+	protected List<Integer> listManagersId = new ArrayList<>();
+	private int managerSelectedId = -1;
+	
 	@FXML
 	private ListView<String> volunteerList;
 	List<User> listVolunteer;
@@ -61,6 +72,18 @@ public class MyCollaborators {
 	@FXML
 	public void goBackToEvent() {
 		Router.getInstance().activate("Event", Router.getInstance().getParams());
+	}
+	
+	private void fetchListManagerView() throws DisconnectedUserException {
+		listManager = lF.getAllManagerOfAnEvent(idEvent);
+		
+		for(User u : listManager) {
+			listManagers.add(u.getFirstNameUser() + " " + u.getLastNameUser());
+			listManagersId.add(u.getId());
+		}
+		
+		managerList.itemsProperty().bind(listPropertyManager);
+		listPropertyManager.set(FXCollections.observableArrayList(listManagers));
 	}
 	
 	private void fetchListVolunteerView() throws DisconnectedUserException {
@@ -113,11 +136,19 @@ public class MyCollaborators {
 	@FXML
 	public void deleteCollaborator() throws DisconnectedUserException {
 		int index = 0;
+		int index2 = 0;
     	User user = null;
     	for (User m : listVolunteer) {
     		if (m.getId()==(volunteerSelectedId)) {
     			index = listVolunteer.indexOf(m);
     			user = m;
+    		}
+    	}
+    	for (User m : listManager) {
+    		if (m.getId()==(managerSelectedId)) {
+    			index = listManager.indexOf(m);
+    			user = m;
+    			index2 = 1;
     		}
     	}
     	if (index == 0) {
@@ -133,11 +164,19 @@ public class MyCollaborators {
     		lF.deleteUserCollaborator(idEvent, user.getId(), "isIntervener");
     		fetchListIntervenerView();
     	} else {
-    		listVolunteer.remove(user);
-    		listVolunteers.remove(user.getFirstNameUser() + " " + user.getLastNameUser());
-    		listVolunteersId.remove(index);
-    		lF.deleteUserCollaborator(idEvent, user.getId(), "isVolunteer");
-    		fetchListVolunteerView();
+    		if (index2 == 0) {
+    			listVolunteer.remove(user);
+        		listVolunteers.remove(user.getFirstNameUser() + " " + user.getLastNameUser());
+        		listVolunteersId.remove(index);
+        		lF.deleteUserCollaborator(idEvent, user.getId(), "isVolunteer");
+        		fetchListVolunteerView();
+    		} else {
+    			listManager.remove(user);
+        		listManagers.remove(user.getFirstNameUser() + " " + user.getLastNameUser());
+        		listManagersId.remove(index);
+        		lF.deleteUserCollaborator(idEvent, user.getId(), "isManager");
+        		fetchListManagerView();
+    		}
     	}
 		
     	buttonDisplay.setDisable(true);
@@ -148,12 +187,52 @@ public class MyCollaborators {
 	public void initialize() throws DisconnectedUserException {
 		lF = new LoginFacade();
 		
+		fetchListManagerView();
+		
 		fetchListVolunteerView();
 		
 		fetchListIntervenerView();
 		
+		isVolunteer = lF.isVolunteer(listVolunteer);
+		isIntervener = lF.isIntervener(listIntervener);
+		
+		if(isVolunteer || isIntervener) {
+			addButton.setVisible(false);
+			buttonDisplay.setVisible(false);
+			deleteUser.setVisible(false);
+		}
+		
 		buttonDisplay.setDisable(true);
 		deleteUser.setDisable(true);
+		
+		ChangeListener listenerManager = new ChangeListener<Object>() {  
+			@Override
+			public void changed(ObservableValue arg0, Object arg1, Object arg2) {
+				// TODO Auto-generated method stub
+				listManagers.clear();
+				
+				try {
+					managerSelectedId = listManagersId.get(managerList.getSelectionModel().getSelectedIndex());
+					buttonDisplay.setDisable(false);
+					deleteUser.setDisable(false);
+				}catch (Exception e) {
+					// TODO: handle exception
+					buttonDisplay.setDisable(false);
+					deleteUser.setDisable(false);
+				}
+				
+				try {
+					fetchListManagerView();
+				} catch (DisconnectedUserException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}	
+			}  
+		};
+		
+		managerList.getSelectionModel().selectedIndexProperty().addListener(
+				listenerManager
+				 );
 		
 		ChangeListener listenerVolunteer = new ChangeListener<Object>() {  
 			@Override

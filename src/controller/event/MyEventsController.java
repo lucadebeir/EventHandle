@@ -2,6 +2,8 @@ package controller.event;
 
 import model.Event;
 import model.EventCell;
+import model.User;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -10,6 +12,7 @@ import java.util.List;
 import controller.event.EventListViewCell;
 import controller.event.UpdateEvent;
 import facade.EventFacade;
+import facade.LoginFacade;
 import facade.exception.DisconnectedUserException;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
@@ -53,6 +56,7 @@ public class MyEventsController {
 	protected ListProperty<EventCell> listPropertyFuturEvents = new SimpleListProperty<>();
 
 	EventFacade eF = null;
+	LoginFacade lF = null;
 	
 	@FXML
     private Button exitButton;
@@ -68,6 +72,11 @@ public class MyEventsController {
 	
 	@FXML
     private Button deleteEventButton;
+	
+	//pour la partie manager vs volunteer vs intervener
+	List<User> listManager;
+	
+	boolean isManager;
     
     @FXML 
     public void exit() {
@@ -108,6 +117,9 @@ public class MyEventsController {
 		
 		fetchListEventView();
 		
+		//pour la partie manager vs volunteer vs intervener
+		lF = new LoginFacade();
+		
 		listPastEvent = new ArrayList<>();
 		listFuturEvent = new ArrayList<>();
 		
@@ -132,15 +144,8 @@ public class MyEventsController {
     	this.pastEvent.setCellFactory(eventListView -> new EventListViewCell());
     	this.futurEvent.setCellFactory(eventListView -> new EventListViewCell());
     	
-    	/**pastEvent.itemsProperty().bind(listPropertyPastEvents);
-		listPropertyPastEvents.set(FXCollections.observableArrayList(listPastEvent));
-		
-		futurEvent.itemsProperty().bind(listPropertyFuturEvents);
-		listPropertyFuturEvents.set(FXCollections.observableArrayList(listFuturEvent));**/
-    	
     	//Disabled buttons delete and update
     	displayEventButton.setDisable(true);
-		//addEventButton.setDisable(true);
 		updateEventButton.setDisable(true);
 		deleteEventButton.setDisable(true);
     	
@@ -153,10 +158,17 @@ public class MyEventsController {
     			//Get the ID of the selected Topic in the ListView
     			try {
     				eventSelectedId = listPastEventId.get(pastEvent.getSelectionModel().getSelectedIndex());
-    				//Get update and delete buttons visible
-    				updateEventButton.setDisable(false);
-    				deleteEventButton.setDisable(false);
+    				listManager = lF.getAllManagerOfAnEvent(eventSelectedId);
+    						
+    				isManager = lF.isManager(listManager);
+    				
+    				if(isManager) {
+    					//Get update and delete buttons visible
+        				updateEventButton.setDisable(false);
+        				deleteEventButton.setDisable(false);
+    				}
     				displayEventButton.setDisable(false);
+    				
     			} catch (Exception e) {
     				// TODO: handle exception
     				//After a deletion
@@ -183,9 +195,15 @@ public class MyEventsController {
     			//Get the ID of the selected Topic in the ListView
     			try {
     				eventSelectedId = listFuturEventId.get(futurEvent.getSelectionModel().getSelectedIndex());
-    				//Get update and delete buttons visible
-    				updateEventButton.setDisable(false);
-    				deleteEventButton.setDisable(false);
+    				listManager = lF.getAllManagerOfAnEvent(eventSelectedId);
+					
+    				isManager = lF.isManager(listManager);
+    				
+    				if(isManager) {
+    					//Get update and delete buttons visible
+        				updateEventButton.setDisable(false);
+        				deleteEventButton.setDisable(false);
+    				}
     				displayEventButton.setDisable(false);
     			} catch (Exception e) {
     				// TODO: handle exception
