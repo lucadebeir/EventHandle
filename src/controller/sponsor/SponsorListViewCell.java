@@ -44,9 +44,10 @@ public class SponsorListViewCell extends ListCell<Sponsor>{
             
             this.nameSponsor.setText(String.valueOf(sponsor.getNameSponsor()));
             this.numSiretSponsor.setText(String.valueOf(sponsor.getNumSiretSponsor()));
+            System.out.println(sponsor.getLastNameContactSponsor());
             this.lastNameSponsor.setText(String.valueOf(sponsor.getLastNameContactSponsor()));
 
-            this.numSiretSponsor.maxWidth(USE_COMPUTED_SIZE);
+            //this.numSiretSponsor.maxWidth(USE_COMPUTED_SIZE);
             
             setText(null);
             setGraphic(sponsorCell);

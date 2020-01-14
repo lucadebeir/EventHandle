@@ -69,10 +69,10 @@ public class SponsorController {
     			}
     		}  
     	};
-    	//sponsorList.getSelectionModel().selectedIndexProperty().addListener(listenerSponsor);
+    	sponsorList.getSelectionModel().selectedIndexProperty().addListener(listenerSponsor);
 	}
 	
-    public void displayResource()  throws DisconnectedUserException, IOException {
+    public void displaySponsor()  throws DisconnectedUserException, IOException {
     	int idEvent = (int) Router.getInstance().getParams()[0];
 		Object[] params = new Object[3];
 		params[0] = idEvent;
