@@ -1,6 +1,7 @@
 package facade;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import dao.AbstractDAOFactory;
 import dao.implement.UserDAO;
@@ -80,6 +81,39 @@ public class LoginFacade {
     public User find(int id) {
     	return userDAO.find(id);
     }
+    
+    public boolean isManager(List<User> listManager) throws DisconnectedUserException {
+		boolean result = false;
+		User userConnected = LoginFacade.getInstance().getConnectedUser();
+		for (User user : listManager) {
+			if(user.getEmailUser().equals(userConnected.getEmailUser())) {
+				result = true;
+			}
+		}
+		return result;
+	}
+	
+	public boolean isVolunteer(List<User> listVolunteer) throws DisconnectedUserException {
+		boolean result = false;
+		User userConnected = LoginFacade.getInstance().getConnectedUser();
+		for (User user : listVolunteer) {
+			if(user.getEmailUser().equals(userConnected.getEmailUser())) {
+				result = true;
+			}
+		}
+		return result;
+	}
+	
+	public boolean isIntervener(List<User> listIntervener) throws DisconnectedUserException {
+		boolean result = false;
+		User userConnected = LoginFacade.getInstance().getConnectedUser();
+		for (User user : listIntervener) {
+			if(user.getEmailUser().equals(userConnected.getEmailUser())) {
+				result = true;
+			}
+		}
+		return result;
+	}
     
     public ArrayList<User> getAllVolunteerOfAnEvent(int idEvent) {
     	return userDAO.getAllVolunteerOfAnEvent(idEvent);

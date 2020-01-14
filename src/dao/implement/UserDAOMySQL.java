@@ -291,6 +291,14 @@ public class UserDAOMySQL extends UserDAO {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+		} else if (role.contentEquals("Manager")) {
+			try {
+				this.connect.createStatement(
+				ResultSet.TYPE_SCROLL_INSENSITIVE,
+				ResultSet.CONCUR_READ_ONLY).executeUpdate("INSERT INTO isManager VALUES ('" + idUser + "','" + idEvent + "')");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		} else {
 			try {
 				this.connect.createStatement(
