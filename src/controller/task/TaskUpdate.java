@@ -23,7 +23,7 @@ import ui.Router;
 public class TaskUpdate {
 	
 	TaskFacade tf = new TaskFacade();
-	int idTask = (int) Router.getInstance().getParams()[0];
+	int idTask = (int) Router.getInstance().getParams()[2];
 	Task t;
 	
 	@FXML private TextField nameTask;

@@ -157,6 +157,7 @@ public class TaskDAOMySQL extends TaskDAO {
 		return lUser;
 	}
 	
+	
 	/*
 	 * Match/map a row in the table to the Task bean
 	 */
@@ -238,7 +239,7 @@ public class TaskDAOMySQL extends TaskDAO {
 		List<Task> list = new ArrayList<Task>();
 		Task task;
 		String sql = "SELECT * FROM task WHERE idTask IN (SELECT idTask FROM participatetask WHERE participatetask.idUser = ? AND participatetask.idTask IN "
-				+ "(SELECT concern.idTask FROM concern WHERE concern.idActivity IN (SELECT activity.idActivity FROM activity WHERE activity.idEvent = ?)))";
+				+ "(SELECT task.idTask FROM task WHERE task.idActivity IN (SELECT activity.idActivity FROM activity WHERE activity.idEvent = ?)))";
 		try {
 			PreparedStatement preparedStatement = this.connect.prepareStatement(sql);
 			preparedStatement.setInt(1,idConnectedUser);
