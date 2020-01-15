@@ -1,14 +1,14 @@
 # EventHandle
 Project OOSSE IG4 2019/2020
 
-Authors :
+##Authors :
 
 DEBEIR Luca
 GAYET Simon
 MEHERAT Adam
 RANARIMAHEFA Michel
 
-Instructions to launch the project
+##Instructions to launch the project
 To run the application, you must have Java 1.8 or higher with JavaFX also installed.
 
 1. Unzip the folder Eventhandle.zip
