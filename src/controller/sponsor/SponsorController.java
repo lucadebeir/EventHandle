@@ -31,7 +31,6 @@ public class SponsorController {
 		
 	@FXML private ListView<Sponsor> sponsorList; 
     @FXML private Button deleteButton;
-    @FXML private Button displayButton;
     @FXML private Button addButton;
 	List<Sponsor> sponsors = new ArrayList<Sponsor>();
 	private ObservableList<Sponsor> sponsorObservableList;
@@ -57,7 +56,6 @@ public class SponsorController {
 	}
     
 	public void initialize() throws DisconnectedUserException {
-		System.out.println("on initialize");
 		sponsorFacade = new SponsorFacade();
 		
 		//pour la partie manager vs volunteer vs intervener
@@ -82,11 +80,9 @@ public class SponsorController {
 		if(isVolunteer || isIntervener) {
 		addButton.setVisible(false);
 		deleteButton.setVisible(false);
-		displayButton.setVisible(false);
 		}
 
     	deleteButton.setDisable(true);
-    	displayButton.setDisable(true);
 		
     	ChangeListener listenerSponsor = new ChangeListener() {  
     		@Override
@@ -95,10 +91,8 @@ public class SponsorController {
     				selectedSponsor = sponsorList.getSelectionModel().getSelectedItem();
     				System.out.println(selectedSponsor);
     				deleteButton.setDisable(false);	
-    				displayButton.setDisable(false);
-    			} catch (Exception e) {
+       			} catch (Exception e) {
     				deleteButton.setDisable(true);
-    				displayButton.setDisable(true);
     			}
     		}  
     	};
