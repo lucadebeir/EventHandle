@@ -28,7 +28,7 @@ public class UserDAOMySQL extends UserDAO {
 	  try {
 	    ResultSet result = this.connect.createStatement(
 	    ResultSet.TYPE_SCROLL_INSENSITIVE,
-	    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM User WHERE idUser = " + id);
+	    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM user WHERE idUser = " + id);
 	    if(result.first())
 	    	user = new User(
 	    		id,
@@ -46,7 +46,7 @@ public class UserDAOMySQL extends UserDAO {
 		User user = new User(0, null, null, null, null);
 		
 		try {
-		   ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM User WHERE email = '" + id + "' AND password = '" + password + "'");
+		   ResultSet result = this.connect.createStatement().executeQuery("SELECT * FROM user WHERE email = '" + id + "' AND password = '" + password + "'");
 		   if(result.next()) {
 			   user = new User(
 			    	result.getInt("idUser"),
@@ -69,7 +69,7 @@ public class UserDAOMySQL extends UserDAO {
 		try {
 			this.connect.createStatement(
 			ResultSet.TYPE_SCROLL_INSENSITIVE,
-			ResultSet.CONCUR_READ_ONLY).executeUpdate("INSERT INTO User VALUES (NULL,'" + obj.getLastNameUser() + "','" + obj.getFirstNameUser() + "','" + obj.getEmailUser() + "','" + obj.getPasswordUser() + "')");
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("INSERT INTO user VALUES (NULL,'" + obj.getLastNameUser() + "','" + obj.getFirstNameUser() + "','" + obj.getEmailUser() + "','" + obj.getPasswordUser() + "')");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -81,7 +81,7 @@ public class UserDAOMySQL extends UserDAO {
 		try {
 			this.connect.createStatement(
 			ResultSet.TYPE_SCROLL_INSENSITIVE,
-			ResultSet.CONCUR_READ_ONLY).executeUpdate("DELETE FROM User WHERE idUser = '" + obj.getId() + "'");
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("DELETE FROM user WHERE idUser = '" + obj.getId() + "'");
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -95,7 +95,7 @@ public class UserDAOMySQL extends UserDAO {
 		try {
 			this.connect.createStatement(
 			ResultSet.TYPE_SCROLL_INSENSITIVE,
-			ResultSet.CONCUR_READ_ONLY).executeUpdate("UPDATE User SET lastNameUser = '" + obj.getLastNameUser() + "', firstNameUser = '" + obj.getFirstNameUser() + "', email = '" + obj.getEmailUser() + "', password = '" + obj.getPasswordUser() + " WHERE idUser = '" + obj.getId() + "'");
+			ResultSet.CONCUR_READ_ONLY).executeUpdate("UPDATE user SET lastNameUser = '" + obj.getLastNameUser() + "', firstNameUser = '" + obj.getFirstNameUser() + "', email = '" + obj.getEmailUser() + "', password = '" + obj.getPasswordUser() + " WHERE idUser = '" + obj.getId() + "'");
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -109,7 +109,7 @@ public class UserDAOMySQL extends UserDAO {
 		int idUser;
 		
 		try {
-		   ResultSet result = this.connect.createStatement().executeQuery("SELECT idUser FROM User WHERE email = '" + mail + "'");
+		   ResultSet result = this.connect.createStatement().executeQuery("SELECT idUser FROM user WHERE email = '" + mail + "'");
 		   if(result.next()) {
 			   idUser = result.getInt("idUser");
 			   return idUser;
@@ -128,7 +128,7 @@ public class UserDAOMySQL extends UserDAO {
 		String values[]  = name.split(" ");
 		
 		try {
-		   ResultSet result = this.connect.createStatement().executeQuery("SELECT idUser FROM User WHERE firstNameUser = '" + values[0] + "' "
+		   ResultSet result = this.connect.createStatement().executeQuery("SELECT idUser FROM user WHERE firstNameUser = '" + values[0] + "' "
 		   		+ "AND lastNameUser = '" + values[1] + "'");
 		   if(result.next()) {
 			   idUser = result.getInt("idUser");

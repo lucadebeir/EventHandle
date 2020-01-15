@@ -27,7 +27,7 @@ bin
 *.project
 *.classpath
 .classpath
-src/database/BdConnector.java
+#src/database/BdConnector.java
 
 !lib/javafx/*.jar
 !lib/*.jar
