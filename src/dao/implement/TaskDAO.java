@@ -80,5 +80,9 @@ public abstract class TaskDAO {
     }
     
     public abstract List<Task> getListTask(int idActivity);
+    
+    public abstract List<Task> getAllTaskOfOnUser(int idEvent, int idConnectedUser);
+    
+    public abstract void setTaskStatus(int idTask, boolean statusTask);
 
 }

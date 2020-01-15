@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.*;
 import database.BdConnector;
 import model.MyDate;
@@ -131,9 +130,9 @@ public class TaskDAOMySQL extends TaskDAO {
 	public List<User> getPotentialExecutor(int idEvent){
 		List<User> lUser= new ArrayList<User>();
 		String[] query = new String[3];
-		query[0] = "select u.idUser,lastNameUser,firstNameUser,email,password,e.idEvent FROM event e, isvolunteer v, user u where e.idEvent = v.idEvent and v.idUser = u.idUser and e.idEvent = " + idEvent;
-		query[1] = "select u.idUser,lastNameUser,firstNameUser,email,password,e.idEvent FROM event e, ismanager v, user u where e.idEvent = v.idEvent and v.idUser = u.idUser and e.idEvent = " + idEvent;
-		query[2] = query[0] = "select u.idUser,lastNameUser,firstNameUser,email,password,e.idEvent FROM event e, isintervener v, user u where e.idEvent = v.idEvent and v.idUser = u.idUser and e.idEvent = " + idEvent;
+		query[0] = "select u.idUser,lastNameUser,firstNameUser,email,password FROM isvolunteer v, user u where v.idUser = u.idUser and v.idEvent = " + idEvent;
+		query[1] = "select u.idUser,lastNameUser,firstNameUser,email,password FROM ismanager v, user u where v.idUser = u.idUser and v.idEvent = " + idEvent;
+		query[2] = "select u.idUser,lastNameUser,firstNameUser,email,password FROM isintervener v, user u where v.idUser = u.idUser and v.idEvent = " + idEvent;
 		User u;
 		
 		for(String q : query) {
@@ -142,13 +141,16 @@ public class TaskDAOMySQL extends TaskDAO {
 			    ResultSet.TYPE_SCROLL_INSENSITIVE,
 			    ResultSet.CONCUR_READ_ONLY).executeQuery(q);
 			    while (result.next()) {
+			    	int i = 0;
 			    	u = new User(
 					    	result.getInt("idUser"),
 					        result.getString("lastNameUser"),
 					        result.getString("firstNameUser"),
 					        result.getString("email"),
 					        result.getString("password"));
-			    	lUser.add(u);
+			    	if (!lUser.contains(u)) {
+			    		lUser.add(u);
+			    	}
 			    }
 			} catch (SQLException e) {
 		  	    e.printStackTrace();
@@ -157,6 +159,7 @@ public class TaskDAOMySQL extends TaskDAO {
 		
 		return lUser;
 	}
+	
 	
 	/*
 	 * Match/map a row in the table to the Task bean
@@ -232,6 +235,62 @@ public class TaskDAOMySQL extends TaskDAO {
 			preparedStatement.executeUpdate();
         } catch (SQLException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	public List<Task> getAllTaskOfOnUser(int idEvent, int idConnectedUser) {
+		List<Task> list = new ArrayList<Task>();
+		Task task;
+		String sql = "SELECT * FROM task WHERE idTask IN (SELECT idTask FROM participatetask WHERE participatetask.idUser = ? AND participatetask.idTask IN "
+				+ "(SELECT task.idTask FROM task WHERE task.idActivity IN (SELECT activity.idActivity FROM activity WHERE activity.idEvent = ?)))";
+		try {
+			PreparedStatement preparedStatement = this.connect.prepareStatement(sql);
+			preparedStatement.setInt(1,idConnectedUser);
+			preparedStatement.setInt(2, idEvent);
+			ResultSet result = preparedStatement.executeQuery();
+			while(result.next()) {
+				task = new Task(
+				    	result.getInt("idTask"),
+				    	result.getString("nameTask"),
+				        new MyDate(result.getString("startDateTask")),
+				        new MyDate(result.getString("endDateTask")),
+				        result.getString("descriptionTask"),
+				        result.getBoolean("statusTask"),
+				        result.getInt("idActivity"));
+				list.add(task);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	
+	public void setTaskStatus(int idTask, boolean statusTask) {
+		String sql = "UPDATE task SET statusTask=? WHERE idTask=?";
+		try {
+			PreparedStatement preparedStatement = this.connect.prepareStatement(sql);
+			preparedStatement.setBoolean(1, statusTask);
+			preparedStatement.setInt(2,idTask);
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		Task t = findTask(idTask);
+		int ide = findIdEventTaskByID(idTask);
+		
+		if(statusTask) {
+			sql = "INSERT INTO notification VALUES (NULL, ?, 'La tâche est finie', ?)";
+			try {
+				PreparedStatement preparedStatement = this.connect.prepareStatement(sql);
+				preparedStatement.setString(1, t.getTaskName());
+				preparedStatement.setInt(2, ide);
+				preparedStatement.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	

@@ -24,7 +24,7 @@ public class ActivityDetailController {
 	TaskFacade taskFacade;
 	ActivityFacade activityFacade;
 	
-	int idActivity = (int) Router.getInstance().getParams()[0];
+	int idActivity = (int) Router.getInstance().getParams()[1];
 	
 	@FXML
 	private ListView<Task> taskList;
@@ -33,16 +33,11 @@ public class ActivityDetailController {
 	@FXML
     private Label nameLabel;
 	
-	//@FXML
-    //private Label descriptionLabel;
+	@FXML
+    private Label descriptionLabel;
 	
 	@FXML
-	private TextArea descriptionArea;
-	
-	@FXML
-	private ToggleButton statusButton;
-	
-	
+	private Label statusLabel;
 	
 	@FXML
 	public void initialize() throws SQLException, DisconnectedUserException {
@@ -61,17 +56,15 @@ public class ActivityDetailController {
 		Activity a = activityFacade.getActivityById(idActivity);
 		nameLabel.setText(a.getNameActivity());
 		//descriptionLabel.setText(a.getDescriptionActivity());
-		descriptionArea.setText(a.getDescriptionActivity());
-		descriptionArea.setWrapText(false);
-		statusButton.setSelected(a.isStatusActivity());
-		
+		descriptionLabel.setText(a.getDescriptionActivity());
+		statusLabel.setText(a.isStatusActivity() ?  "Effectuate" : "not effectuate");
 	}
 	
 	private void itemSelected() {
 		taskList.getSelectionModel().selectedItemProperty().addListener(observable -> {			
 			Task selectedT = taskList.getSelectionModel().getSelectedItem();
 			Object[] params = Router.getInstance().getParams();
-			params[0] = selectedT.getIdTask();
+			params[2] = selectedT.getIdTask();
 			Router.getInstance().activate("TaskDetail", params);
 		});
 		
@@ -80,7 +73,7 @@ public class ActivityDetailController {
 	@FXML
 	private void addTask(ActionEvent e) throws IOException{
 		Object[] params = Router.getInstance().getParams();
-		params[0] = idActivity;
+		params[1] = idActivity;
 		Router.getInstance().activate("addTask",params);
 	}
 	

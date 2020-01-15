@@ -11,18 +11,40 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="548.0" prefWidth="873.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.task.TaskCreation">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="548.0" prefWidth="873.0" style="-fx-background-color: #fefee2;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.task.TaskCreation">
    <children>
       <TextArea fx:id="description" layoutX="349.0" layoutY="238.0" prefHeight="130.0" prefWidth="322.0" />
       <DatePicker fx:id="dateEndTask" layoutX="349.0" layoutY="192.0" prefHeight="31.0" prefWidth="322.0" />
       <DatePicker fx:id="dateStartTask" layoutX="349.0" layoutY="150.0" prefHeight="31.0" prefWidth="322.0" />
       <TextField fx:id="nameTask" layoutX="349.0" layoutY="109.0" prefHeight="31.0" prefWidth="322.0" />
-      <Label layoutX="217.0" layoutY="238.0" prefHeight="21.0" prefWidth="84.0" text="Description" />
-      <Label layoutX="217.0" layoutY="192.0" prefHeight="21.0" prefWidth="100.0" text="Date end task" />
-      <Label layoutX="217.0" layoutY="155.0" prefHeight="21.0" prefWidth="112.0" text="Date start task" />
-      <Label layoutX="217.0" layoutY="114.0" prefHeight="21.0" prefWidth="84.0" text="Name Task" />
-      <Button layoutX="238.0" layoutY="400.0" mnemonicParsing="false" onAction="#validateAdd" prefHeight="31.0" prefWidth="182.0" text="Validate" />
-      <Button layoutX="474.0" layoutY="400.0" mnemonicParsing="false" onAction="#cancelAdd" prefHeight="31.0" prefWidth="182.0" text="Cancel" />
+      <Label layoutX="202.0" layoutY="246.0" prefHeight="22.0" prefWidth="106.0" text="Description" textFill="#f8a122">
+         <font>
+            <Font name="Arial Black" size="14.0" />
+         </font></Label>
+      <Label layoutX="193.0" layoutY="192.0" prefHeight="22.0" prefWidth="117.0" text="Date end task" textFill="#f8a122">
+         <font>
+            <Font name="Arial Black" size="14.0" />
+         </font></Label>
+      <Label layoutX="195.0" layoutY="155.0" prefHeight="22.0" prefWidth="134.0" text="Date start task" textFill="#f8a122">
+         <font>
+            <Font name="Arial Black" size="14.0" />
+         </font></Label>
+      <Label layoutX="197.0" layoutY="114.0" prefHeight="22.0" prefWidth="104.0" text="Name Task" textFill="#f8a122">
+         <font>
+            <Font name="Arial Black" size="14.0" />
+         </font></Label>
+      <Button layoutX="243.0" layoutY="436.0" mnemonicParsing="false" onAction="#validateAdd" prefHeight="31.0" prefWidth="182.0" style="-fx-background-color: #77e74e;" text="Validate" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="20.0" />
+         </font></Button>
+      <Button layoutX="481.0" layoutY="434.0" mnemonicParsing="false" onAction="#cancelAdd" prefHeight="31.0" prefWidth="182.0" style="-fx-background-color: #ff0000;" text="Cancel" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="20.0" />
+         </font></Button>
+      <Label layoutX="353.0" layoutY="41.0" text="Task Creation" textFill="#f8a122">
+         <font>
+            <Font name="Arial Black" size="24.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

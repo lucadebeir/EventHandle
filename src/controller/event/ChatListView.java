@@ -15,7 +15,7 @@ import model.Chat;
  * @author lucadebeir
  */
 
-public class ChatListViewCell extends ListCell<Chat> {
+public class ChatListView extends ListCell<Chat> {
 	
 	
 	private EventController controller;
@@ -33,7 +33,7 @@ public class ChatListViewCell extends ListCell<Chat> {
 	
 	LoginFacade lF = new LoginFacade();
 
-	public ChatListViewCell() {
+	public ChatListView() {
 	}
 	
 

@@ -4,6 +4,7 @@ import java.util.*;
 
 import dao.AbstractDAOFactory;
 import dao.implement.TaskDAO;
+import facade.exception.DisconnectedUserException;
 import model.MyDate;
 import model.Task;
 import model.User;
@@ -75,6 +76,13 @@ public class TaskFacade {
     	taskDAO.addParticipant(idUser, idTask);
     }
 
+    public List<Task> getAllTaskOfOnUser(int idEvent) throws DisconnectedUserException {
+    	int idConnectedUser = LoginFacade.getInstance().getConnectedUser().getId();
+    	return taskDAO.getAllTaskOfOnUser(idEvent, idConnectedUser);
+    }
     
+    public void setTaskStatus(int idTask, boolean statusTask) {
+    	taskDAO.setTaskStatus(idTask, statusTask);
+    }
 
 }

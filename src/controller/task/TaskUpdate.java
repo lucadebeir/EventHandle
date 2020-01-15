@@ -23,7 +23,7 @@ import ui.Router;
 public class TaskUpdate {
 	
 	TaskFacade tf = new TaskFacade();
-	int idTask = (int) Router.getInstance().getParams()[0];
+	int idTask = (int) Router.getInstance().getParams()[2];
 	Task t;
 	
 	@FXML private TextField nameTask;
@@ -49,23 +49,35 @@ public class TaskUpdate {
 		dateStartTask.setValue(dateStartTask.getConverter().fromString(t.getStartDateTask().getShowingDatePicker()));
 		dateEndTask.setValue(dateEndTask.getConverter().fromString(t.getEndDateTask().getShowingDatePicker()));
 		description.setText(t.getDescriptionTask());
-		System.out.println(t.isStatusTask());
 		statusDone.setSelected(t.isStatusTask());
 		statusNotDone.setSelected(!t.isStatusTask());
-		
-		
-		// initialize potential participant user add Combobox
-		int idEvent = tf.findIdEventTaskByID(idTask);
-		List<User> listP = tf.getPotentialExecutor(idEvent);
-		potentialObsList = FXCollections.observableArrayList();
-		potentialObsList.addAll(listP);
-		listPotential.setItems(potentialObsList);
 		
 		// initialize list of participant
 		listParticipant = FXCollections.observableArrayList();
 		List<User> listPart = tf.participantTask(idTask);
 		listParticipant.addAll(listPart);
 		listCollab.setItems(listParticipant);
+		
+		// initialize potential participant user add Combobox
+		int idEvent = tf.findIdEventTaskByID(idTask);
+		List<User> listP = tf.getPotentialExecutor(idEvent);
+		User userDelete = null;
+		for(User u : listPart) {
+			for(User user : listP) {
+				System.out.println(user.getId() == u.getId());
+				if(user.getId() == u.getId()) {
+					userDelete = user;
+				}
+			}
+		}
+		if (userDelete != null) {
+			listP.remove(userDelete);
+		}
+		potentialObsList = FXCollections.observableArrayList();
+		potentialObsList.addAll(listP);
+		listPotential.setItems(potentialObsList);
+		
+		
 		
 	}
 	
@@ -79,7 +91,7 @@ public class TaskUpdate {
 				listCollab.getItems().add(selected);
 				tf.addParticipant(selected.getId(),idTask);
 				Object[] params = Router.getInstance().getParams();
-				params[0] = idTask;
+				params[2] = idTask;
 				Router.getInstance().activate("TaskModify", params);
 			}
 		}
@@ -94,7 +106,7 @@ public class TaskUpdate {
 			listCollab.getItems().remove(selectedIdx);
 			tf.deleteParticipant(selectedUser.getId(), idTask);
 			Object[] params = Router.getInstance().getParams();
-			params[0] = idTask;
+			params[2] = idTask;
 			Router.getInstance().activate("TaskModify", params);
 		}
 	}
@@ -111,14 +123,14 @@ public class TaskUpdate {
 		tf.updateTask(idTask,nameTask.getText(), dStart, dEnd, description.getText(),status, idActivity);
 		
 		Object[] params = Router.getInstance().getParams();
-		params[0] = idTask;
+		params[2] = idTask;
 		Router.getInstance().activate("TaskDetail", params);
 	}
 	
 	@FXML
     private void goBack(ActionEvent event) {
 		Object[] params = Router.getInstance().getParams();
-		params[0] = t.getIdTask();
+		params[2] = t.getIdTask();
 		Router.getInstance().activate("TaskDetail", params);
 	}
 	

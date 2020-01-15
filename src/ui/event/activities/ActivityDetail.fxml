@@ -47,7 +47,6 @@
                <font>
                   <Font name="Arial Black" size="18.0" />
                </font></Label>
-            <ToggleButton fx:id="statusButton" mnemonicParsing="false" text="ToggleButton" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
             <Button mnemonicParsing="false" onAction="#modifyActivity" style="-fx-background-color: #faf400;" text="Modify Activity" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                <font>
                   <Font name="Arial Black" size="15.0" />
@@ -64,7 +63,8 @@
                   <Insets top="20.0" />
                </GridPane.margin>
             </Label>
-            <TextArea fx:id="descriptionArea" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label fx:id="descriptionLabel" prefHeight="21.0" prefWidth="304.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label fx:id="statusLabel" prefHeight="21.0" prefWidth="280.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
          </children>
       </GridPane>
    </top>

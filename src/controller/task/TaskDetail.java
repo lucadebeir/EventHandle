@@ -18,7 +18,7 @@ import ui.Router;
 public class TaskDetail {
 	
 	TaskFacade tf = new TaskFacade();
-	int idTask = (int) Router.getInstance().getParams()[0];
+	int idTask = (int) Router.getInstance().getParams()[2];
 	
 	Task t;
 	
@@ -53,14 +53,14 @@ public class TaskDetail {
 	@FXML
     private void goBack(ActionEvent event) {
 		Object[] params = Router.getInstance().getParams();
-		params[0] = t.getIdActivity();
+		params[1] = t.getIdActivity();
 		Router.getInstance().activate("ActivityDetail", params);
 	}
 	
 	@FXML
     private void modifyTask(ActionEvent event) {
 		Object[] params = Router.getInstance().getParams();
-		params[0] = idTask;
+		params[2] = idTask;
 		Router.getInstance().activate("TaskModify", params);
 	}
 	

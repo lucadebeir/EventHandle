@@ -38,7 +38,8 @@ public class ActivityController {
 	
 	@FXML
 	private void addActivity(ActionEvent e) throws IOException{
-		Router.getInstance().activate("addActivity");
+		Object[] params = Router.getInstance().getParams();
+		Router.getInstance().activate("AddActivity",params);
 	}
 	
 	@FXML
@@ -62,7 +63,7 @@ public class ActivityController {
 		activityList.getSelectionModel().selectedItemProperty().addListener(observable -> {			
 			Activity selectedA = activityList.getSelectionModel().getSelectedItem();
 			Object[] params = Router.getInstance().getParams();
-			params[0] = selectedA.getIdActivity();
+			params[1] = selectedA.getIdActivity();
 			Router.getInstance().activate("ActivityDetail", params);
 		});
 	}		

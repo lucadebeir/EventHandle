@@ -44,10 +44,10 @@ public class ActivityFacade {
     	return activityDAO.findActivity(id);
     }
 
-    /**
-     * 
-     */
-    public AbstractDAOFactory factory;
+    public void addActivity(String name, String description,int idEvent) {
+    	Activity a = new Activity(0,name,description,false,idEvent);
+    	activityDAO.createActivity(a);
+    }
 
     /**
      * 
