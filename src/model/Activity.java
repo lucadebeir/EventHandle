@@ -18,8 +18,17 @@ public class Activity {
     }
     
     
+    
+    public Activity(int idActivity, String nameActivity, String descriptionActivity, boolean statusActivity,
+			int idEvent) {
+		this.idActivity = idActivity;
+		this.nameActivity = nameActivity;
+		this.descriptionActivity = descriptionActivity;
+		this.statusActivity = statusActivity;
+		this.idEvent = idEvent;
+	}
 
-    public int getIdActivity() {
+	public int getIdActivity() {
 		return idActivity;
 	}
 	

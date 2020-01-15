@@ -38,7 +38,8 @@ public class ActivityController {
 	
 	@FXML
 	private void addActivity(ActionEvent e) throws IOException{
-		Router.getInstance().activate("addActivity");
+		Object[] params = Router.getInstance().getParams();
+		Router.getInstance().activate("AddActivity",params);
 	}
 	
 	@FXML

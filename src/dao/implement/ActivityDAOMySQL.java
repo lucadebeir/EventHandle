@@ -47,8 +47,15 @@ public class ActivityDAOMySQL extends ActivityDAO {
      * @param obj 
      * @return
      */
-    public void createActivity(Activity obj) {
-        // TODO implement here
+    public void createActivity(Activity a) {
+    	String query = "INSERT INTO activity values (NULL,'" + a.getNameActivity() + "',0,'" + a.getDescriptionActivity() + "'," + a.getIdEvent()+ ")";
+    	try {
+        	this.connect.createStatement(
+        			ResultSet.TYPE_SCROLL_INSENSITIVE,
+        			ResultSet.CONCUR_READ_ONLY).executeUpdate(query);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
     }
 
     /**
