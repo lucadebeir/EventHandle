@@ -49,23 +49,35 @@ public class TaskUpdate {
 		dateStartTask.setValue(dateStartTask.getConverter().fromString(t.getStartDateTask().getShowingDatePicker()));
 		dateEndTask.setValue(dateEndTask.getConverter().fromString(t.getEndDateTask().getShowingDatePicker()));
 		description.setText(t.getDescriptionTask());
-		System.out.println(t.isStatusTask());
 		statusDone.setSelected(t.isStatusTask());
 		statusNotDone.setSelected(!t.isStatusTask());
-		
-		
-		// initialize potential participant user add Combobox
-		int idEvent = tf.findIdEventTaskByID(idTask);
-		List<User> listP = tf.getPotentialExecutor(idEvent);
-		potentialObsList = FXCollections.observableArrayList();
-		potentialObsList.addAll(listP);
-		listPotential.setItems(potentialObsList);
 		
 		// initialize list of participant
 		listParticipant = FXCollections.observableArrayList();
 		List<User> listPart = tf.participantTask(idTask);
 		listParticipant.addAll(listPart);
 		listCollab.setItems(listParticipant);
+		
+		// initialize potential participant user add Combobox
+		int idEvent = tf.findIdEventTaskByID(idTask);
+		List<User> listP = tf.getPotentialExecutor(idEvent);
+		User userDelete = null;
+		for(User u : listPart) {
+			for(User user : listP) {
+				System.out.println(user.getId() == u.getId());
+				if(user.getId() == u.getId()) {
+					userDelete = user;
+				}
+			}
+		}
+		if (userDelete != null) {
+			listP.remove(userDelete);
+		}
+		potentialObsList = FXCollections.observableArrayList();
+		potentialObsList.addAll(listP);
+		listPotential.setItems(potentialObsList);
+		
+		
 		
 	}
 	

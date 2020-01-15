@@ -141,13 +141,16 @@ public class TaskDAOMySQL extends TaskDAO {
 			    ResultSet.TYPE_SCROLL_INSENSITIVE,
 			    ResultSet.CONCUR_READ_ONLY).executeQuery(q);
 			    while (result.next()) {
+			    	int i = 0;
 			    	u = new User(
 					    	result.getInt("idUser"),
 					        result.getString("lastNameUser"),
 					        result.getString("firstNameUser"),
 					        result.getString("email"),
 					        result.getString("password"));
-			    	lUser.add(u);
+			    	if (!lUser.contains(u)) {
+			    		lUser.add(u);
+			    	}
 			    }
 			} catch (SQLException e) {
 		  	    e.printStackTrace();
