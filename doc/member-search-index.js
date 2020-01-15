@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"controller.sponsor","c":"AddSponsorController","l":"AddSponsorController()","url":"%3Cinit%3E()"},{"p":"controller.sponsor","c":"AddSponsorController","l":"AddSponsorController()"},{"p":"controller.sponsor","c":"AddSponsorController","l":"createSponsorDTO()"},{"p":"controller.sponsor","c":"AddSponsorController","l":"initialize()"}]

@@ -63,7 +63,7 @@ public class AddSponsorController {
 			Sponsor sponsor = this.createSponsorDTO();
 			System.out.println(sponsor +", on a bien l'objet");
 			System.out.println(sponsorFacade + ", sponsor facade");
-			this.sponsorFacade.addSponsor(sponsor);  //ici ça plante
+			this.sponsorFacade.addSponsor(sponsor);
 			
 			Router.getInstance().activate("Sponsors", Router.getInstance().getParams());
 		} else {
@@ -90,16 +90,8 @@ public class AddSponsorController {
 		String lastNameSponsor = this.lastNameSponsor.getText();
 		String firstNameSponsor = this.firstNameSponsor.getText();
 		String emailSponsor = this.emailSponsor.getText();
-		
-		System.out.println(nameSponsor);
-		System.out.println(numSiretSponsor);
-		System.out.println(lastNameSponsor);
-		System.out.println(firstNameSponsor);
-		System.out.println(emailSponsor);
 
     	sponsorDTO = new Sponsor(eventId,nameSponsor,numSiretSponsor,lastNameSponsor,firstNameSponsor,emailSponsor);
-    	System.out.println(eventId);
-    	System.out.println(sponsorDTO +", objet crée, donc on le renvoi pour l'addSponsor");
     	
     	return sponsorDTO;
 	}

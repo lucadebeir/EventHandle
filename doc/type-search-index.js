@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"controller.sponsor","l":"AddSponsorController"},{"l":"All Classes","url":"allclasses-index.html"}]
