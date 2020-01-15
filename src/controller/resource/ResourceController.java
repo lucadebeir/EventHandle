@@ -2,7 +2,7 @@ package controller.resource;
 
 import java.io.IOException;
 import java.util.*;
-
+import facade.LoginFacade;
 import facade.ResourceFacade;
 import facade.exception.DisconnectedUserException;
 import javafx.beans.value.ChangeListener;
@@ -11,12 +11,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.stage.Stage;
-import model.Event;
 import model.Resource;
+import model.User;
 import ui.Router;
 
 /**
@@ -26,6 +24,8 @@ public class ResourceController {
 
 
 	private ResourceFacade resourceFacade;
+	private LoginFacade lF;
+	
 	private int eventId;
 	private Resource selectedResource;
 	
@@ -34,6 +34,13 @@ public class ResourceController {
 	@FXML private ListView<Resource> vehicleList;
     @FXML private Button deleteButton;
     @FXML private Button displayButton;
+    @FXML private Button addButton;
+    
+	List<User> listVolunteer;
+	List<User> listIntervener;
+	
+	boolean isVolunteer;
+	boolean isIntervener;
     
 	List<Resource> materials;
 	private ObservableList<Resource> materialObservableList;
@@ -60,7 +67,15 @@ public class ResourceController {
 		consomables = resourceFacade.getResourcesForEvent("Consomable", this.eventId);
 	}
     
-    public void initialize() {
+    public void initialize() throws DisconnectedUserException {
+    	
+    	lF = new LoginFacade();
+		
+		listVolunteer = lF.getAllVolunteerOfAnEvent(eventId);
+		listIntervener = lF.getAllIntervenerOfAnEvent(eventId);
+		
+		isVolunteer = lF.isVolunteer(listVolunteer);
+		isIntervener = lF.isIntervener(listIntervener);
     	
     	fetchResourceLists(); 
     	
@@ -88,6 +103,12 @@ public class ResourceController {
     	
     	consomableList.setItems(this.consomableObservableList);
     	consomableList.setCellFactory(resourceListView -> new ResourceListViewCell());
+    	
+    	if(isVolunteer || isIntervener) {
+    		addButton.setVisible(false);
+    		deleteButton.setVisible(false);
+    		displayButton.setVisible(false);
+    	}
     	
     	deleteButton.setDisable(true);
     	displayButton.setDisable(true);
@@ -168,8 +189,9 @@ public class ResourceController {
 
     /**
      * @return
+     * @throws DisconnectedUserException 
      */
-    public void deleteResource() {
+    public void deleteResource() throws DisconnectedUserException {
         resourceFacade.deleteResource(selectedResource.getClassName(),selectedResource.getIdResource());
         initialize();
     }

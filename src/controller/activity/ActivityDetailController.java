@@ -24,7 +24,7 @@ public class ActivityDetailController {
 	TaskFacade taskFacade;
 	ActivityFacade activityFacade;
 	
-	int idActivity = (int) Router.getInstance().getParams()[0];
+	int idActivity = (int) Router.getInstance().getParams()[1];
 	
 	@FXML
 	private ListView<Task> taskList;
@@ -71,7 +71,7 @@ public class ActivityDetailController {
 		taskList.getSelectionModel().selectedItemProperty().addListener(observable -> {			
 			Task selectedT = taskList.getSelectionModel().getSelectedItem();
 			Object[] params = Router.getInstance().getParams();
-			params[0] = selectedT.getIdTask();
+			params[2] = selectedT.getIdTask();
 			Router.getInstance().activate("TaskDetail", params);
 		});
 		
@@ -80,7 +80,7 @@ public class ActivityDetailController {
 	@FXML
 	private void addTask(ActionEvent e) throws IOException{
 		Object[] params = Router.getInstance().getParams();
-		params[0] = idActivity;
+		params[1] = idActivity;
 		Router.getInstance().activate("addTask",params);
 	}
 	

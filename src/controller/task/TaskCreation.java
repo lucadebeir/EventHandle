@@ -35,7 +35,7 @@ public class TaskCreation {
 			taskFacade.addTask(nameTask.getText(), dStart, dEnd, description.getText(), idActivity);
 			
 			Object[] params = Router.getInstance().getParams();
-			params[0] = idActivity;
+			params[1] = idActivity;
 			
 			Router.getInstance().activate("ActivityDetail", params);
 	
@@ -45,7 +45,7 @@ public class TaskCreation {
 	@FXML
     private void cancelAdd(ActionEvent event) {
 		Object[] params = Router.getInstance().getParams();
-		params[0] = idActivity;
+		params[1] = idActivity;
 		Router.getInstance().activate("ActivityDetail", params);
 	}
 

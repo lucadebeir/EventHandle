@@ -79,7 +79,7 @@ public class TaskUpdate {
 				listCollab.getItems().add(selected);
 				tf.addParticipant(selected.getId(),idTask);
 				Object[] params = Router.getInstance().getParams();
-				params[0] = idTask;
+				params[2] = idTask;
 				Router.getInstance().activate("TaskModify", params);
 			}
 		}
@@ -94,7 +94,7 @@ public class TaskUpdate {
 			listCollab.getItems().remove(selectedIdx);
 			tf.deleteParticipant(selectedUser.getId(), idTask);
 			Object[] params = Router.getInstance().getParams();
-			params[0] = idTask;
+			params[2] = idTask;
 			Router.getInstance().activate("TaskModify", params);
 		}
 	}
@@ -111,14 +111,14 @@ public class TaskUpdate {
 		tf.updateTask(idTask,nameTask.getText(), dStart, dEnd, description.getText(),status, idActivity);
 		
 		Object[] params = Router.getInstance().getParams();
-		params[0] = idTask;
+		params[2] = idTask;
 		Router.getInstance().activate("TaskDetail", params);
 	}
 	
 	@FXML
     private void goBack(ActionEvent event) {
 		Object[] params = Router.getInstance().getParams();
-		params[0] = t.getIdTask();
+		params[2] = t.getIdTask();
 		Router.getInstance().activate("TaskDetail", params);
 	}
 	

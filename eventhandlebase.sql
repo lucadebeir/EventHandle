@@ -140,7 +140,7 @@ INSERT INTO `conservation` (`idConservation`, `nameConservation`, `descriptionCo
 -- --------------------------------------------------------
 
 --
--- Structure de la table `consomable`
+-- Table structure for table `consomable`
 --
 
 DROP TABLE IF EXISTS `consomable`;
@@ -154,9 +154,19 @@ CREATE TABLE IF NOT EXISTS `consomable` (
   `quantityconsomable` int(11) DEFAULT NULL,
   `priceconsomable` float DEFAULT NULL,
   `idEvent` int(11) NOT NULL,
+  `limiteDate` date DEFAULT NULL,
+  `idConservation` int(11) NOT NULL,
   PRIMARY KEY (`idconsomable`),
-  KEY `consomableToEvent` (`idEvent`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+  KEY `consomableToEvent` (`idEvent`),
+  KEY `consomableToConservation` (`idConservation`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `consomable`
+--
+
+INSERT INTO `consomable` (`idconsomable`, `nameconsomable`, `locationconsomable`, `descriptionconsomable`, `stateconsomable`, `volumeconsomable`, `quantityconsomable`, `priceconsomable`, `idEvent`, `limiteDate`, `idConservation`) VALUES
+(8, 'testconso', 'paris', 'zeezdzerfz', 'order', 10, 10, 10, 7, '2020-01-14', 4);
 
 -- --------------------------------------------------------
 
@@ -380,7 +390,7 @@ CREATE TABLE IF NOT EXISTS `participatetask` (
   `idTask` int(11) NOT NULL,
   KEY `idUser` (`idUser`),
   KEY `idTask` (`idTask`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `participatetask`
@@ -485,6 +495,38 @@ INSERT INTO `user` (`idUser`, `lastNameUser`, `firstNameUser`, `email`, `passwor
 (3, 'Debeir', 'Margaux', 'm@m.m', 'm'),
 (4, 'Michel', 'RANA', 'michel@gmail.com', 'michel');
 
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vehicle`
+--
+
+DROP TABLE IF EXISTS `vehicle`;
+CREATE TABLE IF NOT EXISTS `vehicle` (
+  `idvehicle` int(11) NOT NULL AUTO_INCREMENT,
+  `namevehicle` varchar(32) NOT NULL,
+  `locationvehicle` varchar(32) NOT NULL,
+  `descriptionvehicle` text NOT NULL,
+  `statevehicle` varchar(32) NOT NULL,
+  `volumevehicle` float DEFAULT NULL,
+  `quantityvehicle` int(11) DEFAULT NULL,
+  `pricevehicle` float DEFAULT NULL,
+  `idEvent` int(11) NOT NULL,
+  PRIMARY KEY (`idvehicle`),
+  KEY `vehicleToEvent` (`idEvent`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `vehicle`
+--
+
+INSERT INTO `vehicle` (`idvehicle`, `namevehicle`, `locationvehicle`, `descriptionvehicle`, `statevehicle`, `volumevehicle`, `quantityvehicle`, `pricevehicle`, `idEvent`) VALUES
+(3, 'edsheran', 'de', 'dede', 'Stock', 14, 41, 14, 7);
+COMMIT;
+
+
+
 --
 -- Contraintes pour les tables déchargées
 --
@@ -517,11 +559,15 @@ ALTER TABLE `concern`
   ADD CONSTRAINT `task` FOREIGN KEY (`idTask`) REFERENCES `task` (`idTask`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `consomable`
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `consomable`
 --
 ALTER TABLE `consomable`
-  ADD CONSTRAINT `consomableToEvent` FOREIGN KEY (`idEvent`) REFERENCES `event` (`idEvent`) ON DELETE CASCADE ON UPDATE CASCADE;
-
+  ADD CONSTRAINT `consomableToConservation` FOREIGN KEY (`idConservation`) REFERENCES `conservation` (`idConservation`);
+COMMIT;
 --
 -- Contraintes pour la table `contract`
 --
