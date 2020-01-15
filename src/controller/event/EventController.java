@@ -91,11 +91,9 @@ public class EventController {
 		cF = new ChatFacade();
 		lF = new LoginFacade();
 		
-		listManager = lF.getAllManagerOfAnEvent(idEvent);
 		listVolunteer = lF.getAllVolunteerOfAnEvent(idEvent);
 		listIntervener = lF.getAllIntervenerOfAnEvent(idEvent);
 		
-		isManager = lF.isManager(listManager);
 		isVolunteer = lF.isVolunteer(listVolunteer);
 		isIntervener = lF.isIntervener(listIntervener);
 		
@@ -140,10 +138,6 @@ public class EventController {
 		fetchListChatView();
 		
 		//changement selon le role de l'user
-		if(isManager) {
-			tasksButton.setVisible(false);
-		}
-		
 		if (isVolunteer) {
 			activitiesButton.setVisible(false);
 			tasksButton.setVisible(true);

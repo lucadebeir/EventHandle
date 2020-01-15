@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.*;
 import database.BdConnector;
 import model.MyDate;
@@ -231,6 +230,47 @@ public class TaskDAOMySQL extends TaskDAO {
 			preparedStatement.setInt(2,idUser);
 			preparedStatement.executeUpdate();
         } catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public List<Task> getAllTaskOfOnUser(int idEvent, int idConnectedUser) {
+		List<Task> list = new ArrayList<Task>();
+		Task task;
+		String sql = "SELECT * FROM task WHERE idTask IN (SELECT idTask FROM participatetask WHERE participatetask.idUser = ? AND participatetask.idTask IN "
+				+ "(SELECT concern.idTask FROM concern WHERE concern.idActivity IN (SELECT activity.idActivity FROM activity WHERE activity.idEvent = ?)))";
+		try {
+			PreparedStatement preparedStatement = this.connect.prepareStatement(sql);
+			preparedStatement.setInt(1,idConnectedUser);
+			preparedStatement.setInt(2, idEvent);
+			ResultSet result = preparedStatement.executeQuery();
+			while(result.next()) {
+				task = new Task(
+				    	result.getInt("idTask"),
+				    	result.getString("nameTask"),
+				        new MyDate(result.getString("startDateTask")),
+				        new MyDate(result.getString("endDateTask")),
+				        result.getString("descriptionTask"),
+				        result.getBoolean("statusTask"),
+				        result.getInt("idActivity"));
+				list.add(task);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public void setTaskStatus(int idTask, boolean statusTask) {
+		System.out.println("cc");
+		String sql = "UPDATE task SET statusTask=? WHERE idTask=?";
+		try {
+			PreparedStatement preparedStatement = this.connect.prepareStatement(sql);
+			preparedStatement.setBoolean(1, statusTask);
+			preparedStatement.setInt(2,idTask);
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
