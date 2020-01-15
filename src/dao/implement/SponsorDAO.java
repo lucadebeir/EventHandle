@@ -15,6 +15,7 @@ public abstract class SponsorDAO {
     public abstract void createSponsorDAO();
 	public abstract List<Sponsor> getAllSponsor(int eventId);
 	public abstract void createSponsor(Sponsor sponsor);
+	public abstract void deleteSponsor(int id);
 
 
 

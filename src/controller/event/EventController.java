@@ -170,7 +170,7 @@ public class EventController {
 	private void fetchListChatView() throws DisconnectedUserException {
 		listChat = cF.getAllChatOfAnEvent(idEvent);
 		
-		this.chatEvent.setCellFactory(chatListView -> new ChatListViewCell());
+		this.chatEvent.setCellFactory(chatListView -> new ChatListView());
 		
 		
 		chatEvent.itemsProperty().bind(listPropertyChat);

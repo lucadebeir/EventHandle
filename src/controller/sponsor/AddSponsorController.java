@@ -32,7 +32,6 @@ public class AddSponsorController {
 	@FXML private TextField lastNameSponsor;
 	@FXML private TextField firstNameSponsor;
 	@FXML private TextField emailSponsor;
-	@FXML private TextField numTelContactSponsor;
 	
 	@FXML private Label errorLabel;
 	
@@ -43,12 +42,11 @@ public class AddSponsorController {
 	
 	@FXML
     public void initialize() throws SQLException, DisconnectedUserException {
-		
-		this.sponsorFacade = (SponsorFacade) Router.getInstance().getParams()[1];  
-
+		System.out.println("init");
+		this.sponsorFacade = new SponsorFacade();  
+		System.out.println(sponsorFacade);
+		this.eventId = (int) Router.getInstance().getParams()[0];
 	}
-	
-	
 	
 	@FXML
 	private void backToMySponsor(ActionEvent event) {
@@ -57,35 +55,17 @@ public class AddSponsorController {
 	}
 	
 	@FXML
-	private Sponsor createSponsorDTO() {
-		
-		Sponsor sponsorDTO;
-		
-		String nameSponsor = this.nameSponsor.getText();
-		int numSiretSponsor = Integer.parseInt(this.numSiretSponsor.getText());
-		String lastNameSponsor = this.lastNameSponsor.getText();
-		String firstNameSponsor = this.firstNameSponsor.getText();
-		String emailSponsor = this.emailSponsor.getText();
-		
-    	return sponsorDTO = new Sponsor(eventId,nameSponsor,numSiretSponsor,lastNameSponsor,firstNameSponsor,emailSponsor);
-
-	}
-	
-	@FXML
     private void addSponsor(ActionEvent event) throws IOException, DisconnectedUserException {
 		
+		System.out.println("on rentre bien dans le addSponsor");
 		if (formValidator()) {	
-
-			try {
-				this.sponsorFacade.addSponsor(this.createSponsorDTO());
-			}
-			catch(Error e) {
-				errorLabel.setText("Database Error : Please retry after");
-			}
 			
-			Router.getInstance().activate("Resources", Router.getInstance().getParams());
+			Sponsor sponsor = this.createSponsorDTO();
+			System.out.println(sponsor +", on a bien l'objet");
+			System.out.println(sponsorFacade + ", sponsor facade");
+			this.sponsorFacade.addSponsor(sponsor);  //ici ça plante
 			
-			
+			Router.getInstance().activate("Sponsors", Router.getInstance().getParams());
 		} else {
 			errorLabel.setText("Error : Missing Field");
     	}
@@ -97,9 +77,31 @@ public class AddSponsorController {
 				&& !numSiretSponsor.getText().isBlank() 
 				&& !lastNameSponsor.getText().isBlank()
 				&& !firstNameSponsor.getText().isBlank()
-				&& !emailSponsor.getText().isBlank()
-				&& !numTelContactSponsor.getText().isBlank();
+				&& !emailSponsor.getText().isBlank();
 		return filled;
+	}
+	
+	@FXML
+	public Sponsor createSponsorDTO() {
+		Sponsor sponsorDTO;
+		
+		String nameSponsor = this.nameSponsor.getText();
+		int numSiretSponsor = Integer.parseInt(this.numSiretSponsor.getText());
+		String lastNameSponsor = this.lastNameSponsor.getText();
+		String firstNameSponsor = this.firstNameSponsor.getText();
+		String emailSponsor = this.emailSponsor.getText();
+		
+		System.out.println(nameSponsor);
+		System.out.println(numSiretSponsor);
+		System.out.println(lastNameSponsor);
+		System.out.println(firstNameSponsor);
+		System.out.println(emailSponsor);
+
+    	sponsorDTO = new Sponsor(eventId,nameSponsor,numSiretSponsor,lastNameSponsor,firstNameSponsor,emailSponsor);
+    	System.out.println(eventId);
+    	System.out.println(sponsorDTO +", objet crée, donc on le renvoi pour l'addSponsor");
+    	
+    	return sponsorDTO;
 	}
 	
 	

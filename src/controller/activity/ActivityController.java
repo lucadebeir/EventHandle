@@ -62,7 +62,7 @@ public class ActivityController {
 		activityList.getSelectionModel().selectedItemProperty().addListener(observable -> {			
 			Activity selectedA = activityList.getSelectionModel().getSelectedItem();
 			Object[] params = Router.getInstance().getParams();
-			params[0] = selectedA.getIdActivity();
+			params[1] = selectedA.getIdActivity();
 			Router.getInstance().activate("ActivityDetail", params);
 		});
 	}		

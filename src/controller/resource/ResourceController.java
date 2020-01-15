@@ -18,13 +18,14 @@ import model.User;
 import ui.Router;
 
 /**
- * @author simongayet
+ * 
  */
 public class ResourceController {
 
 
 	private ResourceFacade resourceFacade;
 	private LoginFacade lF;
+	
 	private int eventId;
 	private Resource selectedResource;
 	
@@ -34,47 +35,74 @@ public class ResourceController {
     @FXML private Button deleteButton;
     @FXML private Button displayButton;
     @FXML private Button addButton;
+    
+	List<User> listVolunteer;
+	List<User> listIntervener;
+	
+	boolean isVolunteer;
+	boolean isIntervener;
+    
 	List<Resource> materials;
 	private ObservableList<Resource> materialObservableList;
 	
-	//pour la partie manager vs volunteer vs intervener
-	List<User> listVolunteer;
-	List<User> listIntervener;
-		
-	boolean isVolunteer;
-	boolean isIntervener;
+	List<Resource> vehicles;
+	private ObservableList<Resource> vehicleObservableList;
 	
-    
+	List<Resource> consomables;
+	private ObservableList<Resource> consomableObservableList;
+	
     public ResourceController() {	
     	eventId = (int) Router.getInstance().getParams()[0];
     	
     	this.resourceFacade = new ResourceFacade();
     	
     	this.materialObservableList = FXCollections.observableArrayList();
+    	this.vehicleObservableList = FXCollections.observableArrayList();
+    	this.consomableObservableList = FXCollections.observableArrayList();
 	}
     
     private void fetchResourceLists() {
-		materials = resourceFacade.getResourcesForEvent("Material",this.eventId);	
+		materials = resourceFacade.getResourcesForEvent("Material", this.eventId);	
+		vehicles = resourceFacade.getResourcesForEvent("Vehicle", this.eventId);
+		consomables = resourceFacade.getResourcesForEvent("Consomable", this.eventId);
 	}
     
     public void initialize() throws DisconnectedUserException {
-    	//pour la partie manager vs volunteer vs intervener
+    	
     	lF = new LoginFacade();
-    			
-    	listVolunteer = lF.getAllVolunteerOfAnEvent(eventId);
-    	listIntervener = lF.getAllIntervenerOfAnEvent(eventId);
-    			
-    	isVolunteer = lF.isVolunteer(listVolunteer);
-    	isIntervener = lF.isIntervener(listIntervener);
+		
+		listVolunteer = lF.getAllVolunteerOfAnEvent(eventId);
+		listIntervener = lF.getAllIntervenerOfAnEvent(eventId);
+		
+		isVolunteer = lF.isVolunteer(listVolunteer);
+		isIntervener = lF.isIntervener(listIntervener);
     	
     	fetchResourceLists(); 
+    	
     	materialObservableList = FXCollections.observableArrayList();
+    	vehicleObservableList = FXCollections.observableArrayList();
+    	consomableObservableList = FXCollections.observableArrayList();
+    	
     	for (Resource resource : materials) {
     		materialObservableList.add(resource);
 		}
     	
+    	for (Resource resource : vehicles) {
+    		vehicleObservableList.add(resource);
+		}
+    	
+    	for (Resource resource : consomables) {
+    		consomableObservableList.add(resource);
+		}
+
     	materialList.setItems(this.materialObservableList);
     	materialList.setCellFactory(resourceListView -> new ResourceListViewCell());
+    	
+    	vehicleList.setItems(this.vehicleObservableList);
+    	vehicleList.setCellFactory(resourceListView -> new ResourceListViewCell());
+    	
+    	consomableList.setItems(this.consomableObservableList);
+    	consomableList.setCellFactory(resourceListView -> new ResourceListViewCell());
     	
     	if(isVolunteer || isIntervener) {
     		addButton.setVisible(false);
@@ -99,6 +127,36 @@ public class ResourceController {
     		}  
     	}; 	
     	materialList.getSelectionModel().selectedIndexProperty().addListener(listenerMaterial);
+    	
+    	ChangeListener listenerVehicle = new ChangeListener() {  
+    		@Override
+    		public void changed(ObservableValue arg0, Object arg1, Object arg2) {
+    			try {
+    				selectedResource = vehicleList.getSelectionModel().getSelectedItem();
+    				deleteButton.setDisable(false);	
+    				displayButton.setDisable(false);
+    			} catch (Exception e) {
+    				deleteButton.setDisable(true);
+    				displayButton.setDisable(true);
+    			}
+    		}  
+    	}; 	
+    	vehicleList.getSelectionModel().selectedIndexProperty().addListener(listenerVehicle);
+    	
+    	ChangeListener listenerConsomable = new ChangeListener() {  
+    		@Override
+    		public void changed(ObservableValue arg0, Object arg1, Object arg2) {
+    			try {
+    				selectedResource = consomableList.getSelectionModel().getSelectedItem();
+    				deleteButton.setDisable(false);	
+    				displayButton.setDisable(false);
+    			} catch (Exception e) {
+    				deleteButton.setDisable(true);
+    				displayButton.setDisable(true);
+    			}
+    		}  
+    	}; 	
+    	consomableList.getSelectionModel().selectedIndexProperty().addListener(listenerConsomable);
     }
     
     @FXML
@@ -134,16 +192,7 @@ public class ResourceController {
      * @throws DisconnectedUserException 
      */
     public void deleteResource() throws DisconnectedUserException {
-        resourceFacade.deleteResource("material",selectedResource.getIdResource());
+        resourceFacade.deleteResource(selectedResource.getClassName(),selectedResource.getIdResource());
         initialize();
     }
-
-    /**
-     * @return
-     */
-    public Set<Resource> getAllResources() {
-        // TODO implement here
-        return null;
-    }
-
 }
