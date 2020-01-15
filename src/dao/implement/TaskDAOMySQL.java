@@ -130,9 +130,9 @@ public class TaskDAOMySQL extends TaskDAO {
 	public List<User> getPotentialExecutor(int idEvent){
 		List<User> lUser= new ArrayList<User>();
 		String[] query = new String[3];
-		query[0] = "select u.idUser,lastNameUser,firstNameUser,email,password,e.idEvent FROM event e, isvolunteer v, user u where e.idEvent = v.idEvent and v.idUser = u.idUser and e.idEvent = " + idEvent;
-		query[1] = "select u.idUser,lastNameUser,firstNameUser,email,password,e.idEvent FROM event e, ismanager v, user u where e.idEvent = v.idEvent and v.idUser = u.idUser and e.idEvent = " + idEvent;
-		query[2] = query[0] = "select u.idUser,lastNameUser,firstNameUser,email,password,e.idEvent FROM event e, isintervener v, user u where e.idEvent = v.idEvent and v.idUser = u.idUser and e.idEvent = " + idEvent;
+		query[0] = "select u.idUser,lastNameUser,firstNameUser,email,password FROM isvolunteer v, user u where v.idUser = u.idUser and v.idEvent = " + idEvent;
+		query[1] = "select u.idUser,lastNameUser,firstNameUser,email,password FROM ismanager v, user u where v.idUser = u.idUser and v.idEvent = " + idEvent;
+		query[2] = "select u.idUser,lastNameUser,firstNameUser,email,password FROM isintervener v, user u where v.idUser = u.idUser and v.idEvent = " + idEvent;
 		User u;
 		
 		for(String q : query) {
@@ -263,8 +263,8 @@ public class TaskDAOMySQL extends TaskDAO {
 		return list;
 	}
 	
+	
 	public void setTaskStatus(int idTask, boolean statusTask) {
-		System.out.println("cc");
 		String sql = "UPDATE task SET statusTask=? WHERE idTask=?";
 		try {
 			PreparedStatement preparedStatement = this.connect.prepareStatement(sql);
@@ -273,6 +273,21 @@ public class TaskDAOMySQL extends TaskDAO {
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}
+		
+		Task t = findTask(idTask);
+		int ide = findIdEventTaskByID(idTask);
+		
+		if(statusTask) {
+			sql = "INSERT INTO notification VALUES (NULL, ?, 'La tâche est finie', ?)";
+			try {
+				PreparedStatement preparedStatement = this.connect.prepareStatement(sql);
+				preparedStatement.setString(1, t.getTaskName());
+				preparedStatement.setInt(2, ide);
+				preparedStatement.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	

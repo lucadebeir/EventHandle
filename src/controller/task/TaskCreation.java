@@ -18,7 +18,7 @@ import model.MyDate;
 public class TaskCreation {
 	
 	TaskFacade taskFacade = new TaskFacade();
-	int idActivity = (int) Router.getInstance().getParams()[0];
+	int idActivity = (int) Router.getInstance().getParams()[1];
 	
 	@FXML private TextField nameTask;
 	@FXML private DatePicker dateStartTask;
